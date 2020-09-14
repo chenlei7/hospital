@@ -69,7 +69,7 @@
                             <div class="modal-dialog modal-lorvens">
                                 <div class="modal-content lochana-box-shadow2">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Search Patient/医生:</h5>
+                                        <h5 class="modal-title">Search Patient/护士 :</h5>
                                         <span class="ti-close" data-dismiss="modal" aria-label="Close">
 												</span>
                                     </div>
@@ -166,10 +166,10 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-user"></span> 护士管理</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/personnel/addDoctor">添加护士信息</a>
-                                <a class="dropdown-item" href="/doctor/doctors">查询护士信息</a>
-                                <a class="dropdown-item" href="/doctor/doctorInfo">护士信息详情</a>
-                                <a class="dropdown-item" href="/personnel/editDoctor">编辑护士信息</a>
+                                <a class="dropdown-item" href="/personnel/addNurse">添加护士信息</a>
+                                <a class="dropdown-item" href="/nurse/nurses">查询护士信息</a>
+                                <a class="dropdown-item" href="/nurse/nurseInfo">护士信息详情</a>
+                                <a class="dropdown-item" href="/personnel/editNurse">编辑护士信息</a>
                             </div>
                         </li>
 
@@ -250,7 +250,7 @@
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">Update 医生</h3>
+                    <h3 class="block-title">Update 护士</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
@@ -259,8 +259,8 @@
                                 <span class="ti-home"></span>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">医生</li>
-                        <li class="breadcrumb-item active">Update 医生</li>
+                        <li class="breadcrumb-item">护士</li>
+                        <li class="breadcrumb-item active">Update 护士</li>
                     </ol>
                 </div>
             </div>
@@ -275,48 +275,49 @@
                 <!-- Widget Item -->
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">Update 医生</h3>
-                        <form action="/doctor/updateDoctor" method="post">
+                        <h3 class="widget-title">Update 护士</h3>
+                        <form action="/nurse/updateNurse" method="post" onsubmit="return check()">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="doctorNumber">编号 Number</label>
-                                    <input type="text" class="form-control" placeholder="Number" id="doctorNumber" name="doctorNum">
+                                    <label for="nurseNumber">编号 Number</label>
+                                    <input type="text" class="form-control" placeholder="Number" id="nurseNumber" name="nurseNum">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorWorkDate">工作时间 WorkDate</label>
-                                    <input type="text" class="form-control" placeholder="WorkDate" id="doctorWorkDate" name="doctorWorkDate">
+                                    <label for="nurseWorkDate">工作时间 WorkDate</label>
+                                    <input type="text" class="form-control" placeholder="WorkDate" id="nurseWorkDate" name="nurseWorkDate">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorWorkspace">工作地点 Workspace</label>
-                                    <input type="text" class="form-control" placeholder="Workspace" id="doctorWorkspace" name="doctorWorkspace">
+                                    <label for="nurseWorkspace">工作地点 Workspace</label>
+                                    <input type="text" class="form-control" placeholder="Workspace" id="nurseWorkspace" name="nurseWorkspace">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorPosition">科室 Position</label>
-                                    <input type="text" placeholder="Position" class="form-control" id="doctorPosition" name="doctorPosition">
+                                    <label for="nursePosition">科室 Position</label>
+                                    <input type="text" placeholder="Position" class="form-control" id="nursePosition" name="nursePosition">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorPhone">电话 Phone</label>
-                                    <input type="text" placeholder="Phone" class="form-control" id="doctorPhone" name="doctorPhone">
+                                    <label for="nursePhone">电话 Phone</label>
+                                    <input type="text" placeholder="Phone" class="form-control" id="nursePhone" name="nursePhone">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorEmail">邮箱 Email</label>
-                                    <input type="email" placeholder="email" class="form-control" id="doctorEmail" name="doctorEmail">
+                                    <label for="nurseEmail">邮箱 Email</label>
+                                    <input type="email" placeholder="email" class="form-control" id="nurseEmail" name="nurseEmail">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorPassword">密码 Password</label>
-                                    <input type="text" placeholder="Password" class="form-control" id="doctorPassword" name="doctorPassword">
+                                    <label for="nursePassword">密码 Password</label>
+                                    <input type="text" placeholder="Password" class="form-control" id="nursePassword" name="nursePassword">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorPassword"></label>
+                                    <label for="nurseMoney">工资 Salary</label>
+                                    <input type="text" placeholder="Salary" class="form-control" id="nurseMoney" name="nurseMoney">
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="doctorAbout">自我介绍 Details</label>
-                                    <textarea placeholder="Details" class="form-control" id="doctorAbout" rows="3" name="doctorAbout"></textarea>
+                                    <label for="nurseAbout">自我介绍 Details</label>
+                                    <textarea placeholder="Details" class="form-control" id="nurseAbout" rows="3" name="nurseAbout"></textarea>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorAddress">地址 Address</label>
-                                    <textarea placeholder="Address" class="form-control" id="doctorAddress" rows="3" name="doctorAddress"></textarea>
+                                    <label for="nurseAddress">地址 Address</label>
+                                    <textarea placeholder="Address" class="form-control" id="nurseAddress" rows="3" name="nurseAddress"></textarea>
                                 </div>
 
                                 <!--									<div class="form-check col-md-12 mb-2">-->
@@ -328,7 +329,7 @@
                                 <!--										</div>-->
                                 <!--									</div>-->
                                 <div class="form-group col-md-6 mb-3">
-                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                    <button type="submit" class="btn btn-primary btn-lg" id="submit">Submit</button>
                                     <button type="reset" class="btn btn-primary btn-lg">Reset</button>
                                 </div>
                             </div>
@@ -381,6 +382,18 @@
 
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
+
+<script th:inline="javascript">
+    $("#submit").click(function () {
+        var nurseMoney = $("#nurseMoney").val();
+        if(nurseMoney.length==0){
+            alert("工资不能空，请输入编号！")
+            return false;
+        }else {
+            return true;
+        }
+    })
+</script>
 </body>
 
 </html>

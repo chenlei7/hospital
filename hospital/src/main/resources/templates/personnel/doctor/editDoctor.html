@@ -276,7 +276,7 @@
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
                         <h3 class="widget-title">Update 医生</h3>
-                        <form action="/doctor/updateDoctor" method="post">
+                        <form action="/doctor/updateDoctor" method="post" onsubmit="return check()">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="doctorNumber">编号 Number</label>
@@ -329,7 +329,7 @@
                                 <!--										</div>-->
                                 <!--									</div>-->
                                 <div class="form-group col-md-6 mb-3">
-                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                    <button type="submit" class="btn btn-primary btn-lg" id="submit">Submit</button>
                                     <button type="reset" class="btn btn-primary btn-lg">Reset</button>
                                 </div>
                             </div>
@@ -377,6 +377,19 @@
 <script th:src="@{/js/bootstrap.min.js}"></script>
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
+
+<!--新增判断,工资不能为空-->
+<script th:inline="javascript">
+    $("#submit").click(function () {
+        var doctorMoney = $("#doctorMoney").val();
+        if(doctorMoney.length==0){
+            alert("工资不能空，请输入编号！")
+            return false;
+        }else {
+            return true;
+        }
+    })
+</script>
 </body>
 
 </html>

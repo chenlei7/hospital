@@ -37,8 +37,10 @@ public class NurseController {
 
     //修改护士信息
     @RequestMapping("/updateNurse")
-    public String updateNurse() {
-        if (1 > 0) {
+    public String updateNurse(String nursePhone, String nurseAddress, String nurseEmail, String nursePosition, String nurseWorkspace, String nurseWorkDate, String nurseAbout, String nursePassword, double nurseMoney, String nurseNum) {
+        System.out.println(nurseNum);
+        int updateNurse = nurseService.updateNurse(nursePhone,nurseAddress,nurseEmail,nursePosition,nurseWorkspace,nurseWorkDate,nurseAbout,nursePassword,nurseMoney,nurseNum);
+        if (updateNurse > 0) {
             return "personnel/success";
         } else {
             return "personnel/error";

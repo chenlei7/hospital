@@ -12,8 +12,13 @@ import java.util.List;
 
 @Repository
 public interface NurseMapper extends JpaRepository<Nurse,Object> {
-
-
+    //编辑护士信息
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true,value = "update nurse_info  set nurse_phone=:nursePhone,nurse_address=:nurseAddress,nurse_email=:nurseEmail,nurse_position=:nursePosition,nurse_workspace=:nurseWorkspace,nurse_work_date=:nurseWorkDate,nurse_about=:nurseAbout,nurse_password=:nursePassword,nurse_money=:nurseMoney where nurse_num =:nurseNum")
+    int updateNurse(@Param("nursePhone")String nursePhone,@Param("nurseAddress")String nurseAddress,@Param("nurseEmail")String nurseEmail,
+                     @Param("nursePosition")String nursePosition,@Param("nurseWorkspace")String nurseWorkspace,@Param("nurseWorkDate")String nurseWorkDate,
+                     @Param("nurseAbout")String nurseAbout,@Param("nursePassword")String nursePassword,@Param("nurseMoney")double nurseMoney,@Param("nurseNum")String nurseNum);
 
     //删除护士信息
     @Transactional

@@ -10,6 +10,8 @@ public interface NurseService {
     //增加护士
     Nurse addNurse(Nurse nurse);
 
+    //编辑护士信息
+    int updateNurse(String nursePhone, String nurseAddress, String nurseEmail, String nursePosition, String nurseWorkspace, String nurseWorkDate, String nurseAbout,String nursePassword,double nurseMoney,String nurseNum);
 
 
 
