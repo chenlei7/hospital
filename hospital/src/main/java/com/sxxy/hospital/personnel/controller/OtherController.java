@@ -51,7 +51,7 @@ public class OtherController {
         }
     }
 
-    //查看所有医生
+    //查看所有员工
     @RequestMapping("/others")
     public String allOther(Model model) {
         List<Other> others = new ArrayList<>();
@@ -64,12 +64,12 @@ public class OtherController {
         return "personnel/other/others";
     }
 
-    //查看所有医生详细信息
+    //查看所有员工详细信息
     @RequestMapping("/otherInfo")
     public String otherInfo(Model model) {
-        List<Doctor> doctors = new ArrayList<>();
-        doctors = doctorMapper.findAll();
-        model.addAttribute("doctors", doctors);
+        List<Other> others = new ArrayList<>();
+        others = otherMapper.findAll();
+        model.addAttribute("others", others);
         return "personnel/other/aboutOther";
     }
 
@@ -79,7 +79,7 @@ public class OtherController {
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
             try {
-                doctorService.deleteDoctorByDoctorNum(Collections.singletonList(strs[i]));
+                otherMapper.deleteOtherByOtherNum(Collections.singletonList(strs[i]));
             } catch (Exception e) {
                 return "personnel/error";
             }
