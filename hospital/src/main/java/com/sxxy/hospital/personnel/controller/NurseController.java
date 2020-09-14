@@ -1,6 +1,7 @@
 package com.sxxy.hospital.personnel.controller;
 
 
+import com.sxxy.hospital.personnel.entity.Doctor;
 import com.sxxy.hospital.personnel.entity.Nurse;
 import com.sxxy.hospital.personnel.mapper.NurseMapper;
 import com.sxxy.hospital.personnel.service.NurseService;
@@ -47,14 +48,22 @@ public class NurseController {
     @RequestMapping("/nurses")
     public String allNurse(Model model) {
         List<Nurse> nurses = new ArrayList<>();
-        nurses = nurseMapper.findAll();
+        try {
+            nurses = nurseMapper.findAll();
+        }catch (Exception e){
+            return "personnel/error";
+        }
         model.addAttribute("nurses",nurses);
         return "personnel/nurse/nurses";
     }
 
+
     //查看所有护士详细信息
     @RequestMapping("/nurseInfo")
     public String nurseInfo(Model model) {
+        List<Nurse> nurses = new ArrayList<>();
+        nurses = nurseMapper.findAll();
+        model.addAttribute("nurses", nurses);
         return "personnel/nurse/aboutNurse";
     }
 

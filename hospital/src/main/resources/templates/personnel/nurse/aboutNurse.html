@@ -298,21 +298,21 @@
 								</tr>
 								</thead>
 								<tbody>
-								<tr th:each="doctor:${doctors}">
-									<td th:text="${doctor.doctorNum}"></td>
-									<td th:text="${doctor.doctorName}"></td>
-									<td th:text="${doctor.doctorPhone}"></td>
-									<td th:text="${doctor.doctorBirthday}"></td>
-									<td th:text="${doctor.doctorAddress}"></td>
-									<td th:text="${doctor.doctorEmail}"></td>
-									<td th:text="${doctor.doctorAge}"></td>
-									<td th:text="${doctor.doctorGender}"></td>
-									<td th:text="${doctor.doctorPosition}"></td>
-									<td th:text="${doctor.doctorWorkspace}"></td>
-									<td th:text="${doctor.doctorWorkDate}"></td>
-									<td th:text="${doctor.doctorAbout}"></td>
+								<tr th:each="nurse:${nurses}">
+									<td th:text="${nurse.nurseNum}"></td>
+									<td th:text="${nurse.nurseName}"></td>
+									<td th:text="${nurse.nursePhone}"></td>
+									<td th:text="${nurse.nurseBirthday}"></td>
+									<td th:text="${nurse.nurseAddress}"></td>
+									<td th:text="${nurse.nurseEmail}"></td>
+									<td th:text="${nurse.nurseAge}"></td>
+									<td th:text="${nurse.nurseGender}"></td>
+									<td th:text="${nurse.nursePosition}"></td>
+									<td th:text="${nurse.nurseWorkspace}"></td>
+									<td th:text="${nurse.nurseWorkDate}"></td>
+									<td th:text="${nurse.nurseAbout}"></td>
 									<td>
-										<span class="badge badge-success"  th:text="${doctor.doctorState}"></span>
+										<span class="badge badge-success"  th:text="${nurse.nurseState}"></span>
 									</td>
 								</tr>
 								</tbody>
