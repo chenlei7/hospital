@@ -25,6 +25,7 @@ public interface NurseMapper extends JpaRepository<Nurse,Object> {
     @Modifying
     @Query(nativeQuery = true,value = "delete  from nurse_info  where  nurse_num in (:delNum) ")
     int deleteNurseByNurseNum(@Param("delNum") List<String> delNum);
+
     //修改护士现状
     @Transactional
     @Modifying

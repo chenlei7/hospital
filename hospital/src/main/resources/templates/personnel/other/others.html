@@ -378,7 +378,7 @@
 		}
 	}
 
-	/*修改护士的现状*/
+	/*修改员工的现状*/
 	function editOther() {
 		var result="";
 		var d = "";
@@ -386,7 +386,6 @@
 		d = $("input[name='otherNum']:checked").each(function(){;
 			result = $(this).attr('value');
 		});
-		console.log(otherState)
 		if(otherState==""){
 			alert("请输入要修改的现状")
 		}else{

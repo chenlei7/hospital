@@ -17,4 +17,10 @@ public class OtherServiceImpl implements OtherService {
     public int deleteOtherByOtherNum(List<String> delNum) {
         return otherMapper.deleteOtherByOtherNum(delNum);
     }
+
+    //修改员工现状
+    @Override
+    public int editOtherNowState(String otherState, List<String> editNum) {
+        return otherMapper.editNurseNowState(otherState,editNum);
+    }
 }
