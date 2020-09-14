@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,8 +37,10 @@ public class NurseController {
 
     //修改护士信息
     @RequestMapping("/updateNurse")
-    public String updateNurse() {
-        if (1 > 0) {
+    public String updateNurse(String nursePhone, String nurseAddress, String nurseEmail, String nursePosition, String nurseWorkspace, String nurseWorkDate, String nurseAbout, String nursePassword, double nurseMoney, String nurseNum) {
+        System.out.println(nurseNum);
+        int updateNurse = nurseService.updateNurse(nursePhone,nurseAddress,nurseEmail,nursePosition,nurseWorkspace,nurseWorkDate,nurseAbout,nursePassword,nurseMoney,nurseNum);
+        if (updateNurse > 0) {
             return "personnel/success";
         } else {
             return "personnel/error";
@@ -73,7 +76,7 @@ public class NurseController {
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
             try {
-
+                nurseService.deleteNurseByNurseNum(Collections.singletonList(strs[i]));
             } catch (Exception e) {
                 return "personnel/error";
             }
