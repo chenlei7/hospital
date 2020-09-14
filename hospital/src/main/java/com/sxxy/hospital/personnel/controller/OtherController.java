@@ -89,11 +89,11 @@ public class OtherController {
 
     //修改医生现状
     @RequestMapping("/editOtherNowState")
-    public String editOtherNowState(String doctorState,String tag) {
+    public String editOtherNowState(String otherState,String tag) {
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
             try {
-                doctorService.editDoctorNowState(doctorState,Collections.singletonList(strs[i]));
+                otherService.editOtherNowState(otherState,Collections.singletonList(strs[i]));
             } catch (Exception e) {
                 return "personnel/error";
             }

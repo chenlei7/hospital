@@ -20,4 +20,10 @@ public interface OtherMapper extends JpaRepository<Other,Object> {
     @Modifying
     @Query(nativeQuery = true,value = "delete from other_info  where  other_num in (:delNum) ")
     int deleteOtherByOtherNum(@Param("delNum") List<String> delNum);
+
+    //修改员工现状
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true,value = "update other_info set other_state=:otherState  where  other_num in (:editNum) ")
+    int editNurseNowState(@Param("otherState")String otherState, @Param("editNum") List<String> editNum);
 }

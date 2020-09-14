@@ -1,13 +1,23 @@
 package com.sxxy.hospital.financial.controller;
 
+import com.sxxy.hospital.financial.service.FinancialService;
+import com.sxxy.hospital.financial.service.impl.FinancialServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/financial")
-public class financialController {
+public class FinancialController {
+
+    @Autowired
+    FinancialService service;
 
     @GetMapping("/login")
     public String login(){
@@ -23,4 +33,9 @@ public class financialController {
         }
     }
 
+    @RequestMapping("/all")
+    @ResponseBody
+    public List<Map> all(){
+        return service.findAll();
+    }
 }
