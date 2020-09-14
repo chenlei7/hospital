@@ -31,6 +31,9 @@ public class Patient {
     //离开时间
     @Column(name = "patient_leaveDate")
     String patientLeaveDate;
+    //性别
+    @Column(name = "patient_gender")
+    String patientGender;
     //病情编号
     @Column(name = "patient_illness_num")
     String patientIllnessNum;
@@ -154,6 +157,14 @@ public class Patient {
         this.patientRoomNum = patientRoomNum;
     }
 
+    public String getPatientGender() {
+        return patientGender;
+    }
+
+    public void setPatientGender(String patientGender) {
+        this.patientGender = patientGender;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
@@ -165,6 +176,7 @@ public class Patient {
                 ", patientComeDate='" + patientComeDate + '\'' +
                 ", patientPhone='" + patientPhone + '\'' +
                 ", patientLeaveDate='" + patientLeaveDate + '\'' +
+                ", patientGender='" + patientGender + '\'' +
                 ", patientIllnessNum='" + patientIllnessNum + '\'' +
                 ", patientDoctorNum='" + patientDoctorNum + '\'' +
                 ", patientBillNum='" + patientBillNum + '\'' +
