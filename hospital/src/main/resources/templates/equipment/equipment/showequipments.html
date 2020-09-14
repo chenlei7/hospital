@@ -147,13 +147,12 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-wheelchair"></span> 病人管理</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/patient/addPatient">添加病人信息</a>
-                                <a class="dropdown-item" href="/patient/patientsInfo">查看病人信息</a>
+                                <a class="dropdown-item" href="add-patient.html">添加病人信息</a>
+                                <a class="dropdown-item" href="patients.html">查看病人信息</a>
                                 <a class="dropdown-item" href="about-patient.html">病人详情</a>
                                 <a class="dropdown-item" href="edit-patient.html">编辑病人信息</a>
                             </div>
                         </li>
-                        <!--医生管理-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-user"></span> 医生管理</a>
@@ -162,17 +161,6 @@
                                 <a class="dropdown-item" href="/doctor/doctors">查询医生信息</a>
                                 <a class="dropdown-item" href="/doctor/doctorInfo">医生信息详情</a>
                                 <a class="dropdown-item" href="/personnel/editDoctor">编辑医生信息</a>
-                            </div>
-                        </li>
-                        <!--护士管理-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                               aria-expanded="false"><span class="ti-user"></span> 护士管理</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/personnel/addNurse">添加护士信息</a>
-                                <a class="dropdown-item" href="/nurse/nurses">查询护士信息</a>
-                                <a class="dropdown-item" href="/nurse/nurseInfo">护士信息详情</a>
-                                <a class="dropdown-item" href="/personnel/editNurse">编辑护士信息</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -198,9 +186,18 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-key"></span> 病房分配</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="add-room.html">添加病房</a>
-                                <a class="dropdown-item" href="rooms.html">查询病房</a>
+                                <a class="dropdown-item" href="/room/rooms">查询病房</a>
+                                <a class="dropdown-item" href="/equipment/equipments">器材信息</a>
                                 <a class="dropdown-item" href="edit-room.html">编辑病房信息</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                               aria-expanded="false"><span class="ti-key"></span> 病房分配</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/room/rooms">查询病房</a>
+                                <a class="dropdown-item" href="/equipment/equipments">器材信息</a>
+                                <a class="dropdown-item" href="/consumables/allconsumables">药材信息</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -252,17 +249,17 @@
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">病人 All</h3>
+                    <h3 class="block-title">器材</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="/personnel/index">
                                 <span class="ti-home"></span>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">病人 </li>
-                        <li class="breadcrumb-item active">病人 All</li>
+                        <li class="breadcrumb-item">器材</li>
+                        <li class="breadcrumb-item active">所有器材</li>
                     </ol>
                 </div>
             </div>
@@ -277,7 +274,7 @@
                 <!-- Widget Item -->
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">病人 All</h3>
+                        <h3 class="widget-title">器材列表</h3>
                         <div class="table-responsive mb-3">
                             <table id="tableId" class="table table-bordered table-striped">
                                 <thead>
@@ -288,46 +285,52 @@
                                             <label class="custom-control-label" for="select-all"></label>
                                         </div>
                                     </th>
-                                    < <th>病人编号</th>
-                                    <th>姓名</th>
-                                    <th>年龄</th>
-                                    <th>地址</th>
-                                    <th>入院日期</th>
-                                    <th>电话</th>
-                                    <th>离开日期</th>
-                                    <th>病情</th>
-                                    <th>主治医生</th>
-                                    <th>消费账单</th>
-                                    <th>护士</th>
-                                    <th>科室</th>
+                                    <th>编号</th>
+                                    <th>名称</th>
+                                    <th>价格（元）</th>
+                                    <th>所属房间</th>
+                                    <th>状态</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="patient:${patients}">
+                                <tr th:each="equipment:${equipments}">
                                     <td>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" th:id="${patient.id}" name="patientNum" th:value="${patient.patientNum}">
-                                            <label class="custom-control-label" th:for="${patient.id}"></label>
+                                            <input class="custom-control-input" type="checkbox" th:id="${equipment.id}" name="equipmentNum" th:value="${equipment.equipmentNum}">
+                                            <label class="custom-control-label" th:for="${equipment.id}"></label>
                                         </div>
                                     </td>
-                                    <td th:text="${patient.patientNum}"></td>
-                                    <td th:text="${patient.patientName}"></td>
-                                    <td th:text="${patient.patientAge}"></td>
-                                    <td th:text="${patient.patientAddress}"></td>
-                                    <td th:text="${patient.patientComeDate}"></td>
-                                    <td th:text="${patient.patientPhone}"></td>
-                                    <td th:text="${patient.patientLeaveDate}"></td>
-                                    <td th:text="${patient.patientIllnessNum}"></td>
-                                    <td th:text="${patient.patientDoctorNum}"></td>
-                                    <td th:text="${patient.patientBillNum}"></td>
-                                    <td th:text="${patient.patientNurseNum}"></td>
-                                    <td th:text="${patient.patientRoomNum}"></td>
+                                    <td th:text="${equipment.equipmentNum}"></td>
+                                    <td th:text="${equipment.equipmentName}"></td>
+                                    <td th:text="${equipment.equipmentPrice}"></td>
+                                    <td th:text="${equipment.equipmentSite}"></td>
+                                    <td th:text="${equipment.equipmentState}"></td>
+
                                 </tr>
                                 </tbody>
                             </table>
 
+
+                            <!--Export links-->
+                            <!--							<nav aria-label="Page navigation example">-->
+                            <!--								<ul class="pagination justify-content-center export-pagination">-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-download"></span> csv</a>-->
+                            <!--									</li>-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>-->
+                            <!--									</li>-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>-->
+                            <!--									</li>-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>-->
+                            <!--									</li>-->
+                            <!--								</ul>-->
+                            <!--							</nav>-->
+                            <!-- /Export links-->
                             <button type="button" class="btn btn-danger mt-3 mb-0" onclick="delDoctor()"><span class="ti-trash"></span> DELETE</button>
-                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> 编辑</button>
+                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
                         </div>
                     </div>
                 </div>
@@ -359,27 +362,13 @@
 <!-- Datatable  -->
 <script th:src="@{/datatable/jquery.dataTables.min.js}"></script>
 <script th:src="@{/datatable/dataTables.bootstrap4.min.js}"></script>
+
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
 <script th:src="@{/js/custom-datatables.js}"></script>
 
 
 <script th:inline="javascript">
-    /*全选*/
-    $("#select-all").click(function(){
-        $("input[name='doctorNum']").each(function(){
-            if (this.checked) {
-                this.checked = false;
-            }
-            else {
-                this.checked = true;
-            }
-        });
-    })
-
-
-
-
     /*批量删除*/
     function delDoctor() {
         var result="";
@@ -402,27 +391,28 @@
         }
     }
 
-    /*修改医生的现状*/
+    /*修改器材的现状*/
     function editDoctor() {
         var result="";
         var d = "";
-        d = $("input[name='patientNum']:checked").each(function(){
+        var equipmentState=$("#equipmentNowState").val();
+        d = $("input[name='equipmentNum']:checked").each(function(){;
             result = $(this).attr('value');
         });
-        if(doctorState==""){
+        if(equipmentState==""){
             alert("请输入要修改的现状")
         }else{
-            window.location.href= "/doctor/editDoctorNowState?doctorState="+doctorState+"&tag="+result;
+            window.location.href= "/equipment/editEquipmentNowState?equipmentState="+equipmentState+"&tag="+result;
             alert("修改成功");
-            window.location.href = "http://localhost:8080/doctor/doctors";
+            window.location.href = "http://localhost:8080/equipment/equipments";
         }
     }
 
     /*打开修改模态框*/
     function openEditModal(editModal) {
         var result="";
-        var doctorState="";
-        doctorState = $("input[name='doctorNum']:checked").each(function(){
+        var equipmentState="";
+        equipmentState = $("input[name='equipmentNum']:checked").each(function(){
             result = $(this).attr('value');
         });
         if(result==""){
@@ -440,7 +430,7 @@
             <!--顶部标题-->
             <div class="modal-header">
                 <!--标题-->
-                <h5>修改医生现状</h5>
+                <h5>修改器材状态</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -450,13 +440,11 @@
                 <form id="formEditDoctor">
                     <input type="text" hidden id="academeIDU">
                     <div class="form-group row">
-                        <label for="doctorNowState"  class="col-3">医生现状 NowState</label>
+                        <label for="equipmentNowState"  class="col-3">器材状态现状</label>
                         <div class="form-group col-md-6">
-                            <select class="form-control" id="doctorNowState" name="doctorNowState">
-                                <option>出诊中</option>
-                                <option>可出诊</option>
-                                <option>请假</option>
-                                <option>休假</option>
+                            <select class="form-control" id="equipmentNowState" name="equipmentNowState">
+                                <option>可用</option>
+                                <option>不可用</option>
                             </select>
                         </div>
                     </div>
