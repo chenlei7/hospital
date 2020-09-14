@@ -69,7 +69,7 @@
                             <div class="modal-dialog modal-lorvens">
                                 <div class="modal-content lochana-box-shadow2">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Search Patient/医生:</h5>
+                                        <h5 class="modal-title">Search Patient/员工 :</h5>
                                         <span class="ti-close" data-dismiss="modal" aria-label="Close">
 												</span>
                                     </div>
@@ -172,7 +172,17 @@
                                 <a class="dropdown-item" href="/personnel/editNurse">编辑护士信息</a>
                             </div>
                         </li>
-
+                        <!--员工管理-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                               aria-expanded="false"><span class="ti-user"></span> 员工管理</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/personnel/addOther">添加员工信息</a>
+                                <a class="dropdown-item" href="/other/others">查询员工信息</a>
+                                <a class="dropdown-item" href="/other/otherInfo">员工信息详情</a>
+                                <a class="dropdown-item" href="/personnel/editOther">编辑员工信息</a>
+                            </div>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-pencil-alt"></span> 出诊管理</a>
@@ -201,32 +211,7 @@
                                 <a class="dropdown-item" href="edit-room.html">编辑病房信息</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                               aria-expanded="false"><span class="ti-layout-tab"></span> UI框架</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="typography.html">排版</a>
-                                <a class="dropdown-item" href="buttons.html">按钮</a>
-                                <a class="dropdown-item" href="cards.html">卡片</a>
-                                <a class="dropdown-item" href="tabs.html">选项卡</a>
-                                <a class="dropdown-item" href="accordions.html">手风琴</a>
-                                <a class="dropdown-item" href="modals.html">模态窗口</a>
-                                <a class="dropdown-item" href="lists.html">媒体和列表</a>
-                                <a class="dropdown-item" href="grid.html">网格</a>
-                                <a class="dropdown-item" href="progress-bars.html">进度条</a>
-                                <a class="dropdown-item" href="notifications-alerts.html">预警和提示</a>
-                                <a class="dropdown-item" href="pagination.html">分页</a>
-                                <a class="dropdown-item" href="carousel.html">滑块</a>
-                                <a class="dropdown-item" href="tables.html">表格</a>
-                                <a class="dropdown-item" href="charts-1.html">Morris图表</a>
-                                <a class="dropdown-item" href="charts-2.html">Flot图表</a>
-                                <a class="dropdown-item" href="map-1.html">谷歌地图</a>
-                                <a class="dropdown-item" href="map-2.html">Vector地图</a>
-                                <a class="dropdown-item" href="forms.html">表单</a>
-                                <a class="dropdown-item" href="font-awesome.html">Font Awesome </a>
-                                <a class="dropdown-item" href="themify.html">Themify图标</a>
-                            </div>
-                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-file"></span> 其它页面</a>
@@ -250,7 +235,7 @@
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">医生 Update</h3>
+                    <h3 class="block-title">员工 Update</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
@@ -259,8 +244,8 @@
                                 <span class="ti-home"></span>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">医生 </li>
-                        <li class="breadcrumb-item active">医生 Update</li>
+                        <li class="breadcrumb-item">员工 </li>
+                        <li class="breadcrumb-item active">员工 Update</li>
                     </ol>
                 </div>
             </div>
@@ -275,49 +260,49 @@
                 <!-- Widget Item -->
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">医生 Update</h3>
-                        <form action="/doctor/updateDoctor" method="post" onsubmit="return check()">
+                        <h3 class="widget-title">护士 Update</h3>
+                        <form action="/nurse/updateNurse" method="post" onsubmit="return check()">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="doctorNumber">编号 Number</label>
-                                    <input type="text" class="form-control" placeholder="Number" id="doctorNumber" name="doctorNum">
+                                    <label for="nurseNumber">编号 Number</label>
+                                    <input type="text" class="form-control" placeholder="Number" id="nurseNumber" name="nurseNum">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorWorkDate">工作时间 WorkDate</label>
-                                    <input type="text" class="form-control" placeholder="WorkDate" id="doctorWorkDate" name="doctorWorkDate">
+                                    <label for="nurseWorkDate">工作时间 WorkDate</label>
+                                    <input type="text" class="form-control" placeholder="WorkDate" id="nurseWorkDate" name="nurseWorkDate">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorWorkspace">工作地点 Workspace</label>
-                                    <input type="text" class="form-control" placeholder="Workspace" id="doctorWorkspace" name="doctorWorkspace">
+                                    <label for="nurseWorkspace">工作地点 Workspace</label>
+                                    <input type="text" class="form-control" placeholder="Workspace" id="nurseWorkspace" name="nurseWorkspace">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorPosition">科室 Position</label>
-                                    <input type="text" placeholder="Position" class="form-control" id="doctorPosition" name="doctorPosition">
+                                    <label for="nursePosition">科室 Position</label>
+                                    <input type="text" placeholder="Position" class="form-control" id="nursePosition" name="nursePosition">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorPhone">电话 Phone</label>
-                                    <input type="text" placeholder="Phone" class="form-control" id="doctorPhone" name="doctorPhone">
+                                    <label for="nursePhone">电话 Phone</label>
+                                    <input type="text" placeholder="Phone" class="form-control" id="nursePhone" name="nursePhone">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorEmail">邮箱 Email</label>
-                                    <input type="email" placeholder="email" class="form-control" id="doctorEmail" name="doctorEmail">
+                                    <label for="nurseEmail">邮箱 Email</label>
+                                    <input type="email" placeholder="email" class="form-control" id="nurseEmail" name="nurseEmail">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorPassword">密码 Password</label>
-                                    <input type="text" placeholder="Password" class="form-control" id="doctorPassword" name="doctorPassword">
+                                    <label for="nursePassword">密码 Password</label>
+                                    <input type="text" placeholder="Password" class="form-control" id="nursePassword" name="nursePassword">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorPassword">工资 Salary</label>
-                                    <input type="text" placeholder="Salary" class="form-control" id="doctorMoney" name="doctorMoney">
+                                    <label for="nurseMoney">工资 Salary</label>
+                                    <input type="text" placeholder="Salary" class="form-control" id="nurseMoney" name="nurseMoney">
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="doctorAbout">自我介绍 Details</label>
-                                    <textarea placeholder="Details" class="form-control" id="doctorAbout" rows="3" name="doctorAbout"></textarea>
+                                    <label for="nurseAbout">自我介绍 Details</label>
+                                    <textarea placeholder="Details" class="form-control" id="nurseAbout" rows="3" name="nurseAbout"></textarea>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorAddress">地址 Address</label>
-                                    <textarea placeholder="Address" class="form-control" id="doctorAddress" rows="3" name="doctorAddress"></textarea>
+                                    <label for="nurseAddress">地址 Address</label>
+                                    <textarea placeholder="Address" class="form-control" id="nurseAddress" rows="3" name="nurseAddress"></textarea>
                                 </div>
 
                                 <!--									<div class="form-check col-md-12 mb-2">-->
@@ -375,14 +360,18 @@
 <script th:src="@{/js/popper.min.js}"></script>
 <!-- Bootstrap Library-->
 <script th:src="@{/js/bootstrap.min.js}"></script>
+<!-- morris charts -->
+<!--	<script th:src="@{/charts/js/raphael-min.js}"></script>-->
+<!--	<script th:src="@{/charts/js/morris.min.js}"></script>-->
+<!--	<script th:src="@{/js/custom-morris.js}"></script>-->
+
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
 
-<!--新增判断,工资不能为空-->
 <script th:inline="javascript">
     $("#submit").click(function () {
-        var doctorMoney = $("#doctorMoney").val();
-        if(doctorMoney.length==0){
+        var nurseMoney = $("#nurseMoney").val();
+        if(nurseMoney.length==0){
             alert("工资不能空，请输入编号！")
             return false;
         }else {
