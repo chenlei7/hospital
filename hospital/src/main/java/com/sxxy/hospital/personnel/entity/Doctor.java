@@ -9,7 +9,6 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    //医生编号
     @Column(name = "doctor_num")
     String doctorNum;
     @Column(name = "doctor_name")
