@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/deptLogin")
+@RequestMapping("/dept")
 public class DeptLogin {
     //注入接口
     @Autowired
@@ -17,7 +17,7 @@ public class DeptLogin {
     @RequestMapping("/login")
     public String deptLogin(String deptNum, String deptPassword){
         if(deptService.deptLodin(deptNum,deptPassword)!=null) {
-            return "personnel/dept/deptIndex";
+            return "personnel/index";
         }else {
             return "personnel/login";
         }
