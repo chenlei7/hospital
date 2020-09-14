@@ -14,6 +14,11 @@ import java.util.List;
 public interface OtherMapper extends JpaRepository<Other,Object> {
 
 
+    //编辑护士信息
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true,value = "update other_info  set other_position=:otherPosition,other_workspace=:otherWorkspace,other_work_date=:otherWorkDate,other_password=:otherPassword,other_money=:otherMoney where other_num =:otherNum")
+    int updateNurse(@Param("otherPosition")String otherPosition,@Param("otherWorkspace")String otherWorkspace,@Param("otherWorkDate")String otherWorkDate,@Param("otherPassword")String otherPassword,@Param("otherMoney")double otherMoney,@Param("otherNum")String otherNum);
 
     //删除员工
     @Transactional

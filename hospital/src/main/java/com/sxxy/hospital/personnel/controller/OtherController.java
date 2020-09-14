@@ -20,31 +20,27 @@ import java.util.List;
 @RequestMapping("/other")
 public class OtherController {
     @Autowired
-    DoctorService doctorService;
-    @Autowired
-    DoctorMapper doctorMapper;
-    @Autowired
     OtherService otherService;
     @Autowired
     OtherMapper otherMapper;
 
-    //增加医生
+    //增加员工
     @RequestMapping("/addOther")
-    public String addOther(String doctorNum, String doctorName, String doctorPhone, String doctorBirthday, String doctorAddress, String doctorEmail, int doctorAge, String doctorGender, String doctorPosition, String doctorWorkspace, String doctorWorkDate, String doctorAbout) {
-        Doctor addDoctor = new Doctor(doctorNum, doctorName, doctorPhone, doctorBirthday, doctorAddress, doctorEmail, doctorAge, doctorGender, doctorPosition, doctorWorkspace, doctorWorkDate, doctorAbout, "123", "可出诊",8000);
-        if (addDoctor != null) {
-            doctorService.addDoctor(addDoctor);
+    public String addOther(String otherNum, String otherName, int otherAge, String otherGender, String otherPosition, String otherWorkspace, String otherWorkDate ) {
+        Other other = new Other(otherNum,otherName,otherAge,otherGender,otherPosition,otherWorkspace,otherWorkDate,"123",10000,"可出工");
+        if (other != null) {
+            otherService.addOther(other);
             return "personnel/success";
         } else {
             return "personnel/error";
         }
     }
 
-    //编辑医生信息
+    //编辑员工信息
     @RequestMapping("/updateOther")
-    public String updateOther(String doctorPhone, String doctorAddress, String doctorEmail, String doctorPosition, String doctorWorkspace, String doctorWorkDate, String doctorAbout,String doctorPassword,double doctorMoney,String doctorNum)  {
-        int updateDoctor = doctorService.updateDoctor(doctorPhone, doctorAddress, doctorEmail, doctorPosition, doctorWorkspace, doctorWorkDate, doctorAbout, doctorPassword, doctorMoney,doctorNum);
-        if (updateDoctor > 0) {
+    public String updateOther(String otherPosition, String otherWorkspace, String otherWorkDate, String otherPassword,double otherMoney, String otherNum) {
+        int updateOther = otherMapper.updateNurse(otherPosition,otherWorkspace,otherWorkDate,otherPassword,otherMoney,otherNum);
+        if (updateOther > 0) {
             return "personnel/success";
         } else {
             return "personnel/error";
@@ -73,7 +69,7 @@ public class OtherController {
         return "personnel/other/aboutOther";
     }
 
-    //删除医生信息
+    //删除员工信息
     @RequestMapping("/deleteOther")
     public String deleteOther(String tag) {
         String[] strs = tag.split(",");
@@ -87,7 +83,7 @@ public class OtherController {
         return "personnel/other/others";
     }
 
-    //修改医生现状
+    //修改员工现状
     @RequestMapping("/editOtherNowState")
     public String editOtherNowState(String otherState,String tag) {
         String[] strs = tag.split(",");
