@@ -175,6 +175,17 @@
 								<a class="dropdown-item" href="/personnel/editNurse">编辑护士信息</a>
 							</div>
 						</li>
+						<!--员工管理-->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+							   aria-expanded="false"><span class="ti-user"></span> 员工管理</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="/personnel/addOther">添加员工信息</a>
+								<a class="dropdown-item" href="/other/others">查询员工信息</a>
+								<a class="dropdown-item" href="/other/otherInfo">员工信息详情</a>
+								<a class="dropdown-item" href="/personnel/editOther">编辑员工信息</a>
+							</div>
+						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-pencil-alt"></span> 出诊管理</a>
@@ -203,32 +214,7 @@
 								<a class="dropdown-item" href="edit-room.html">编辑病房信息</a>
 							</div>
 						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							   aria-expanded="false"><span class="ti-layout-tab"></span> UI框架</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="typography.html">排版</a>
-								<a class="dropdown-item" href="buttons.html">按钮</a>
-								<a class="dropdown-item" href="cards.html">卡片</a>
-								<a class="dropdown-item" href="tabs.html">选项卡</a>
-								<a class="dropdown-item" href="accordions.html">手风琴</a>
-								<a class="dropdown-item" href="modals.html">模态窗口</a>
-								<a class="dropdown-item" href="lists.html">媒体和列表</a>
-								<a class="dropdown-item" href="grid.html">网格</a>
-								<a class="dropdown-item" href="progress-bars.html">进度条</a>
-								<a class="dropdown-item" href="notifications-alerts.html">预警和提示</a>
-								<a class="dropdown-item" href="pagination.html">分页</a>
-								<a class="dropdown-item" href="carousel.html">滑块</a>
-								<a class="dropdown-item" href="tables.html">表格</a>
-								<a class="dropdown-item" href="charts-1.html">Morris图表</a>
-								<a class="dropdown-item" href="charts-2.html">Flot图表</a>
-								<a class="dropdown-item" href="map-1.html">谷歌地图</a>
-								<a class="dropdown-item" href="map-2.html">Vector地图</a>
-								<a class="dropdown-item" href="forms.html">表单</a>
-								<a class="dropdown-item" href="font-awesome.html">Font Awesome </a>
-								<a class="dropdown-item" href="themify.html">Themify图标</a>
-							</div>
-						</li>
+
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-file"></span> 其它页面</a>
@@ -252,7 +238,7 @@
 		<div class="container mt-0">
 			<div class="row breadcrumb-bar">
 				<div class="col-md-6">
-					<h3 class="block-title">护士 All</h3>
+					<h3 class="block-title">员工 All</h3>
 				</div>
 				<div class="col-md-6">
 					<ol class="breadcrumb">
@@ -261,8 +247,8 @@
 								<span class="ti-home"></span>
 							</a>
 						</li>
-						<li class="breadcrumb-item">护士 All</li>
-						<li class="breadcrumb-item active">护士 All</li>
+						<li class="breadcrumb-item">员工 All</li>
+						<li class="breadcrumb-item active">员工 All</li>
 					</ol>
 				</div>
 			</div>
@@ -277,7 +263,7 @@
 				<!-- Widget Item -->
 				<div class="col-md-12">
 					<div class="widget-area-2 lochana-box-shadow">
-						<h3 class="widget-title">护士 All</h3>
+						<h3 class="widget-title">员工 All</h3>
 						<div class="table-responsive mb-3">
 							<table id="tableId" class="table table-bordered table-striped">
 								<thead>
@@ -292,52 +278,32 @@
 									<th>Name</th>
 									<th>WorkSpace</th>
 									<th>WorkDate</th>
-									<th>电话</th>
 									<th>科室</th>
 									<th>现状</th>
 								</tr>
 								</thead>
 								<tbody>
-								<tr th:each="nurse:${nurses}">
+								<tr th:each="other:${others}">
 									<td>
 										<div class="custom-control custom-checkbox">
-											<input class="custom-control-input" type="checkbox" th:id="${nurse.id}" name="nurseNum" th:value="${nurse.nurseNum}">
-											<label class="custom-control-label" th:for="${nurse.id}"></label>
+											<input class="custom-control-input" type="checkbox" th:id="${other.id}" name="otherNum" th:value="${other.otherNum}">
+											<label class="custom-control-label" th:for="${other.id}"></label>
 										</div>
 									</td>
-									<td th:text="${nurse.nurseNum}"></td>
-									<td th:text="${nurse.nurseName}"></td>
-									<td th:text="${nurse.nurseWorkspace}"></td>
-									<td th:text="${nurse.nurseWorkDate}"></td>
-									<td th:text="${nurse.nursePhone}"></td>
-									<td th:text="${nurse.nursePosition}"></td>
+									<td th:text="${other.otherNum}"></td>
+									<td th:text="${other.otherName}"></td>
+									<td th:text="${other.otherWorkspace}"></td>
+									<td th:text="${other.otherWorkDate}"></td>
+									<td th:text="${other.otherPosition}"></td>
 									<td>
-										<span class="badge badge-success"  th:text="${nurse.nurseState}"></span>
+										<span class="badge badge-success"  th:text="${other.otherState}"></span>
 									</td>
 								</tr>
 								</tbody>
 							</table>
 
-
-							<!--Export links-->
-<!--							<nav aria-label="Page navigation example">-->
-<!--								<ul class="pagination justify-content-center export-pagination">-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-download"></span> csv</a>-->
-<!--									</li>-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>-->
-<!--									</li>-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>-->
-<!--									</li>-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>-->
-<!--									</li>-->
-<!--								</ul>-->
-<!--							</nav>-->
 							<!-- /Export links-->
-							<button type="button" class="btn btn-danger mt-3 mb-0" onclick="delNurse()"><span class="ti-trash"></span> DELETE</button>
+							<button type="button" class="btn btn-danger mt-3 mb-0" onclick="delOther()"><span class="ti-trash"></span> DELETE</button>
 							<button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
 						</div>
 					</div>
@@ -380,7 +346,7 @@
 
 	/*全选*/
 	$("#select-all").click(function(){
-		$("input[name='nurseNum']").each(function(){
+		$("input[name='otherNum']").each(function(){
 			if (this.checked) {
 				this.checked = false;
 			}
@@ -391,51 +357,50 @@
 	})
 
 	/*批量删除*/
-	function delNurse() {
+	function delOther() {
 		var result="";
 		var count=0;
-		$("input[name='nurseNum']:checked").each(function(){
+		$("input[name='otherNum']:checked").each(function(){
 			if($(this).is(':checked')){
 				result+=$(this).attr('value') +",";
 				count++;
 			}else{}
 		});
-		if(!confirm("确定删除这"+count+"护士信息?")){
+		if(!confirm("确定删除这"+count+"员工信息?")){
 			return;
 		}
-		console.log(result);
 		if(result==",,"){
 			alert("删除的信息有误")
 		}else{
-			window.location.href= "/nurse/deleteNurse?tag="+result;
+			window.location.href= "/other/deleteOther?tag="+result;
 			alert("删除成功");
-			window.location.href = "http://localhost:8080/nurse/nurses";
+			window.location.href = "http://localhost:8080/other/others";
 		}
 	}
 
 	/*修改护士的现状*/
-	function editNurse() {
+	function editOther() {
 		var result="";
 		var d = "";
-		var nurseState=$("#nurseNowState").val();
-		d = $("input[name='nurseNum']:checked").each(function(){;
+		var otherState=$("#otherNowState").val();
+		d = $("input[name='otherNum']:checked").each(function(){;
 			result = $(this).attr('value');
 		});
-		console.log(nurseState)
-		if(nurseState==""){
+		console.log(otherState)
+		if(otherState==""){
 			alert("请输入要修改的现状")
 		}else{
-			window.location.href= "/nurse/editNurseNowState?nurseState="+nurseState+"&tag="+result;
+			window.location.href= "/other/editOtherNowState?otherState="+otherState+"&tag="+result;
 			alert("修改成功");
-			window.location.href = "http://localhost:8080/nurse/nurses";
+			window.location.href = "http://localhost:8080/other/others";
 		}
 	}
 
 	/*打开修改模态框*/
 	function openEditModal(editModal) {
 		var result="";
-		var nurseState="";
-		nurseState = $("input[name='nurseNum']:checked").each(function(){
+		var otherState="";
+		otherState = $("input[name='otherNum']:checked").each(function(){
 			result = $(this).attr('value');
 		});
 		if(result==""){
@@ -453,7 +418,7 @@
 			<!--顶部标题-->
 			<div class="modal-header">
 				<!--标题-->
-				<h5>修改护士现状</h5>
+				<h5>修改员工现状</h5>
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -463,11 +428,11 @@
 				<form id="formEditNurse">
 					<input type="text" hidden id="academeIDU">
 					<div class="form-group row">
-						<label for="nurseNowState"  class="col-3">护士现状 NowState</label>
+						<label for="otherNowState"  class="col-3">员工现状 NowState</label>
 						<div class="form-group col-md-6">
-							<select class="form-control" id="nurseNowState" name="nurseNowState">
-								<option>可派遣</option>
-								<option>已派遣</option>
+							<select class="form-control" id="otherNowState" name="otherNowState">
+								<option>已出工</option>
+								<option>可出工</option>
 								<option>请假</option>
 								<option>休假</option>
 							</select>
@@ -475,7 +440,7 @@
 					</div>
 				</form>
 			</div>
-			<button type="button" class="btn btn-primary mt-3 mb-0" onclick="editNurse()"><span class="ti-pencil-alt"></span> EDIT</button>
+			<button type="button" class="btn btn-primary mt-3 mb-0" onclick="editOther()"><span class="ti-pencil-alt"></span> EDIT</button>
 		</div>
 	</div>
 </div>

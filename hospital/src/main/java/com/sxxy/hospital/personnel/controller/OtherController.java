@@ -1,8 +1,11 @@
 package com.sxxy.hospital.personnel.controller;
 
 import com.sxxy.hospital.personnel.entity.Doctor;
+import com.sxxy.hospital.personnel.entity.Other;
 import com.sxxy.hospital.personnel.mapper.DoctorMapper;
+import com.sxxy.hospital.personnel.mapper.OtherMapper;
 import com.sxxy.hospital.personnel.service.DoctorService;
+import com.sxxy.hospital.personnel.service.OtherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +23,10 @@ public class OtherController {
     DoctorService doctorService;
     @Autowired
     DoctorMapper doctorMapper;
-
+    @Autowired
+    OtherService otherService;
+    @Autowired
+    OtherMapper otherMapper;
 
     //增加医生
     @RequestMapping("/addOther")
@@ -48,13 +54,13 @@ public class OtherController {
     //查看所有医生
     @RequestMapping("/others")
     public String allOther(Model model) {
-        List<Doctor> doctors = new ArrayList<>();
+        List<Other> others = new ArrayList<>();
         try {
-            doctors = doctorMapper.findAll();
+            others = otherMapper.findAll();
         }catch (Exception e){
             return "personnel/error";
         }
-        model.addAttribute("doctors", doctors);
+        model.addAttribute("others", others);
         return "personnel/other/others";
     }
 

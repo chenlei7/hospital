@@ -22,8 +22,6 @@ public class Other {
     String otherWorkspace;
     @Column(name = "other_work_date")
     String otherWorkDate;
-    @Column(name = "other_about")
-    String otherAbout;
     @Column(name = "other_password")
     String otherPassword;
     @Column(name = "other_money")
@@ -34,7 +32,7 @@ public class Other {
     public Other() {
     }
 
-    public Other(String otherNum, String otherName, int otherAge, String otherGender, String otherPosition, String otherWorkspace, String otherWorkDate, String otherAbout, String otherPassword, double otherMoney, String otherState) {
+    public Other(String otherNum, String otherName, int otherAge, String otherGender, String otherPosition, String otherWorkspace, String otherWorkDate , String otherPassword, double otherMoney, String otherState) {
         this.otherNum = otherNum;
         this.otherName = otherName;
         this.otherAge = otherAge;
@@ -42,7 +40,6 @@ public class Other {
         this.otherPosition = otherPosition;
         this.otherWorkspace = otherWorkspace;
         this.otherWorkDate = otherWorkDate;
-        this.otherAbout = otherAbout;
         this.otherPassword = otherPassword;
         this.otherMoney = otherMoney;
         this.otherState = otherState;
@@ -112,13 +109,6 @@ public class Other {
         this.otherWorkDate = otherWorkDate;
     }
 
-    public String getOtherAbout() {
-        return otherAbout;
-    }
-
-    public void setOtherAbout(String otherAbout) {
-        this.otherAbout = otherAbout;
-    }
 
     public String getOtherPassword() {
         return otherPassword;
@@ -155,7 +145,6 @@ public class Other {
                 ", otherPosition='" + otherPosition + '\'' +
                 ", otherWorkspace='" + otherWorkspace + '\'' +
                 ", otherWorkDate='" + otherWorkDate + '\'' +
-                ", otherAbout='" + otherAbout + '\'' +
                 ", otherPassword='" + otherPassword + '\'' +
                 ", otherMoney=" + otherMoney +
                 ", otherState='" + otherState + '\'' +
