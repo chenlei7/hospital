@@ -262,7 +262,7 @@
 							</a>
 						</li>
 						<li class="breadcrumb-item">医生</li>
-						<li class="breadcrumb-item active">All 医生</li>
+						<li class="breadcrumb-item active">All Info</li>
 					</ol>
 				</div>
 			</div>
@@ -277,70 +277,46 @@
 				<!-- Widget Item -->
 				<div class="col-md-12">
 					<div class="widget-area-2 lochana-box-shadow">
-						<h3 class="widget-title">医生 List</h3>
+						<h3 class="widget-title">医生 Info</h3>
 						<div class="table-responsive mb-3">
 							<table id="tableId" class="table table-bordered table-striped">
 								<thead>
 								<tr>
-									<th class="no-sort">
-										<div class="custom-control custom-checkbox">
-											<input class="custom-control-input" type="checkbox" id="select-all">
-											<label class="custom-control-label" for="select-all"></label>
-										</div>
-									</th>
 									<th>Number</th>
 									<th>Name</th>
+									<th>Phone</th>
+									<th>Birthday</th>
+									<th>Address</th>
+									<th>Email</th>
+									<th>Age</th>
+									<th>Gender</th>
+									<th>Position</th>
 									<th>WorkSpace</th>
 									<th>WorkDate</th>
-									<th>电话</th>
-									<th>科室</th>
-									<th>工资</th>
-									<th>现状</th>
+									<th>About</th>
+									<th>State</th>
 								</tr>
 								</thead>
 								<tbody>
-								<tr th:each="doctor:${doctors}">
+								<tr th:each="nurse:${nurses}">
+									<td th:text="${nurse.nurseNum}"></td>
+									<td th:text="${nurse.nurseName}"></td>
+									<td th:text="${nurse.nursePhone}"></td>
+									<td th:text="${nurse.nurseBirthday}"></td>
+									<td th:text="${nurse.nurseAddress}"></td>
+									<td th:text="${nurse.nurseEmail}"></td>
+									<td th:text="${nurse.nurseAge}"></td>
+									<td th:text="${nurse.nurseGender}"></td>
+									<td th:text="${nurse.nursePosition}"></td>
+									<td th:text="${nurse.nurseWorkspace}"></td>
+									<td th:text="${nurse.nurseWorkDate}"></td>
+									<td th:text="${nurse.nurseAbout}"></td>
 									<td>
-										<div class="custom-control custom-checkbox">
-											<input class="custom-control-input" type="checkbox" th:id="${doctor.id}" name="doctorNum" th:value="${doctor.doctorNum}">
-											<label class="custom-control-label" th:for="${doctor.id}"></label>
-										</div>
-									</td>
-									<td th:text="${doctor.doctorNum}"></td>
-									<td th:text="${doctor.doctorName}"></td>
-									<td th:text="${doctor.doctorWorkspace}"></td>
-									<td th:text="${doctor.doctorWorkDate}"></td>
-									<td th:text="${doctor.doctorPhone}"></td>
-									<td th:text="${doctor.doctorPosition}"></td>
-									<td th:text="${doctor.doctorMoney}"></td>
-									<td>
-										<span class="badge badge-success"  th:text="${doctor.doctorState}"></span>
+										<span class="badge badge-success"  th:text="${nurse.nurseState}"></span>
 									</td>
 								</tr>
 								</tbody>
 							</table>
-
-
-							<!--Export links-->
-<!--							<nav aria-label="Page navigation example">-->
-<!--								<ul class="pagination justify-content-center export-pagination">-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-download"></span> csv</a>-->
-<!--									</li>-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>-->
-<!--									</li>-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>-->
-<!--									</li>-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>-->
-<!--									</li>-->
-<!--								</ul>-->
-<!--							</nav>-->
-							<!-- /Export links-->
-							<button type="button" class="btn btn-danger mt-3 mb-0" onclick="delDoctor()"><span class="ti-trash"></span> DELETE</button>
-							<button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
 						</div>
 					</div>
 				</div>
@@ -372,115 +348,10 @@
 <!-- Datatable  -->
 <script th:src="@{/datatable/jquery.dataTables.min.js}"></script>
 <script th:src="@{/datatable/dataTables.bootstrap4.min.js}"></script>
+
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
 <script th:src="@{/js/custom-datatables.js}"></script>
-
-
-<script th:inline="javascript">
-	/*全选*/
-	$("#select-all").click(function(){
-		$("input[name='doctorNum']").each(function(){
-			if (this.checked) {
-				this.checked = false;
-			}
-			else {
-				this.checked = true;
-			}
-		});
-	})
-
-
-
-
-	/*批量删除*/
-	function delDoctor() {
-		var result="";
-		var count=0;
-		$("input[name='doctorNum']:checked").each(function(){
-			if($(this).is(':checked')){
-				result+=$(this).attr('value') +",";
-				count++;
-			}else{}
-		});
-		if(!confirm("确定删除这"+count+"医生信息?")){
-			return;
-		}
-		if(result==",,"){
-			alert("删除的信息有误")
-		}else{
-			window.location.href= "/doctor/deleteDoctor?tag="+result;
-			alert("删除成功");
-			window.location.href = "http://localhost:8080/doctor/doctors";
-		}
-	}
-
-	/*修改医生的现状*/
-	function editDoctor() {
-		var result="";
-		var d = "";
-		var doctorState=$("#doctorNowState").val();
-		d = $("input[name='doctorNum']:checked").each(function(){;
-			result = $(this).attr('value');
-		});
-		console.log(doctorState)
-		if(doctorState==""){
-			alert("请输入要修改的现状")
-		}else{
-			window.location.href= "/doctor/editDoctorNowState?doctorState="+doctorState+"&tag="+result;
-			alert("修改成功");
-			window.location.href = "http://localhost:8080/doctor/doctors";
-		}
-	}
-
-	/*打开修改模态框*/
-	function openEditModal(editModal) {
-		var result="";
-		var doctorState="";
-		doctorState = $("input[name='doctorNum']:checked").each(function(){
-			result = $(this).attr('value');
-		});
-		if(result==""){
-			alert("未做出选择")
-		}else{
-			$("#editModal").modal('show');
-		}
-	}
-
-</script>
-<!--修改模态框-->
-<div class="modal fade" id="editModal" data-th-background="static" data-th-keytype="false">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<!--顶部标题-->
-			<div class="modal-header">
-				<!--标题-->
-				<h5>修改医生现状</h5>
-				<button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<!--内容-->
-			<div class="modal-body">
-				<form id="formEditDoctor">
-					<input type="text" hidden id="academeIDU">
-					<div class="form-group row">
-						<label for="doctorNowState"  class="col-3">医生现状 NowState</label>
-						<div class="form-group col-md-6">
-							<select class="form-control" id="doctorNowState" name="doctorNowState">
-								<option>出诊中</option>
-								<option>可出诊</option>
-								<option>请假</option>
-								<option>休假</option>
-							</select>
-						</div>
-					</div>
-				</form>
-			</div>
-			<button type="button" class="btn btn-primary mt-3 mb-0" onclick="editDoctor()"><span class="ti-pencil-alt"></span> EDIT</button>
-		</div>
-	</div>
-</div>
 
 </body>
 </html>

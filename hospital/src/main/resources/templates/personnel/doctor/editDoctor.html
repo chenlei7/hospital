@@ -150,6 +150,7 @@
                                 <a class="dropdown-item" href="edit-patient.html">编辑病人信息</a>
                             </div>
                         </li>
+                        <!--医生管理-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-user"></span> 医生管理</a>
@@ -160,6 +161,18 @@
                                 <a class="dropdown-item" href="/personnel/editDoctor">编辑医生信息</a>
                             </div>
                         </li>
+                        <!--护士管理-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                               aria-expanded="false"><span class="ti-user"></span> 护士管理</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/personnel/addNurse">添加护士信息</a>
+                                <a class="dropdown-item" href="/nurse/nurses">查询护士信息</a>
+                                <a class="dropdown-item" href="/nurse/nurseInfo">护士信息详情</a>
+                                <a class="dropdown-item" href="/personnel/editNurse">编辑护士信息</a>
+                            </div>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-pencil-alt"></span> 出诊管理</a>
@@ -294,7 +307,8 @@
                                     <input type="text" placeholder="Password" class="form-control" id="doctorPassword" name="doctorPassword">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="doctorPassword"></label>
+                                    <label for="doctorPassword">工资 Salary</label>
+                                    <input type="text" placeholder="Salary" class="form-control" id="doctorMoney" name="doctorMoney">
                                 </div>
 
                                 <div class="form-group col-md-6">
@@ -361,11 +375,6 @@
 <script th:src="@{/js/popper.min.js}"></script>
 <!-- Bootstrap Library-->
 <script th:src="@{/js/bootstrap.min.js}"></script>
-<!-- morris charts -->
-<!--	<script th:src="@{/charts/js/raphael-min.js}"></script>-->
-<!--	<script th:src="@{/charts/js/morris.min.js}"></script>-->
-<!--	<script th:src="@{/js/custom-morris.js}"></script>-->
-
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
 </body>
