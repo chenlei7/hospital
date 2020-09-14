@@ -252,7 +252,7 @@
 		<div class="container mt-0">
 			<div class="row breadcrumb-bar">
 				<div class="col-md-6">
-					<h3 class="block-title">护士</h3>
+					<h3 class="block-title">护士 All</h3>
 				</div>
 				<div class="col-md-6">
 					<ol class="breadcrumb">
@@ -261,8 +261,8 @@
 								<span class="ti-home"></span>
 							</a>
 						</li>
-						<li class="breadcrumb-item">护士</li>
-						<li class="breadcrumb-item active">All 护士</li>
+						<li class="breadcrumb-item">护士 </li>
+						<li class="breadcrumb-item active">护士 All</li>
 					</ol>
 				</div>
 			</div>
@@ -277,7 +277,7 @@
 				<!-- Widget Item -->
 				<div class="col-md-12">
 					<div class="widget-area-2 lochana-box-shadow">
-						<h3 class="widget-title">护士 List</h3>
+						<h3 class="widget-title">护士 All</h3>
 						<div class="table-responsive mb-3">
 							<table id="tableId" class="table table-bordered table-striped">
 								<thead>
@@ -394,7 +394,7 @@
 	function delNurse() {
 		var result="";
 		var count=0;
-		$("input[name='NurseNum']:checked").each(function(){
+		$("input[name='nurseNum']:checked").each(function(){
 			if($(this).is(':checked')){
 				result+=$(this).attr('value') +",";
 				count++;
@@ -403,6 +403,7 @@
 		if(!confirm("确定删除这"+count+"护士信息?")){
 			return;
 		}
+		console.log(result);
 		if(result==",,"){
 			alert("删除的信息有误")
 		}else{
@@ -420,7 +421,6 @@
 		d = $("input[name='nurseNum']:checked").each(function(){;
 			result = $(this).attr('value');
 		});
-		console.log(nurseState)
 		if(nurseState==""){
 			alert("请输入要修改的现状")
 		}else{
@@ -465,8 +465,8 @@
 						<label for="nurseNowState"  class="col-3">护士现状 NowState</label>
 						<div class="form-group col-md-6">
 							<select class="form-control" id="nurseNowState" name="nurseNowState">
-								<option>出诊中</option>
-								<option>可出诊</option>
+								<option>可派遣</option>
+								<option>已派遣</option>
 								<option>请假</option>
 								<option>休假</option>
 							</select>

@@ -53,7 +53,11 @@ public class DoctorController {
     @RequestMapping("/doctors")
     public String allDoctor(Model model) {
         List<Doctor> doctors = new ArrayList<>();
-        doctors = doctorMapper.findAll();
+        try {
+            doctors = doctorMapper.findAll();
+        }catch (Exception e){
+            return "personnel/error";
+        }
         model.addAttribute("doctors", doctors);
         return "personnel/doctor/doctors";
     }

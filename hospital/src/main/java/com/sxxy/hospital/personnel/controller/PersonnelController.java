@@ -62,4 +62,27 @@ public class PersonnelController {
     public String goEditNurse(){
         return "personnel/nurse/editNurse";
     }
+
+
+    /*
+     * 其他人员模块，页面跳转
+     * */
+
+    //增加护士
+    @RequestMapping("/addOther")
+    public String goAddOther(){
+        return "personnel/other/addOther";
+    }
+
+    //查看护士详细信息
+    @RequestMapping("/aboutOther")
+    public String goAboutOther(){
+        return "personnel/other/aboutOther";
+    }
+
+    //修护士信息
+    @RequestMapping("/editOther")
+    public String goEditOther(){
+        return "personnel/other/editOther";
+    }
 }
