@@ -1,8 +1,5 @@
 package com.sxxy.hospital.patient.entity;
 
-
-
-import org.springframework.stereotype.Component;
 //病人信息实体类
 import javax.persistence.*;
 
@@ -18,7 +15,7 @@ public class Patient {
     String patientNum;
     //名字
     @Column(name = "patient_name")
-    String patient_name;
+    String patientName;
     //年龄
     @Column(name = "patient_age")
     Integer patientAge;
@@ -28,6 +25,9 @@ public class Patient {
    //来看病日期
     @Column(name = "patient_comeDate")
     String patientComeDate;
+    //电话
+    @Column(name = "patient_phone")
+    String patientPhone;
     //离开时间
     @Column(name = "patient_leaveDate")
     String patientLeaveDate;
@@ -47,6 +47,9 @@ public class Patient {
     @Column(name = "patient_room_num")
     String patientRoomNum;
 
+    public Patient() {
+    }
+
     public Integer getId() {
         return id;
     }
@@ -63,12 +66,12 @@ public class Patient {
         this.patientNum = patientNum;
     }
 
-    public String getPatient_name() {
-        return patient_name;
+    public String getPatientName() {
+        return patientName;
     }
 
-    public void setPatient_name(String patient_name) {
-        this.patient_name = patient_name;
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
     }
 
     public Integer getPatientAge() {
@@ -93,6 +96,14 @@ public class Patient {
 
     public void setPatientComeDate(String patientComeDate) {
         this.patientComeDate = patientComeDate;
+    }
+
+    public String getPatientPhone() {
+        return patientPhone;
+    }
+
+    public void setPatientPhone(String patientPhone) {
+        this.patientPhone = patientPhone;
     }
 
     public String getPatientLeaveDate() {
@@ -148,10 +159,11 @@ public class Patient {
         return "Patient{" +
                 "id=" + id +
                 ", patientNum='" + patientNum + '\'' +
-                ", patient_name='" + patient_name + '\'' +
+                ", patientName='" + patientName + '\'' +
                 ", patientAge=" + patientAge +
                 ", patientAddress='" + patientAddress + '\'' +
                 ", patientComeDate='" + patientComeDate + '\'' +
+                ", patientPhone='" + patientPhone + '\'' +
                 ", patientLeaveDate='" + patientLeaveDate + '\'' +
                 ", patientIllnessNum='" + patientIllnessNum + '\'' +
                 ", patientDoctorNum='" + patientDoctorNum + '\'' +
