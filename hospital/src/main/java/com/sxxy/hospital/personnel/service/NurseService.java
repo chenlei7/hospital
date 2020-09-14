@@ -12,6 +12,10 @@ public interface NurseService {
 
 
 
+
+    //删除护士信息
+    int deleteNurseByNurseNum(List<String> delNum);
+
     //修改护士现状
     int editNurseNowState(String nurseState, List<String> editNum);
 }

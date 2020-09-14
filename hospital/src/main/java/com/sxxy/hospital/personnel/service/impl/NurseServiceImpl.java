@@ -20,6 +20,12 @@ public class NurseServiceImpl implements NurseService {
     }
 
 
+    //删除护士信息
+    @Override
+    public int deleteNurseByNurseNum(List<String> delNum) {
+        return nurseMapper.deleteNurseByNurseNum(delNum);
+    }
+
 
     //修改护士现状
     @Override

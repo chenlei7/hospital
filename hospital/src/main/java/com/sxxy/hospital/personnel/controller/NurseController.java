@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class NurseController {
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
             try {
-
+                nurseService.deleteNurseByNurseNum(Collections.singletonList(strs[i]));
             } catch (Exception e) {
                 return "personnel/error";
             }

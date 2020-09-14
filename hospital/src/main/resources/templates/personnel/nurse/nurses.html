@@ -394,7 +394,7 @@
 	function delNurse() {
 		var result="";
 		var count=0;
-		$("input[name='NurseNum']:checked").each(function(){
+		$("input[name='nurseNum']:checked").each(function(){
 			if($(this).is(':checked')){
 				result+=$(this).attr('value') +",";
 				count++;
@@ -403,6 +403,7 @@
 		if(!confirm("确定删除这"+count+"护士信息?")){
 			return;
 		}
+		console.log(result);
 		if(result==",,"){
 			alert("删除的信息有误")
 		}else{
