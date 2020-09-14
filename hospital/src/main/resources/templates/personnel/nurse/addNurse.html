@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +21,6 @@
 	<link rel="stylesheet" th:href="@{/charts/css/morris.css}">
 	<!-- jvectormap -->
 	<link rel="stylesheet" th:href="@{/css/jquery-jvectormap.css}">
-	<link rel="stylesheet" th:href="@{/datatable/dataTables.bootstrap4.min.css}">
-
-	<script th:src="@{/js/modernizr.min.js}"></script>
 </head>
 
 <body>
@@ -246,112 +242,131 @@
 				</div>
 			</nav>
 		</div>
-		<!-- /Menu -->
-		<!-- Breadcrumb -->
-		<!-- Page Title -->
-		<div class="container mt-0">
-			<div class="row breadcrumb-bar">
-				<div class="col-md-6">
-					<h3 class="block-title">医生s</h3>
-				</div>
-				<div class="col-md-6">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item">
-							<a href="index.html">
-								<span class="ti-home"></span>
-							</a>
-						</li>
-						<li class="breadcrumb-item">医生s</li>
-						<li class="breadcrumb-item active">All 医生s</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-		<!-- /Page Title -->
-
-		<!-- /Breadcrumb -->
-		<!-- Main Content -->
-		<div class="container">
-
-			<div class="row">
-				<!-- Widget Item -->
-				<div class="col-md-12">
-					<div class="widget-area-2 lochana-box-shadow">
-						<h3 class="widget-title">医生s List</h3>
-						<div class="table-responsive mb-3">
-							<table id="tableId" class="table table-bordered table-striped">
-								<thead>
-								<tr>
-									<th class="no-sort">
-										<div class="custom-control custom-checkbox">
-											<input class="custom-control-input" type="checkbox" id="select-all">
-											<label class="custom-control-label" for="select-all"></label>
-										</div>
-									</th>
-									<th>Number</th>
-									<th>Name</th>
-									<th>WorkSpace</th>
-									<th>WorkDate</th>
-									<th>电话</th>
-									<th>科室</th>
-									<th>工资</th>
-									<th>现状</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr th:each="doctor:${doctors}">
-									<td>
-										<div class="custom-control custom-checkbox">
-											<input class="custom-control-input" type="checkbox" th:id="${doctor.id}" name="doctorNum" th:value="${doctor.doctorNum}">
-											<label class="custom-control-label" th:for="${doctor.id}"></label>
-										</div>
-									</td>
-									<td th:text="${doctor.doctorNum}"></td>
-									<td th:text="${doctor.doctorName}"></td>
-									<td th:text="${doctor.doctorWorkspace}"></td>
-									<td th:text="${doctor.doctorWorkDate}"></td>
-									<td th:text="${doctor.doctorPhone}"></td>
-									<td th:text="${doctor.doctorPosition}"></td>
-									<td th:text="${doctor.doctorMoney}"></td>
-									<td>
-										<span class="badge badge-success"  th:text="${doctor.doctorState}"></span>
-									</td>
-								</tr>
-								</tbody>
-							</table>
-
-
-							<!--Export links-->
-<!--							<nav aria-label="Page navigation example">-->
-<!--								<ul class="pagination justify-content-center export-pagination">-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-download"></span> csv</a>-->
-<!--									</li>-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>-->
-<!--									</li>-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>-->
-<!--									</li>-->
-<!--									<li class="page-item">-->
-<!--										<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>-->
-<!--									</li>-->
-<!--								</ul>-->
-<!--							</nav>-->
-							<!-- /Export links-->
-							<button type="button" class="btn btn-danger mt-3 mb-0" onclick="delDoctor()"><span class="ti-trash"></span> DELETE</button>
-							<button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
+				<!-- /Menu -->
+				<!-- Breadcrumb -->
+				<!-- Page Title -->
+				<div class="container mt-0">
+					<div class="row breadcrumb-bar">
+						<div class="col-md-6">
+							<h3 class="block-title">Add 护士</h3>
+						</div>
+						<div class="col-md-6">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">
+									<a href="index.html">
+										<span class="ti-home"></span>
+									</a>
+								</li>
+								<li class="breadcrumb-item">护士</li>
+								<li class="breadcrumb-item active">Add 护士</li>
+							</ol>
 						</div>
 					</div>
 				</div>
-				<!-- /Widget Item -->
+			<!-- /Page Title -->
+
+			<!-- /Breadcrumb -->
+			<!-- Main Content -->
+			<div class="container">
+
+				<div class="row">
+					<!-- Widget Item -->
+					<div class="col-md-12">
+						<div class="widget-area-2 lochana-box-shadow">
+							<h3 class="widget-title">Add 护士</h3>
+							<form action="/nurse/addNurse" method="post" onsubmit="return check()">
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="nurseName">护士 Name</label>
+										<input type="text" class="form-control" placeholder="name" id="nurseName" name="nurseName">
+									</div>
+										<div class="form-group col-md-6">
+											<label for="nurseNum">编号 Number</label>
+											<input type="text" class="form-control" placeholder="Number" id="nurseNum" name="nurseNum">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="nurseWorkDate">工作时间 WorkDate</label>
+											<input type="text" class="form-control" placeholder="WorkDate" id="nurseWorkDate" name="nurseWorkDate">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="nurseWorkspace">工作地点 Workspace</label>
+											<input type="text" class="form-control" placeholder="Workspace" id="nurseWorkspace" name="nurseWorkspace">
+										</div>
+									<div class="form-group col-md-6">
+										<label for="nurseBirthday">出生日期 Date Of Birth</label>
+										<input type="date" placeholder="Date of Birth" class="form-control" id="nurseBirthday" name="nurseBirthday">
+                                    </div>
+                                    <div class="form-group col-md-6">
+										<label for="nursePosition">职位 Position</label>
+										<input type="text" placeholder="Position" class="form-control" id="nursePosition" name="nursePosition">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="nurseAge">年龄 Age</label>
+										<input type="text" placeholder="Age" class="form-control" id="nurseAge" name="nurseAge">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="nursePhone">电话 Phone</label>
+										<input type="text" placeholder="Phone" class="form-control" id="nursePhone" name="nursePhone">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="nurseEmail">邮箱 Email</label>
+										<input type="email" placeholder="email" class="form-control" id="nurseEmail" name="nurseEmail">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="nurseGender">性别 Gender</label>
+										<select class="form-control" id="nurseGender" name="nurseGender">
+											<option>男</option>
+											<option>女</option>
+											<option>其他</option>
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="nurseAbout">自我介绍 Details</label>
+										<textarea placeholder="Details" class="form-control" id="nurseAbout" rows="3" name="nurseAbout"></textarea>
+                                    </div>
+                                    <div class="form-group col-md-6">
+										<label for="nurseAddress">地址 Address</label>
+										<textarea placeholder="Address" class="form-control" id="nurseAddress" rows="3" name="nurseAddress"></textarea>
+									</div>
+																		
+<!--									<div class="form-check col-md-12 mb-2">-->
+<!--										<div class="text-left">-->
+<!--											<div class="custom-control custom-checkbox">-->
+<!--												<input class="custom-control-input" type="checkbox" id="ex-check-2">-->
+<!--												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
+									<div class="form-group col-md-6 mb-3">
+										<button type="submit" class="btn btn-primary btn-lg" id="submit">Submit</button>
+										<button type="reset" class="btn btn-primary btn-lg">Reset</button>
+									</div>
+								</div>
+							</form>
+							<!-- Alerts-->
+<!--							<div class="alert alert-success alert-dismissible fade show" role="alert">-->
+<!--								<strong>Successfully Done!</strong> Please Check in nurses list-->
+<!--								<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+<!--									<span aria-hidden="true">×</span>-->
+<!--								</button>-->
+<!--							</div>-->
+<!--							<div class="alert alert-warning alert-dismissible fade show" role="alert">-->
+<!--								<strong>Holy guacamole!</strong> You should check in on some of those fields below.-->
+<!--								<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+<!--									<span aria-hidden="true">×</span>-->
+<!--								</button>-->
+<!--							</div>-->
+							<!-- /Alerts-->
+						</div>
+					</div>
+					<!-- /Widget Item -->
+				</div>
 			</div>
-		</div>
-		<!-- /Main Content -->
+			<!-- /Main Content -->
 		<!--Copy Rights-->
 		<div class="container">
 			<div class="d-sm-flex justify-content-center">
-				<span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span>
+				<span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2020 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span>
 			</div>
 		</div>
 		<!-- /Copy Rights-->
@@ -369,118 +384,24 @@
 <script th:src="@{/js/popper.min.js}"></script>
 <!-- Bootstrap Library-->
 <script th:src="@{/js/bootstrap.min.js}"></script>
-<!-- Datatable  -->
-<script th:src="@{/datatable/jquery.dataTables.min.js}"></script>
-<script th:src="@{/datatable/dataTables.bootstrap4.min.js}"></script>
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
-<script th:src="@{/js/custom-datatables.js}"></script>
 
-
+<!--新增判断,年龄和编号不能为空-->
 <script th:inline="javascript">
-	/*全选*/
-	$("#select-all").click(function(){
-		$("input[name='doctorNum']").each(function(){
-			if (this.checked) {
-				this.checked = false;
-			}
-			else {
-				this.checked = true;
-			}
-		});
+	$("#submit").click(function () {
+		var nurseNum = $("#nurseNum").val();
+		var nurseAge = $("#nurseAge").val();
+		if(nurseNum.length==0){
+			alert("编号不能空，请输入编号！")
+			return false;
+		}else if(nurseAge.length==0){
+			alert("年龄不能空，请输入年龄！")
+			return false;
+		}else {
+			return true;
+		}
 	})
-
-
-
-
-	/*批量删除*/
-	function delDoctor() {
-		var result="";
-		var count=0;
-		$("input[name='doctorNum']:checked").each(function(){
-			if($(this).is(':checked')){
-				result+=$(this).attr('value') +",";
-				count++;
-			}else{}
-		});
-		if(!confirm("确定删除这"+count+"医生信息?")){
-			return;
-		}
-		if(result==",,"){
-			alert("删除的信息有误")
-		}else{
-			window.location.href= "/doctor/deleteDoctor?tag="+result;
-			alert("删除成功");
-			window.location.href = "http://localhost:8080/doctor/doctors";
-		}
-	}
-
-	/*修改医生的现状*/
-	function editDoctor() {
-		var result="";
-		var d = "";
-		var doctorState=$("#doctorNowState").val();
-		d = $("input[name='doctorNum']:checked").each(function(){;
-			result = $(this).attr('value');
-		});
-		console.log(doctorState)
-		if(doctorState==""){
-			alert("请输入要修改的现状")
-		}else{
-			window.location.href= "/doctor/editDoctorNowState?doctorState="+doctorState+"&tag="+result;
-			alert("修改成功");
-			window.location.href = "http://localhost:8080/doctor/doctors";
-		}
-	}
-
-	/*打开修改模态框*/
-	function openEditModal(editModal) {
-		var result="";
-		var doctorState="";
-		doctorState = $("input[name='doctorNum']:checked").each(function(){
-			result = $(this).attr('value');
-		});
-		if(result==""){
-			alert("未做出选择")
-		}else{
-			$("#editModal").modal('show');
-		}
-	}
-
 </script>
-<!--修改模态框-->
-<div class="modal fade" id="editModal" data-th-background="static" data-th-keytype="false">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<!--顶部标题-->
-			<div class="modal-header">
-				<!--标题-->
-				<h5>修改医生现状</h5>
-				<button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<!--内容-->
-			<div class="modal-body">
-				<form id="formEditDoctor">
-					<input type="text" hidden id="academeIDU">
-					<div class="form-group row">
-						<label for="doctorNowState"  class="col-3">医生现状 NowState</label>
-						<div class="form-group col-md-6">
-							<select class="form-control" id="doctorNowState" name="doctorNowState">
-								<option>出诊中</option>
-								<option>可出诊</option>
-								<option>请假</option>
-								<option>休假</option>
-							</select>
-						</div>
-					</div>
-				</form>
-			</div>
-			<button type="button" class="btn btn-primary mt-3 mb-0" onclick="editDoctor()"><span class="ti-pencil-alt"></span> EDIT</button>
-		</div>
-	</div>
-</div>
-
 </body>
 </html>

@@ -29,7 +29,7 @@ public class DoctorController {
     //增加医生
     @RequestMapping("/addDoctor")
     public String addDoctor(String doctorNum, String doctorName, String doctorPhone, String doctorBirthday, String doctorAddress, String doctorEmail, int doctorAge, String doctorGender, String doctorPosition, String doctorWorkspace, String doctorWorkDate, String doctorAbout) {
-        Doctor addDoctor = new Doctor(doctorNum, doctorName, doctorPhone, doctorBirthday, doctorAddress, doctorEmail, doctorAge, doctorGender, doctorPosition, doctorWorkspace, doctorWorkDate, doctorAbout, "123", "可出诊");
+        Doctor addDoctor = new Doctor(doctorNum, doctorName, doctorPhone, doctorBirthday, doctorAddress, doctorEmail, doctorAge, doctorGender, doctorPosition, doctorWorkspace, doctorWorkDate, doctorAbout, "123", "可出诊",8000);
         if (addDoctor != null) {
                 doctorService.addDoctor(addDoctor);
                 return "personnel/success";
@@ -38,10 +38,10 @@ public class DoctorController {
         }
     }
 
-    //修改医生信息
+    //编辑医生信息
     @RequestMapping("/updateDoctor")
-    public String updateDoctor(String doctorPhone, String doctorAddress, String doctorEmail, String doctorPosition, String doctorWorkspace, String doctorWorkDate, String doctorAbout, String doctorPassword, String doctorNum) {
-        int updateDoctor = doctorService.updateDoctor(doctorPhone, doctorAddress, doctorEmail, doctorPosition, doctorWorkspace, doctorWorkDate, doctorAbout, doctorPassword, doctorNum);
+    public String updateDoctor(String doctorPhone, String doctorAddress, String doctorEmail, String doctorPosition, String doctorWorkspace, String doctorWorkDate, String doctorAbout,String doctorPassword,double doctorMoney,String doctorNum)  {
+        int updateDoctor = doctorService.updateDoctor(doctorPhone, doctorAddress, doctorEmail, doctorPosition, doctorWorkspace, doctorWorkDate, doctorAbout, doctorPassword, doctorMoney,doctorNum);
         if (updateDoctor > 0) {
             return "personnel/success";
         } else {
@@ -70,7 +70,6 @@ public class DoctorController {
     //删除医生信息
     @RequestMapping("/deleteDoctor")
     public String deleteDoctor(String tag) {
-        System.out.println(tag);
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
             try {
@@ -85,8 +84,6 @@ public class DoctorController {
     //修改医生现状
     @RequestMapping("/editDoctorNowState")
     public String editDoctorNowState(String doctorState,String tag) {
-        System.out.println(tag);
-        System.out.println(doctorState);
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
             try {

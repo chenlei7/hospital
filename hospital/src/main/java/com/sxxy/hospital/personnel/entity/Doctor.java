@@ -36,13 +36,16 @@ public class Doctor {
     String doctorAbout;
     @Column(name = "doctor_password")
     String doctorPassword;
+    @Column(name = "doctor_money")
+    double doctorMoney;
     @Column(name = "doctor_state")
     String doctorState;
+
 
     public Doctor() {
     }
 
-    public Doctor(String doctorNum, String doctorName, String doctorPhone, String doctorBirthday, String doctorAddress, String doctorEmail, int doctorAge, String doctorGender, String doctorPosition, String doctorWorkspace, String doctorWorkDate, String doctorAbout, String doctorPassword,String doctorState) {
+    public Doctor(String doctorNum, String doctorName, String doctorPhone, String doctorBirthday, String doctorAddress, String doctorEmail, int doctorAge, String doctorGender, String doctorPosition, String doctorWorkspace, String doctorWorkDate, String doctorAbout, String doctorPassword,String doctorState,double doctorMoney) {
         this.doctorNum = doctorNum;
         this.doctorName = doctorName;
         this.doctorPhone = doctorPhone;
@@ -57,8 +60,16 @@ public class Doctor {
         this.doctorAbout = doctorAbout;
         this.doctorPassword = doctorPassword;
         this.doctorState = doctorState;
+        this.doctorMoney = doctorMoney;
     }
 
+    public double getDoctorMoney() {
+        return doctorMoney;
+    }
+
+    public void setDoctorMoney(double doctorMoney) {
+        this.doctorMoney = doctorMoney;
+    }
 
     public String getDoctorState() {
         return doctorState;
@@ -197,6 +208,7 @@ public class Doctor {
                 ", doctorWorkDate='" + doctorWorkDate + '\'' +
                 ", doctorAbout='" + doctorAbout + '\'' +
                 ", doctorPassword='" + doctorPassword + '\'' +
+                ", doctorMoney='" + doctorMoney + '\'' +
                 ", doctorState='" + doctorState + '\'' +
                 '}';
     }

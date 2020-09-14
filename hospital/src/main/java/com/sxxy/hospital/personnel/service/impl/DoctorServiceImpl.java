@@ -19,10 +19,10 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorMapper.save(doctor);
     }
 
-    //修改医生信息
+    //编辑医生信息
     @Override
-    public int updateDoctor(String doctorPhone, String doctorAddress, String doctorEmail, String doctorPosition, String doctorWorkspace, String doctorWorkDate, String doctorAbout,String doctorPassword,String doctorNum) {
-        return doctorMapper.updateDoctor(doctorPhone, doctorAddress, doctorEmail, doctorPosition, doctorWorkspace, doctorWorkDate, doctorAbout, doctorPassword,doctorNum);
+    public int updateDoctor(String doctorPhone, String doctorAddress, String doctorEmail, String doctorPosition, String doctorWorkspace, String doctorWorkDate, String doctorAbout,String doctorPassword,double doctorMoney,String doctorNum) {
+        return doctorMapper.updateDoctor(doctorPhone,doctorAddress,doctorEmail,doctorPosition,doctorWorkspace,doctorWorkDate,doctorAbout,doctorPassword,doctorMoney,doctorNum);
     }
 
     //删除医生信息

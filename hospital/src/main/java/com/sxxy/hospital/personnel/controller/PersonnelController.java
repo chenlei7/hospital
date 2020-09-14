@@ -18,6 +18,10 @@ public class PersonnelController {
         return "personnel/index";
     }
 
+
+    /*
+     * 医生模块，页面跳转
+     * */
     //增加医生
     @RequestMapping("/addDoctor")
     public String goAddDoctor(){
@@ -36,4 +40,26 @@ public class PersonnelController {
         return "personnel/doctor/editDoctor";
     }
 
+
+    /*
+     * 护士模块，页面跳转
+     * */
+
+    //增加护士
+    @RequestMapping("/addNurse")
+    public String goAddNurse(){
+        return "personnel/nurse/addNurse";
+    }
+
+    //查看护士详细信息
+    @RequestMapping("/aboutNurse")
+    public String goAboutNurse(){
+        return "personnel/nurse/aboutNurse";
+    }
+
+    //修护士信息
+    @RequestMapping("/editNurse")
+    public String goEditNurse(){
+        return "personnel/nurse/editNurse";
+    }
 }

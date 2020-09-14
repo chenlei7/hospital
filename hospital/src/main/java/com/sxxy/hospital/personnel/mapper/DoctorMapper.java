@@ -12,13 +12,13 @@ import java.util.List;
 
 @Repository
 public interface DoctorMapper extends JpaRepository<Doctor,Object> {
-    //修改医生信息
+    //编辑医生信息
     @Transactional
     @Modifying
-    @Query(nativeQuery = true,value = "update doctor_info  set doctor_phone=:doctorPhone,doctor_address=:doctorAddress,doctor_email=:doctorEmail,doctor_position=:doctorPosition,doctor_workspace=:doctorWorkspace,doctor_work_date=:doctorWorkDate,doctor_about=:doctorAbout,doctor_password=:doctorPassword where doctor_num =:doctorNum")
+    @Query(nativeQuery = true,value = "update doctor_info  set doctor_phone=:doctorPhone,doctor_address=:doctorAddress,doctor_email=:doctorEmail,doctor_position=:doctorPosition,doctor_workspace=:doctorWorkspace,doctor_work_date=:doctorWorkDate,doctor_about=:doctorAbout,doctor_password=:doctorPassword,doctor_money=:doctorMoney where doctor_num =:doctorNum")
     int updateDoctor(@Param("doctorPhone")String doctorPhone,@Param("doctorAddress")String doctorAddress,@Param("doctorEmail")String doctorEmail,
                      @Param("doctorPosition")String doctorPosition,@Param("doctorWorkspace")String doctorWorkspace,@Param("doctorWorkDate")String doctorWorkDate,
-                     @Param("doctorAbout")String doctorAbout,@Param("doctorPassword")String doctorPassword,@Param("doctorNum")String doctorNum);
+                     @Param("doctorAbout")String doctorAbout,@Param("doctorPassword")String doctorPassword,@Param("doctorMoney")double doctorMoney,@Param("doctorNum")String doctorNum);
 
     //删除医生信息
     @Transactional
