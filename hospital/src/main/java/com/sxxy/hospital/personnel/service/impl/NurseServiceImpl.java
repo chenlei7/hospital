@@ -6,6 +6,8 @@ import com.sxxy.hospital.personnel.service.NurseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NurseServiceImpl implements NurseService {
     @Autowired
@@ -15,5 +17,13 @@ public class NurseServiceImpl implements NurseService {
     @Override
     public Nurse addNurse(Nurse nurse) {
         return nurseMapper.save(nurse);
+    }
+
+
+
+    //修改护士现状
+    @Override
+    public int editNurseNowState(String nurseState, List<String> editNum) {
+        return nurseMapper.editNurseNowState(nurseState, editNum);
     }
 }

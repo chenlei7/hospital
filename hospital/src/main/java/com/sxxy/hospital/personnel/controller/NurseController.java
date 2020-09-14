@@ -83,10 +83,11 @@ public class NurseController {
 
     //修改护士现状
     @RequestMapping("/editNurseNowState")
-    public String editNurseNowState(String doctorState,String tag) {
+    public String editNurseNowState(String nurseState,String tag) {
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
             try {
+                nurseService.editNurseNowState(nurseState,Collections.singletonList(strs[i]));
             } catch (Exception e) {
                 return "personnel/error";
             }
