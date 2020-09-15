@@ -50,11 +50,4 @@ public class userController {
         return "user/index2";
     }
 
-    //留言界面
-    @RequestMapping("/leave")
-    public String goLeaveMessage() {
-        return "user/leaveMessage";
-    }
-
-    //增加留言
 }
