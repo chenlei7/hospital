@@ -13,14 +13,14 @@
         select * from statements where statements=#{type}
     </select>
 <!--    查询所有的收入-->
-    <select id="findByRevenue" resultType="double">
-        select * from statements where statement_money>0;
+    <select id="findByRevenue" resultType="java.util.LinkedHashMap">
+        select * from statements where statements_money>0
     </select>
 <!--    查询所有的支出-->
-    <select id="findByPay" resultType="double">
-        select * from statements where statement_money>0;
+    <select id="findByPay" resultType="java.util.LinkedHashMap">
+        select * from statements where statements_money>0
     </select>
-<!--    添加数据-->
+<!--    添加财务数据-->
     <insert id="add">
         insert into statements values (null,#{num},#{name},#{deptName},#{type},#{event},#{time},#{state},#{money})
     </insert>

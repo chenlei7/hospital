@@ -8,6 +8,6 @@ import java.util.Map;
 
 @Mapper
 public interface TreatmentMapper {
-    //查询某天的病人资费
+    //查询某天的资费
     List<Map> Treatment(@Param("time") String time);
 }
