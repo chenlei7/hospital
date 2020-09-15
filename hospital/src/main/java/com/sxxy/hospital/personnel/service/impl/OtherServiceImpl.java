@@ -1,5 +1,6 @@
 package com.sxxy.hospital.personnel.service.impl;
 
+import com.sxxy.hospital.personnel.entity.Other;
 import com.sxxy.hospital.personnel.mapper.OtherMapper;
 import com.sxxy.hospital.personnel.service.OtherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,18 @@ import java.util.List;
 public class OtherServiceImpl implements OtherService {
     @Autowired
     OtherMapper otherMapper;
+
+    //增加员工
+    @Override
+    public Other addOther(Other other) {
+        return otherMapper.save(other);
+    }
+
+    //编辑员工信息
+    @Override
+    public int updateOther(String otherPosition, String otherWorkspace, String otherWorkDate, String otherPassword,double otherMoney, String otherNum) {
+        return otherMapper.updateNurse(otherPosition,otherWorkspace,otherWorkDate,otherPassword,otherMoney,otherNum);
+    }
 
     //删除员工
     @Override

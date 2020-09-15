@@ -1,12 +1,5 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
-
 <head>
 	<title>New Clinic a Medical Category Bootstrap Responsive Web Template | Home :: W3layouts </title>
 	<!--/tags -->
@@ -64,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-						<a class="navbar-brand" href="index.html">
+						<a class="navbar-brand" href="index.jsp">
 							<h1><span class="fa fa-stethoscope" aria-hidden="true"></span>New Clinic </h1>
 						</a>
 					</div>
@@ -72,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<nav>
 							<ul class="nav navbar-nav">
-								<li><a href="index.html" class="active">Home</a></li>
+								<li><a href="index.jsp" class="active">Home</a></li>
 								<li><a href="about.html">About</a></li>
 								
 								<li><a href="departments.html">Departments</a></li>

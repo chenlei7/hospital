@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/dept")
-public class DeptLogin {
+public class DeptController {
     //注入接口
     @Autowired
     DeptService deptService;
@@ -22,5 +22,16 @@ public class DeptLogin {
             return "personnel/login";
         }
     }
+
+    //查询部门  (代写)
+    @RequestMapping("/allDept")
+    public String allDept(String deptNum, String deptPassword){
+        if(deptService.deptLodin(deptNum,deptPassword)!=null) {
+            return "personnel/index";
+        }else {
+            return "personnel/login";
+        }
+    }
+
 
 }

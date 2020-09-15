@@ -252,7 +252,7 @@
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">医生 All</h3>
+                    <h3 class="block-title">病人 All</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
@@ -261,8 +261,8 @@
                                 <span class="ti-home"></span>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">医生 </li>
-                        <li class="breadcrumb-item active">医生 All</li>
+                        <li class="breadcrumb-item">病人 </li>
+                        <li class="breadcrumb-item active">病人 All</li>
                     </ol>
                 </div>
             </div>
@@ -327,7 +327,7 @@
                             </table>
 
                             <button type="button" class="btn btn-danger mt-3 mb-0" onclick="delDoctor()"><span class="ti-trash"></span> DELETE</button>
-                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
+                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> 编辑</button>
                         </div>
                     </div>
                 </div>
@@ -406,8 +406,7 @@
     function editDoctor() {
         var result="";
         var d = "";
-        var doctorState=$("#doctorNowState").val();
-        d = $("input[name='doctorNum']:checked").each(function(){;
+        d = $("input[name='patientNum']:checked").each(function(){
             result = $(this).attr('value');
         });
         if(doctorState==""){
