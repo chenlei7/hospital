@@ -27,6 +27,12 @@ public class PatientController {
         return "patient/index";
     }
 
+    //网上预约挂号主页面
+    @RequestMapping("/register")
+    public String register(){
+        return "patient/register";
+    }
+
     //错误页面
     @RequestMapping("/error")
     public String error(){
@@ -37,7 +43,7 @@ public class PatientController {
     @RequestMapping("/patientsInfo")
     public String patientsInfo(Model model){
         List<Patient> patients = new ArrayList<>();
-        patients = patientMapper.findAll();
+        patients = patientMapper.findAllPatient();
         model.addAttribute("patients",patients);
         return "patient/patientsInfo";
     }
@@ -47,6 +53,17 @@ public class PatientController {
     public String patientAdd(Patient patient){
         patientMapper.save(patient);
         return "patient/patientAdd";
+    }
+
+    //增加网上预约
+    @PostMapping("/registerAdd")
+    public String registerAdd(Patient patient){
+        try {
+            patientMapper.save(patient);
+        }catch (Exception e){
+            return "jump/flase";
+        }
+        return "jump/success";
     }
 
     //跳转页面
@@ -67,5 +84,13 @@ public class PatientController {
         }
 
     }
+
+    //网上挂号的全部病人信息
+    @RequestMapping("/registerAll")
+    public String registerAll(){
+        return "patient/registerAll";
+    }
+
+
 
 }
