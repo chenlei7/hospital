@@ -174,7 +174,7 @@
                                     <label for="patientRoomNum">选择科室</label>
                                     <select class="form-control" id="patientRoomNum" name="patientRoomNum">
                                         <option value="">选择科室</option>
-                                        <option th:each="r:${rooms}" th:value="${r.roomNum}"
+                                        <option th:each="r:${rooms}" th:value="${r.roomPosition}"
                                                 th:text="${r.roomPosition}"></option>
                                     </select>
                                 </div>
@@ -238,25 +238,33 @@
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
 
-<!--某些字段不能为空-->
 <script th:inline="javascript">
     $("#patientRoomNum").change(function () {
-        var room = $("#patientRoomNum").var();
+        var room = $("#patientRoomNum").val();
         if (room == " " || room == '选择科室') {
             return;
         }
+        console.log("我是"+room);
         $.ajax({
-            cache:true,
-            type:"get",
-            url:"/register/findDoctor"
-            data:{"room":room},
-            success: function (date) {
-console.log(date.data);
-//var patientDoctorNum = $
+            cache: true,
+            type: "get",
+            url: "/register/findDoctor",
+            data: {"room": room},
+            success: function (data) {
+                console.log(data);
+                var patientDoctorNum = $("#patientDoctorNum").empty();
+                for (var i = 0; i < data.length; i++) {
+                    patientDoctorNum.append("<option value ='" + data[i].doctorNum + "'>" + data[i].doctorName + "</option>");
+                }
+            },
+            error: function () {
+                notifyError("获取数据失败，请重新刷新！")
             }
         })
     })
 
+
+    //填写说明
     $("#submit").click(function () {
         var patientDoctorNum = $("#patientDoctorNum").val();
         var patientRoomNum = $("#patientRoomNum").val();
