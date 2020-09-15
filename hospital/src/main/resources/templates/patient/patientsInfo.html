@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -188,7 +187,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-money"></span> 支付管理</a>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu">、
                                 <a class="dropdown-item" href="add-payment.html">添加支付</a>
                                 <a class="dropdown-item" href="payments.html">所有支付</a>
                                 <a class="dropdown-item" href="about-payment.html">发票</a>
@@ -288,7 +287,7 @@
                                             <label class="custom-control-label" for="select-all"></label>
                                         </div>
                                     </th>
-                                    < <th>病人编号</th>
+                                    <th>病人编号</th>
                                     <th>姓名</th>
                                     <th>年龄</th>
                                     <th>地址</th>
@@ -325,8 +324,6 @@
                                 </tr>
                                 </tbody>
                             </table>
-
-                            <button type="button" class="btn btn-danger mt-3 mb-0" onclick="delDoctor()"><span class="ti-trash"></span> DELETE</button>
                             <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> 编辑</button>
                         </div>
                     </div>
@@ -365,71 +362,16 @@
 
 
 <script th:inline="javascript">
-    /*全选*/
-    $("#select-all").click(function(){
-        $("input[name='doctorNum']").each(function(){
-            if (this.checked) {
-                this.checked = false;
-            }
-            else {
-                this.checked = true;
-            }
-        });
-    })
-
-
-
-
-    /*批量删除*/
-    function delDoctor() {
-        var result="";
-        var count=0;
-        $("input[name='doctorNum']:checked").each(function(){
-            if($(this).is(':checked')){
-                result+=$(this).attr('value') +",";
-                count++;
-            }else{}
-        });
-        if(!confirm("确定删除这"+count+"医生信息?")){
-            return;
-        }
-        if(result==",,"){
-            alert("删除的信息有误")
-        }else{
-            window.location.href= "/doctor/deleteDoctor?tag="+result;
-            alert("删除成功");
-            window.location.href = "http://localhost:8080/doctor/doctors";
-        }
-    }
-
-    /*修改医生的现状*/
-    function editDoctor() {
-        var result="";
-        var d = "";
-        d = $("input[name='patientNum']:checked").each(function(){
-            result = $(this).attr('value');
-        });
-        if(doctorState==""){
-            alert("请输入要修改的现状")
-        }else{
-            window.location.href= "/doctor/editDoctorNowState?doctorState="+doctorState+"&tag="+result;
-            alert("修改成功");
-            window.location.href = "http://localhost:8080/doctor/doctors";
-        }
-    }
 
     /*打开修改模态框*/
-    function openEditModal(editModal) {
-        var result="";
-        var doctorState="";
-        doctorState = $("input[name='doctorNum']:checked").each(function(){
-            result = $(this).attr('value');
+    function openEditModal() {
+        var patientNum="";
+        $("input[name='patientNum']:checked").each(function(){
+            patientNum = $(this).attr('value');
+                $("#patientNum").val(patientNum);
+                $("#editModal").modal('show');
         });
-        if(result==""){
-            alert("未做出选择")
-        }else{
-            $("#editModal").modal('show');
-        }
+
     }
 
 </script>
@@ -440,29 +382,32 @@
             <!--顶部标题-->
             <div class="modal-header">
                 <!--标题-->
-                <h5>修改医生现状</h5>
+                <h5>编辑病人信息</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <!--内容-->
             <div class="modal-body">
-                <form id="formEditDoctor">
-                    <input type="text" hidden id="academeIDU">
-                    <div class="form-group row">
-                        <label for="doctorNowState"  class="col-3">医生现状 NowState</label>
-                        <div class="form-group col-md-6">
-                            <select class="form-control" id="doctorNowState" name="doctorNowState">
-                                <option>出诊中</option>
-                                <option>可出诊</option>
-                                <option>请假</option>
-                                <option>休假</option>
-                            </select>
-                        </div>
+                <form id="formEditDoctor" action="/patient/patientUpadte" method="post" >
+                    <input type="text" hidden id="patientNum" name="patientNum">
+                    <div class="form-group col-md-6">
+                        <label for="patientNurseNum">护士编号</label>
+                        <input type="text"  class="form-control" placeholder="patientNurseNum" id="patientNurseNum" name="patientNurseNum">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="patientIllnessNum">病情编号</label>
+                        <input type="text"  class="form-control" placeholder="patientIllnessNum" id="patientIllnessNum" name="patientIllnessNum">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="patientLeaveDate">离开日期</label>
+                        <input type="date" placeholder="patientLeaveDate" class="form-control" id="patientLeaveDate" name="patientLeaveDate">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg">保存</button>
                     </div>
                 </form>
             </div>
-            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="editDoctor()"><span class="ti-pencil-alt"></span> EDIT</button>
         </div>
     </div>
 </div>
