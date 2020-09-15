@@ -30,4 +30,17 @@ public class userController {
     public String goRegistered(){
         return "user/registered";
     }
+
+
+    //跳转世界疫情
+    @RequestMapping("/index2")
+    public String goWorldEpidemic(Model model){
+        List<EpidemicProtection> epidemicProtections = epidemicProtectionMapper.findAll();
+        model.addAttribute("a1",epidemicProtections.get(0));
+        model.addAttribute("a2",epidemicProtections.get(1));
+        model.addAttribute("a3",epidemicProtections.get(2));
+        return "user/index2";
+    }
+
+
 }

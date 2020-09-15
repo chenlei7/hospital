@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+    <meta charset="utf-8">
+    <base>
+    <title>全国疫情</title>
+    <script th:src="@{/js/jquery-3.4.1.min.js}" type="text/javascript"></script>
+    <script type="text/javascript" th:src="@{/js/echarts.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/worldZH.js}"></script>
+</head>
+<body>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <div class="btn-group" role="group">
+        <button type="button" onclick="location.href = '/admin/china'">中国疫情</button>
+        <button type="button" onclick="location.href = '/admin/world'">世界疫情</button>
+    </div>
+</div>
+<div id="main" style="width: 50%; height: 200px;"></div>
+<script type="text/javascript">
+
+    // 绘制图表
+    let worldChart = echarts.init(document.getElementById('main'));
+    var COLORS = ["#ffffff", "#faebd2", "#e9a188", "#d56355", "#bb3937", "#772526", "#480f10"];//图例里的颜色
+
+    let option = {
+        backgroundColor: "#eeeeee",
+        title: {    //地图显示标题
+            show: false,
+            text: '',
+            top:"30px",
+            left: 'center',
+            textStyle: {color: '#000'}
+        },
+        visualMap: {   //图列显示柱
+            type: 'piecewise',
+            left:'left',
+            realtime: false,
+            calculable : true,
+            pieces: [{
+                value: 0, color: COLORS[0]
+            }, {
+                min: 1, max: 9, color: COLORS[1]
+            }, {
+                min: 10, max: 99, color: COLORS[2]
+            }, {
+                min: 100, max: 499, color: COLORS[3]
+            }, {
+                min: 500, max: 999, color: COLORS[4]
+            }, {
+                min: 1000, max: 10000, color: COLORS[5]
+            }, {
+                min: 10000, color: COLORS[6]
+            }],
+
+        inRange: {
+           color: COLORS //取值范围的颜色
+        },
+        show: true//图注
+        },
+        toolbox: {  //工具栏
+            show: false,
+            orient: 'vertical',
+            top:50,
+            itemGap:20,
+            left:30,
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        tooltip: {//提示框组件
+            formatter: function (params, ticket, callback) {//提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
+                return params.seriesName + '<br />' + params.name + '：' + params.value
+            }//数据格式化
+        },
+        series: [{
+            name:"总计人数",
+            type: 'map',
+            mapType: 'world',
+            roam: true,
+            zoom: 1,
+            mapLocation: {y: 100},
+            data:(function () {
+                var datas = [];
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/wyq/list",
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            datas.push({
+                                "name": data[i].provinceName,
+                                "value": data[i].confirmedCount
+                            })
+                        }
+                    }
+                })
+                return datas;
+            })(),
+            symbolSize: 12,
+            label: {
+                normal: {show: false},
+                emphasis: {show: true}
+            },
+            itemStyle: {
+                emphasis: {
+                    borderColor: 'transparent',
+                    borderWidth: 1
+                }
+            }
+        }],
+    };
+    worldChart.setOption(option);
+</script>
+</body>
+</html>
+

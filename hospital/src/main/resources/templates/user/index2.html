@@ -46,8 +46,8 @@
             <div class="warp-box">
                 <div class="about">
                     <div class="inner">
-                        <h1 class="wow fadeInLeft">全国疫情实时</h1>
-                        <a href="/user/index2">世界疫情</a>
+                        <h1 class="wow fadeInLeft">世界疫情实时</h1>
+                        <a href="/user/index">全国疫情</a>
                     </div>
                 </div>
             </div>
@@ -55,8 +55,7 @@
     </div>
 </div>
 <center>
-    <div id="map" style="width: 80%; height: 400px;"></div>
-    <div id="main" hidden style="width: 80%; height: 400px;"></div>
+    <div id="main" style="width: 80%; height: 400px;"></div>
 </center>
 
 
@@ -195,26 +194,25 @@
 </body>
 <script th:inline="javascript">
 
-    var map = echarts.init(document.getElementById('map'));//初始化
-
+    // 绘制图表
+    let worldChart = echarts.init(document.getElementById('main'));
     var COLORS = ["#ffffff", "#faebd2", "#e9a188", "#d56355", "#bb3937", "#772526", "#480f10"];//图例里的颜色
 
-    var option = {//配置项（名称）
-
-        tooltip: {//提示框组件
-            formatter: function (params, ticket, callback) {//提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
-                return params.seriesName + '<br />' + params.name + '：' + params.value
-            }//数据格式化
+    let option = {
+        backgroundColor: "#eeeeee",
+        title: {    //地图显示标题
+            show: false,
+            text: '',
+            top:"30px",
+            left: 'center',
+            textStyle: {color: '#000'}
         },
-        backgroundColor: '#eeeeee',//背景色
-        visualMap: {//visualMap 是视觉映射组件，用于进行『视觉编码』，也就是将数据映射到视觉元素（视觉通道）。
-            type: 'piecewise',//分段型视觉映射组件
-            orient: 'horizontal',//方向
-
-            left: 'left',//位置
-            top: 'bottom',//位置
-
-            pieces: [{//自定义『分段式视觉映射组件』的每一段的范围，以及每一段的文字，以及每一段的特别的样式。
+        visualMap: {   //图列显示柱
+            type: 'piecewise',
+            left:'left',
+            realtime: false,
+            calculable : true,
+            pieces: [{
                 value: 0, color: COLORS[0]
             }, {
                 min: 1, max: 9, color: COLORS[1]
@@ -229,68 +227,67 @@
             }, {
                 min: 10000, color: COLORS[6]
             }],
+
             inRange: {
                 color: COLORS //取值范围的颜色
             },
-
             show: true//图注
         },
-        geo: {//地理坐标系组件用于地图的绘制
-            map: 'china',
-            roam: false,//不开启缩放和平移
-            zoom: 1.23,//视角缩放比例
-            label: {
-                normal: {
-                    show: true,
-                    fontSize: '10',
-                    color: 'rgba(0,0,0,0.7)'
-                }
-            },
-            itemStyle: {
-                normal: {
-                    borderColor: 'rgba(0, 0, 0, 0.2)'
-                },
-                emphasis: {
-                    areaColor: '#F3B329',//鼠标选择区域颜色
-                    shadowOffsetX: 0,
-                    shadowOffsetY: 0,
-                    shadowBlur: 20,
-                    borderWidth: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
+        toolbox: {  //工具栏
+            show: false,
+            orient: 'vertical',
+            top:50,
+            itemGap:20,
+            left:30,
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
             }
         },
-        series: [//系列列表。（图表）
-            {
-                name: '总计人数',
-                type: 'map',//图表类型
-                geoIndex: 0,
-                //图表的数据
-                data: (function () {
-                    var datas = [];
-                    $.ajax({
-                        type: "GET",
-                        url: "http://localhost:8080/chinese/list",
-                        dataType: "json",
-                        async: false,
-                        success: function (data) {
-                            for (var i = 0; i < data.length; i++) {
-                                datas.push({
-                                    "name": data[i].provinceShortName,
-                                    "value": data[i].confirmCount
-                                })
-                            }
+        tooltip: {//提示框组件
+            formatter: function (params, ticket, callback) {//提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
+                return params.seriesName + '<br />' + params.name + '：' + params.value
+            }//数据格式化
+        },
+        series: [{
+            name:"总计人数",
+            type: 'map',
+            mapType: 'world',
+            roam: true,
+            zoom: 1,
+            mapLocation: {y: 100},
+            data:(function () {
+                var datas = [];
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/worldEpidemic/list",
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            datas.push({
+                                "name": data[i].provinceName,
+                                "value": data[i].confirmedCount
+                            })
                         }
-                    })
-                    return datas;
-                })(),
+                    }
+                })
+                return datas;
+            })(),
+            symbolSize: 12,
+            label: {
+                normal: {show: false},
+                emphasis: {show: true}
+            },
+            itemStyle: {
+                emphasis: {
+                    borderColor: 'transparent',
+                    borderWidth: 1
+                }
             }
-        ]
-    }
-
-    map.setOption(option);//用配置项配置（动词）echarts
+        }],
+    };
+    worldChart.setOption(option);
 </script>
-
-
-
 </html>
