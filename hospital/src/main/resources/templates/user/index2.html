@@ -6,11 +6,14 @@
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width"/>
     <title>健康医院</title>
+    <link th:href="@{/css/index_style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/layui/css/layui.css}" rel="stylesheet">
     <link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/css/index_style.css}" rel="stylesheet">
     <link th:href="@{/css/animate.css}" rel="stylesheet">
-    <script th:src="@{/js/jquery-3.4.1.min.js}" type="text/javascript"></script>
+    <script th:src="@{/layui/layui.js}" type="text/javascript"></script>
+    <script th:src="@{/js/wow.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/index.js}" type="text/javascript"></script>
+    <script th:src="@{/js/jquery-1.11.3.min.js}" type="text/javascript"></script>
     <script type="text/javascript" th:src="@{/js/echarts.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/china.js}"></script>
     <script type="text/javascript" th:src="@{/js/worldZH.js}"></script>
@@ -24,8 +27,8 @@
             <div class="nav wow zoomIn" data-wow-duration="2s">
                 <h1>健康医院</h1>
                 <p>用我们的热情,换大众的健康</p>
-                <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="/user/registered">Enter Registered</a>
-                <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="#">Leave Messages</a>
+                <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="/user/registered"> 挂号 </a>
+                <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="#"> 留言 </a>
             </div>
             <a class="next wow fadeInUp" data-wow-duration="2s" id="next"></a>
         </div>
@@ -180,9 +183,6 @@
         </div>
     </div>
 </footer>
-<script th:src="@{/layui/layui.js}" type="text/javascript"></script>
-<script th:src="@{/js/wow.min.js}" type="text/javascript"></script>
-<script th:src="@{/js/index.js}" type="text/javascript"></script>
 </body>
 <script th:inline="javascript">
 
@@ -253,7 +253,7 @@
                 var datas = [];
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost:8080/worldEpidemic/list",
+                    url: "http://localhost:8080/world/list",
                     dataType: "json",
                     async: false,
                     success: function (data) {
