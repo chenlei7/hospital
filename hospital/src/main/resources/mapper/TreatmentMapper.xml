@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxxy.hospital.financial.mapper.TreatmentMapper">
+
+<!--  查询所有病人资费 -->
+    <select id="Treatment" parameterType="String" resultType="java.util.LinkedHashMap">
+        select * from  bill_info where bill_date like CONCAT('%',#{time},'%')
+    </select>
+</mapper>

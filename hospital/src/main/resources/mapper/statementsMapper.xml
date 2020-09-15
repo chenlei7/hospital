@@ -7,7 +7,7 @@
     <select id="findAll" resultType="java.util.LinkedHashMap">
         select * from statements
     </select>
-    
+
 <!--    查询类型-->
     <select id="findByType" parameterType="String" resultType="java.util.LinkedHashMap">
         select * from statements where statements=#{type}
@@ -20,4 +20,8 @@
     <select id="findByPay" resultType="double">
         select * from statements where statement_money>0;
     </select>
+<!--    添加数据-->
+    <insert id="add">
+        insert into statements values (null,#{num},#{name},#{deptName},#{type},#{event},#{time},#{state},#{money})
+    </insert>
 </mapper>
