@@ -137,11 +137,11 @@
                 <!-- Widget Item -->
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">添加病人信息</h3>
-                        <form action="/patient/registerAdd" method="post" onsubmit="return check()">
+                        <h3 class="widget-title">请填写挂号信息</h3>
+                        <form action="/register/registerAdd" method="post" onsubmit="return check()">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="patientName">病人姓名</label>
+                                    <label for="patientName">姓名</label>
                                     <input type="text" class="form-control" placeholder="patientName" id="patientName" name="patientName">
                                 </div>
                                 <div class="form-group col-md-6">
@@ -161,16 +161,18 @@
                                     <input type="text" placeholder="patientPhone" class="form-control" id="patientPhone" name="patientPhone">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="patientDoctorNum">主治医生编号</label>
-                                    <input type="text" placeholder="patientDoctorNum" class="form-control" id="patientDoctorNum" name="patientDoctorNum">
+                                    <label for="patientRoomNum">选择科室</label>
+                                    <select class="form-control" id="patientRoomNum" name="patientRoomNum">
+                                        <option value="">选择科室</option>
+                                        <option th:each="r:${roomPosition}" th:value="${r.roomPosition}" th:text="${r.roomPosition}"></option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="patientRoomNum">科室编号</label>
-                                    <input type="text" placeholder="patientRoomNum" class="form-control" id="patientRoomNum" name="patientRoomNum">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientBillNum">账单号</label>
-                                    <input type="text" placeholder="patientBillNum" class="form-control" id="patientBillNum" name="patientBillNum">
+                                    <label for="patientDoctorNum">选择医生</label>
+                                    <select class="form-control" id="patientDoctorNum" name="patientDoctorNum">
+                                        <option value="">选择医生</option>
+                                        <option th:each="d:${doctors}" th:value="${d.DoctorName}" th:text="${d.DoctorName}"></option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientGender">性别</label>
@@ -194,20 +196,7 @@
                                 </div>
                             </div>
                         </form>
-                        <!-- Alerts-->
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Successfully Done!</strong> Please add payment now
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <!-- /Alerts-->
+
                     </div>
                 </div>
                 <!-- /Widget Item -->
@@ -221,9 +210,7 @@
     <!-- /Page Content -->
 </div>
 <!-- Back to Top -->
-<a id="back-to-top" href="#" class="back-to-top">
-    <span class="ti-angle-up"></span>
-</a>
+
 <!-- /Back to Top -->
 <!-- Jquery Library-->
 <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
@@ -241,18 +228,16 @@
 
 <!--某些字段不能为空-->
 <script th:inline="javascript">
+
+
     $("#submit").click(function () {
-        var patientNum = $("#patientNum").val();
         var patientDoctorNum = $("#patientDoctorNum").val();
         var patientRoomNum = $("#patientRoomNum").val();
-        if(patientNum.length==0){
-            alert("病人编号不能空，请输入病人编号！")
-            return false;
-        }else if(patientDoctorNum.length==0){
-            alert("医生不能空，请输入医生编号！")
+        if(patientDoctorNum.length==0){
+            alert("医生不能空，请选择医生！")
             return false;
         }else if(patientRoomNum.length==0){
-            alert("科室不能空，请输入科室！")
+            alert("科室不能空，请选择科室！")
             return false;
         }else {
             return true;

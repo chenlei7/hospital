@@ -25,11 +25,6 @@ public class userController {
         return "user/index";
     }
 
-    //挂号界面
-    @RequestMapping("/registered")
-    public String goRegistered(){
-        return "patient/register";
-    }
 
 
     //跳转世界疫情
