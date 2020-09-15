@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>挂号</title>
+    <!-- Fav  Icon Link -->
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/fav.png}">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <!-- themify icons CSS -->
+    <link rel="stylesheet" th:href="@{/css/themify-icons.css}">
+    <!-- Animations CSS -->
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <!-- Main CSS -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/green.css}" id="style_theme">
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+    <!-- morris charts -->
+    <link rel="stylesheet" th:href="@{/charts/css/morris.css}">
+    <!-- jvectormap -->
+    <link rel="stylesheet" th:href="@{/css/jquery-jvectormap.css}">
+    <link rel="stylesheet" th:href="@{/datatable/dataTables.bootstrap4.min.css}">
+
+    <script th:src="@{/js/modernizr.min.js}"></script>
+</head>
+
+<body>
+<!-- Pre Loader -->
+<div class="loading">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<!--/Pre Loader -->
+<!-- Color Changer -->
+<div class="theme-settings" id="switcher">
+		<span class="theme-click">
+			<span class="ti-settings"></span>
+		</span>
+    <span class="theme-color theme-default theme-active" data-color="green"></span>
+    <span class="theme-color theme-blue" data-color="blue"></span>
+    <span class="theme-color theme-red" data-color="red"></span>
+    <span class="theme-color theme-violet" data-color="violet"></span>
+    <span class="theme-color theme-yellow" data-color="yellow"></span>
+</div>
+<!-- /Color Changer -->
+<div class="wrapper">
+    <!-- Page Content -->
+    <div id="content">
+        <!-- Top Navigation -->
+        <div class="container top-brand">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <div class="sidebar-header"> <a th:href="@{/patient/index}"><img th:src="@{/images/logo-dark.png}" class="logo" alt="logo"></a>
+                    </div>
+                </div>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <span title="Fullscreen" class="ti-fullscreen fullscreen"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target=".lochana-modal-lg">
+                            <span class="ti-search"></span>
+                        </a>
+                        <div class="modal fade lochana-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lorvens">
+                                <div class="modal-content lochana-box-shadow2">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Search Patient/医生:</h5>
+                                        <span class="ti-close" data-dismiss="modal" aria-label="Close">
+												</span>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="search-term" placeholder="Type text here">
+                                                <button type="button" class="btn btn-lorvens lochana-bg">
+                                                    <span class="ti-location-arrow"></span> Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span class="ti-announcement"></span>
+                        </a>
+                        <div class="dropdown-menu lochana-box-shadow2 notifications animated flipInY">
+                            <h5>Notifications</h5>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-wheelchair"></span> New Patient Added</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-money"></span> Patient payment done</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-time"></span>Patient Appointment booked</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-wheelchair"></span> New Patient Added</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span class="ti-user"></span>
+                        </a>
+                        <div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
+                            <h5>John Willing</h5>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-settings"></span> Settings</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-help-alt"></span> Help</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-power-off"></span> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- /Top Navigation -->
+        <!-- Menu -->
+
+        <!-- /Page Title -->
+
+        <!-- /Breadcrumb -->
+        <!-- Main Content -->
+        <div class="container">
+
+            <div class="row">
+                <!-- Widget Item -->
+                <div class="col-md-12">
+                    <div class="widget-area-2 lochana-box-shadow">
+                        <h3 class="widget-title">添加病人信息</h3>
+                        <form action="/patient/registerAdd" method="post" onsubmit="return check()">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="patientName">病人姓名</label>
+                                    <input type="text" class="form-control" placeholder="patientName" id="patientName" name="patientName">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="patientAge">年龄</label>
+                                    <input type="text"  class="form-control" placeholder="patientAge" id="patientAge" name="patientAge">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="patientAddress">地址</label>
+                                    <input type="text" placeholder="patientAddress" class="form-control" id="patientAddress" name="patientAddress">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="patientComeDate">来的日期</label>
+                                    <input type="date" placeholder="patientComeDate" class="form-control" id="patientComeDate" name="patientComeDate">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="patientPhone">电话</label>
+                                    <input type="text" placeholder="patientPhone" class="form-control" id="patientPhone" name="patientPhone">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="patientDoctorNum">主治医生编号</label>
+                                    <input type="text" placeholder="patientDoctorNum" class="form-control" id="patientDoctorNum" name="patientDoctorNum">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="patientRoomNum">科室编号</label>
+                                    <input type="text" placeholder="patientRoomNum" class="form-control" id="patientRoomNum" name="patientRoomNum">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="patientBillNum">账单号</label>
+                                    <input type="text" placeholder="patientBillNum" class="form-control" id="patientBillNum" name="patientBillNum">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="patientGender">性别</label>
+                                    <select class="form-control" id="patientGender" name="patientGender">
+                                        <option>男</option>
+                                        <option>女</option>
+                                        <option>其它</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-check col-md-12 mb-2">
+                                    <div class="text-left">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="ex-check-2">
+                                            <label class="custom-control-label" for="ex-check-2">Please Confirm</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 mb-3">
+                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Alerts-->
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Successfully Done!</strong> Please add payment now
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <!-- /Alerts-->
+                    </div>
+                </div>
+                <!-- /Widget Item -->
+            </div>
+        </div>
+        <!-- /Main Content -->
+        <!--Copy Rights-->
+
+        <!-- /Copy Rights-->
+    </div>
+    <!-- /Page Content -->
+</div>
+<!-- Back to Top -->
+<a id="back-to-top" href="#" class="back-to-top">
+    <span class="ti-angle-up"></span>
+</a>
+<!-- /Back to Top -->
+<!-- Jquery Library-->
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<!-- Popper Library-->
+<script th:src="@{/js/popper.min.js}"></script>
+<!-- Bootstrap Library-->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+<!-- Datatable  -->
+<script th:src="@{/datatable/jquery.dataTables.min.js}"></script>
+<script th:src="@{/datatable/dataTables.bootstrap4.min.js}"></script>
+
+<!-- Custom Script-->
+<script th:src="@{/js/custom.js}"></script>
+
+<!--某些字段不能为空-->
+<script th:inline="javascript">
+    $("#submit").click(function () {
+        var patientNum = $("#patientNum").val();
+        var patientDoctorNum = $("#patientDoctorNum").val();
+        var patientRoomNum = $("#patientRoomNum").val();
+        if(patientNum.length==0){
+            alert("病人编号不能空，请输入病人编号！")
+            return false;
+        }else if(patientDoctorNum.length==0){
+            alert("医生不能空，请输入医生编号！")
+            return false;
+        }else if(patientRoomNum.length==0){
+            alert("科室不能空，请输入科室！")
+            return false;
+        }else {
+            return true;
+        }
+    })
+</script>
+
+</body>
+
+</html>
