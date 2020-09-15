@@ -196,7 +196,9 @@
                                aria-expanded="false"><span class="ti-key"></span> 病房分配</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="/room/rooms">查询病房</a>
+                                <a class="dropdown-item" href="/equip/addequipment">增加器材</a>
                                 <a class="dropdown-item" href="/equipment/equipments">器材信息</a>
+                                <a class="dropdown-item" href="/equip/addconsumables">增加药材</a>
                                 <a class="dropdown-item" href="/consumables/allconsumables">药材信息</a>
                             </div>
                         </li>
@@ -289,6 +291,7 @@
                                     <th>名称</th>
                                     <th>价格（元）</th>
                                     <th>所属房间</th>
+                                    <th>购买时间</th>
                                     <th>状态</th>
                                 </tr>
                                 </thead>
@@ -304,6 +307,7 @@
                                     <td th:text="${equipment.equipmentName}"></td>
                                     <td th:text="${equipment.equipmentPrice}"></td>
                                     <td th:text="${equipment.equipmentSite}"></td>
+                                    <td th:text="${equipment.equipmentTime}"></td>
                                     <td th:text="${equipment.equipmentState}"></td>
 
                                 </tr>

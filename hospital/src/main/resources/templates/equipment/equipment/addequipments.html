@@ -1,30 +1,26 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ProClinic-医院管理系统Bootstrap4前端框架</title>
     <!-- Fav  Icon Link -->
-    <link rel="shortcut icon" type="image/png" href="images/fav.png">
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/fav.png}">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <!-- themify icons CSS -->
-    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" th:href="@{/css/themify-icons.css}">
     <!-- Animations CSS -->
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
     <!-- Main CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/green.css" id="style_theme">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/green.css}" id="style_theme">
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
     <!-- morris charts -->
-    <link rel="stylesheet" href="charts/css/morris.css">
+    <link rel="stylesheet" th:href="@{/charts/css/morris.css}">
     <!-- jvectormap -->
-    <link rel="stylesheet" href="css/jquery-jvectormap.css">
-    <link rel="stylesheet" href="datatable/dataTables.bootstrap4.min.css">
-
-    <script src="js/modernizr.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/jquery-jvectormap.css}">
 </head>
 
 <body>
@@ -55,7 +51,7 @@
         <div class="container top-brand">
             <nav class="navbar navbar-default">
                 <div class="navbar-header">
-                    <div class="sidebar-header"> <a href="index.html"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
+                    <div class="sidebar-header"> <a href="/personnel/index"><img th:src="@{/images/logo-dark.png}"  class="logo" alt="logo"></a>
                     </div>
                 </div>
                 <ul class="nav justify-content-end">
@@ -140,10 +136,10 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-home"></span> 控制面板</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="index.html">默认</a>
+                                <a class="dropdown-item" href="/personnel/index">默认</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown active">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-wheelchair"></span> 病人管理</a>
                             <div class="dropdown-menu">
@@ -153,14 +149,37 @@
                                 <a class="dropdown-item" href="edit-patient.html">编辑病人信息</a>
                             </div>
                         </li>
+                        <!--医生管理-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-user"></span> 医生管理</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="add-doctor.html">添加医生信息</a>
-                                <a class="dropdown-item" href="doctors.html">查询医生信息</a>
-                                <a class="dropdown-item" href="about-doctor.html">医生信息详情</a>
-                                <a class="dropdown-item" href="edit-doctor.html">编辑医生信息</a>
+                                <a class="dropdown-item" href="/personnel/addDoctor">添加医生信息</a>
+                                <a class="dropdown-item" href="/doctor/doctors">查询医生信息</a>
+                                <a class="dropdown-item" href="/doctor/doctorInfo">医生信息详情</a>
+                                <a class="dropdown-item" href="/personnel/editDoctor">编辑医生信息</a>
+                            </div>
+                        </li>
+                        <!--护士管理-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                               aria-expanded="false"><span class="ti-user"></span> 护士管理</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/personnel/addNurse">添加护士信息</a>
+                                <a class="dropdown-item" href="/nurse/nurses">查询护士信息</a>
+                                <a class="dropdown-item" href="/nurse/nurseInfo">护士信息详情</a>
+                                <a class="dropdown-item" href="/personnel/editNurse">编辑护士信息</a>
+                            </div>
+                        </li>
+                        <!--员工管理-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                               aria-expanded="false"><span class="ti-user"></span> 员工管理</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/personnel/addOther">添加员工信息</a>
+                                <a class="dropdown-item" href="/other/others">查询员工信息</a>
+                                <a class="dropdown-item" href="/other/otherInfo">员工信息详情</a>
+                                <a class="dropdown-item" href="/personnel/editOther">编辑员工信息</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -186,35 +205,11 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-key"></span> 病房分配</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="add-room.html">添加病房</a>
-                                <a class="dropdown-item" href="rooms.html">查询病房</a>
-                                <a class="dropdown-item" href="edit-room.html">编辑病房信息</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                               aria-expanded="false"><span class="ti-layout-tab"></span> UI框架</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="typography.html">排版</a>
-                                <a class="dropdown-item" href="buttons.html">按钮</a>
-                                <a class="dropdown-item" href="cards.html">卡片</a>
-                                <a class="dropdown-item" href="tabs.html">选项卡</a>
-                                <a class="dropdown-item" href="accordions.html">手风琴</a>
-                                <a class="dropdown-item" href="modals.html">模态窗口</a>
-                                <a class="dropdown-item" href="lists.html">媒体和列表</a>
-                                <a class="dropdown-item" href="grid.html">网格</a>
-                                <a class="dropdown-item" href="progress-bars.html">进度条</a>
-                                <a class="dropdown-item" href="notifications-alerts.html">预警和提示</a>
-                                <a class="dropdown-item" href="pagination.html">分页</a>
-                                <a class="dropdown-item" href="carousel.html">滑块</a>
-                                <a class="dropdown-item" href="tables.html">表格</a>
-                                <a class="dropdown-item" href="charts-1.html">Morris图表</a>
-                                <a class="dropdown-item" href="charts-2.html">Flot图表</a>
-                                <a class="dropdown-item" href="map-1.html">谷歌地图</a>
-                                <a class="dropdown-item" href="map-2.html">Vector地图</a>
-                                <a class="dropdown-item" href="forms.html">表单</a>
-                                <a class="dropdown-item" href="font-awesome.html">Font Awesome </a>
-                                <a class="dropdown-item" href="themify.html">Themify图标</a>
+                                <a class="dropdown-item" href="/room/rooms">查询病房</a>
+                                <a class="dropdown-item" href="/equip/addequipment">增加器材</a>
+                                <a class="dropdown-item" href="/equipment/equipments">器材信息</a>
+                                <a class="dropdown-item" href="/equip/addconsumables">增加药材</a>
+                                <a class="dropdown-item" href="/consumables/allconsumables">药材信息</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -240,7 +235,7 @@
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">Edit Patient</h3>
+                    <h3 class="block-title">器材 增加</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
@@ -249,8 +244,8 @@
                                 <span class="ti-home"></span>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">病人管理</li>
-                        <li class="breadcrumb-item active">Edit Patient</li>
+                        <li class="breadcrumb-item">器材 </li>
+                        <li class="breadcrumb-item active">器材 增加</li>
                     </ol>
                 </div>
             </div>
@@ -265,72 +260,79 @@
                 <!-- Widget Item -->
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">Edit Patient</h3>
-                        <form>
+                        <h3 class="widget-title">器材 增加</h3>
+                        <form action="/equipment/addEquipment" method="post" onsubmit="return check()">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="patient-name">名人姓名</label>
-                                    <input type="text" value="Daniel Smith" class="form-control" placeholder="Patient name" id="patient-name">
+                                    <label for="equipmentNum">器材 编号</label>
+                                    <input type="text" class="form-control" placeholder="Number" id="equipmentNum" name="equipmentNum">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="dob">Date Of Birth</label>
-                                    <input type="date" value="1989-10-10" placeholder="Date of Birth" class="form-control" id="dob">
+                                    <label for="equipmentName">器材 名称</label>
+                                    <input type="text" class="form-control" placeholder="name" id="equipmentName" name="equipmentName">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="age">Age</label>
-                                    <input type="text" value="30" placeholder="Age" class="form-control" id="age">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" value="12345 67890" placeholder="Phone" class="form-control" id="phone">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="email">Email</label>
-                                    <input type="email" value="email@email.com" placeholder="email" class="form-control" id="Email">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="gender">Gender</label>
-                                    <select class="form-control" id="gender">
-                                        <option selected>Male</option>
-                                        <option>Female</option>
-                                        <option>Other</option>
+                                    <label for="equipmentState">使用 状态</label>
+                                    <select class="form-control" id="equipmentState" name="equipmentState">
+                                        <option>可用</option>
+                                        <option>不可用</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-12">
-                                    <label for="exampleFormControlTextarea1">Address</label>
-                                    <textarea placeholder="Address" class="form-control" id="exampleFormControlTextarea1" rows="3">Koramangala Banglore, India</textarea>
+                                <div class="form-group col-md-6">
+                                    <label for="equipmentPrice">器材 价格</label>
+                                    <input type="text" class="form-control" placeholder="equipmentPrice" id="equipmentPrice" name="equipmentPrice">
                                 </div>
-                                <div class="form-group col-md-12">
-                                    <label for="file">File</label>
-                                    <input type="file" class="form-control" id="file">
+                                <div class="form-group col-md-6">
+                                    <label for="equipmentTime">器材 购买时间</label>
+                                    <input type="Date" class="form-control" placeholder="equipmentTime" id="equipmentTime" name="equipmentTime">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="equipmentSite">使用 地点</label>
+                                    <select class="form-control" id="equipmentSite" name="equipmentSite">
+                                        <option>101</option>
+                                        <option>102</option>
+                                        <option>103</option>
+                                        <option>201</option>
+                                        <option>202</option>
+                                        <option>203</option>
+                                        <option>301</option>
+                                        <option>302</option>
+                                        <option>303</option>
+                                        <option>401</option>
+                                        <option>402</option>
+                                        <option>403</option>
+                                    </select>
                                 </div>
 
-                                <div class="form-check col-md-12 mb-2">
-                                    <div class="text-left">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="ex-check-2">
-                                            <label class="custom-control-label" for="ex-check-2">Please Confirm</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6 mb-3">
-                                    <button type="submit" class="btn btn-primary btn-lg">Update</button>
-                                </div>
+
+
+                                <!--									<div class="form-check col-md-12 mb-2">-->
+                                <!--										<div class="text-left">-->
+                                <!--											<div class="custom-control custom-checkbox">-->
+                                <!--												<input class="custom-control-input" type="checkbox" id="ex-check-2">-->
+                                <!--												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>-->
+                                <!--											</div>-->
+                                <!--										</div>-->
+                                <!--									</div>-->
+                            </div>
+                            <div class="form-group col-md-6 mb-3">
+                                <button type="submit" class="btn btn-primary btn-lg" id="submit">提交</button>
+                                <button type="reset" class="btn btn-primary btn-lg">重置</button>
                             </div>
                         </form>
                         <!-- Alerts-->
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Successfully Updated!</strong> Please add payment now
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
+                        <!--							<div class="alert alert-success alert-dismissible fade show" role="alert">-->
+                        <!--								<strong>Successfully Done!</strong> Please Check in doctors list-->
+                        <!--								<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+                        <!--									<span aria-hidden="true">×</span>-->
+                        <!--								</button>-->
+                        <!--							</div>-->
+                        <!--							<div class="alert alert-warning alert-dismissible fade show" role="alert">-->
+                        <!--								<strong>Holy guacamole!</strong> You should check in on some of those fields below.-->
+                        <!--								<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+                        <!--									<span aria-hidden="true">×</span>-->
+                        <!--								</button>-->
+                        <!--							</div>-->
                         <!-- /Alerts-->
                     </div>
                 </div>
@@ -341,7 +343,7 @@
         <!--Copy Rights-->
         <div class="container">
             <div class="d-sm-flex justify-content-center">
-                <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span> 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
+                <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2020 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span>
             </div>
         </div>
         <!-- /Copy Rights-->
@@ -354,19 +356,30 @@
 </a>
 <!-- /Back to Top -->
 <!-- Jquery Library-->
-<script src="js/jquery-3.2.1.min.js"></script>
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 <!-- Popper Library-->
-<script src="js/popper.min.js"></script>
+<script th:src="@{/js/popper.min.js}"></script>
 <!-- Bootstrap Library-->
-<script src="js/bootstrap.min.js"></script>
-
-<!-- Datatable  -->
-<script src="datatable/jquery.dataTables.min.js"></script>
-<script src="datatable/dataTables.bootstrap4.min.js"></script>
-
+<script th:src="@{/js/bootstrap.min.js}"></script>
 <!-- Custom Script-->
-<script src="js/custom.js"></script>
+<script th:src="@{/js/custom.js}"></script>
 
+<!--新增判断,年龄和编号不能为空-->
+<script th:inline="javascript">
+    $("#submit").click(function () {
+        var doctorNum = $("#doctorNum").val();
+        var doctorAge = $("#doctorAge").val();
+        if(doctorNum.length==0){
+            alert("编号不能空，请输入编号！")
+            return false;
+        }else if(doctorAge.length==0){
+            alert("年龄不能空，请输入年龄！")
+            return false;
+        }else {
+            return true;
+        }
+    })
+</script>
 </body>
 
 </html>

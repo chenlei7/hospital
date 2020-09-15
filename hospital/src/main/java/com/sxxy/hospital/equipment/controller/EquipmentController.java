@@ -3,11 +3,14 @@ package com.sxxy.hospital.equipment.controller;
 import com.sxxy.hospital.equipment.entity.Equipment;
 import com.sxxy.hospital.equipment.mapper.EquipmentMapper;
 import com.sxxy.hospital.equipment.service.EquipmentService;
+import com.sxxy.hospital.personnel.entity.Doctor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,5 +45,17 @@ public class EquipmentController {
             }
         }
         return "equipment/equipment/showequipments";
+    }
+
+    //增加器材
+    @RequestMapping("/addEquipment")
+    public String addEquipment(String equipmentNum, String equipmentName, String equipmentState, Double equipmentPrice, String equipmentSite,Date equipmentTime) {
+        Equipment addEquipment = new Equipment(equipmentNum,equipmentName,equipmentState,equipmentPrice,equipmentSite,equipmentTime);
+        if (addEquipment != null) {
+            equipmentService.addEquipment(addEquipment);
+            return "equipment/equipment/addequipments";
+        } else {
+            return "equipment/equipment/addequipments";
+        }
     }
 }
