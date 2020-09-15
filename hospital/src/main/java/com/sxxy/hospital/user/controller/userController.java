@@ -28,6 +28,6 @@ public class userController {
     //挂号界面
     @RequestMapping("/registered")
     public String goRegistered(){
-        return "user/registered";
+        return "patient/registered";
     }
 }
