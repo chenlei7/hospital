@@ -196,7 +196,9 @@
                                aria-expanded="false"><span class="ti-key"></span> 病房分配</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="/room/rooms">查询病房</a>
+                                <a class="dropdown-item" href="/equip/addequipment">增加器材</a>
                                 <a class="dropdown-item" href="/equipment/equipments">器材信息</a>
+                                <a class="dropdown-item" href="/equip/addconsumables">增加药材</a>
                                 <a class="dropdown-item" href="/consumables/allconsumables">药材信息</a>
                             </div>
                         </li>
@@ -314,24 +316,7 @@
                             </table>
 
 
-                            <!--Export links-->
-                            <!--							<nav aria-label="Page navigation example">-->
-                            <!--								<ul class="pagination justify-content-center export-pagination">-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-download"></span> csv</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>-->
-                            <!--									</li>-->
-                            <!--								</ul>-->
-                            <!--							</nav>-->
-                            <!-- /Export links-->
+
                             <button type="button" class="btn btn-danger mt-3 mb-0" onclick="delDoctor()"><span class="ti-trash"></span> DELETE</button>
                             <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
                         </div>
@@ -394,36 +379,29 @@
         }
     }
 
-    /*修改医生的现状*/
+    /*采购药材*/
     function editDoctor() {
         var result="";
         var d = "";
-        var doctorState=$("#doctorNowState").val();
-        d = $("input[name='doctorNum']:checked").each(function(){;
+        var consumablesNumber=$("#consumablesaddNumber").val();
+        parseInt(consumablesNumber);
+        d = $("input[name='consumablesNum']:checked").each(function(){;
             result = $(this).attr('value');
         });
-        console.log(doctorState)
-        if(doctorState==""){
-            alert("请输入要修改的现状")
+        console.log(consumablesNumber)
+        if(consumablesNumber=""){
+            alert("请输入要采购的数量")
         }else{
-            window.location.href= "/doctor/editDoctorNowState?doctorState="+doctorState+"&tag="+result;
-            alert("修改成功");
-            window.location.href = "http://localhost:8080/doctor/doctors";
+            window.location.href= "/consumables/addConsumablesNumber?consumablesNumber="+consumablesNumber+"&tag="+result;
+            alert("采购成功");
+            window.location.href = "http://localhost:8080/consumables/allconsumables";
         }
     }
 
     /*打开修改模态框*/
     function openEditModal(editModal) {
         var result="";
-        var doctorState="";
-        doctorState = $("input[name='doctorNum']:checked").each(function(){
-            result = $(this).attr('value');
-        });
-        if(result==""){
-            alert("选择出错")
-        }else{
-            $("#editModal").modal('show');
-        }
+        $("#editModal").modal('show');
     }
 
 </script>
@@ -434,7 +412,7 @@
             <!--顶部标题-->
             <div class="modal-header">
                 <!--标题-->
-                <h5>修改医生现状</h5>
+                <h5>药材增加数量</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -443,16 +421,9 @@
             <div class="modal-body">
                 <form id="formEditDoctor">
                     <input type="text" hidden id="academeIDU">
-                    <div class="form-group row">
-                        <label for="doctorNowState"  class="col-3">医生现状 NowState</label>
-                        <div class="form-group col-md-6">
-                            <select class="form-control" id="doctorNowState" name="doctorNowState">
-                                <option>出诊中</option>
-                                <option>可出诊</option>
-                                <option>请假</option>
-                                <option>休假</option>
-                            </select>
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label for="consumablesaddNumber">药材增加数量</label>
+                        <input type="text" class="form-control" placeholder="增加数量" id="consumablesaddNumber" name="consumablesaddNumber">
                     </div>
                 </form>
             </div>

@@ -55,7 +55,8 @@
         <div class="container top-brand">
             <nav class="navbar navbar-default">
                 <div class="navbar-header">
-                    <div class="sidebar-header"> <a th:href="@{/patient/index}"><img th:src="@{/images/logo-dark.png}" class="logo" alt="logo"></a>
+                    <div class="sidebar-header"><a th:href="@{/patient/index}"><img th:src="@{/images/logo-dark.png}"
+                                                                                    class="logo" alt="logo"></a>
                     </div>
                 </div>
                 <ul class="nav justify-content-end">
@@ -79,9 +80,11 @@
                                     <div class="modal-body">
                                         <form>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="search-term" placeholder="Type text here">
+                                                <input type="text" class="form-control" id="search-term"
+                                                       placeholder="Type text here">
                                                 <button type="button" class="btn btn-lorvens lochana-bg">
-                                                    <span class="ti-location-arrow"></span> Search</button>
+                                                    <span class="ti-location-arrow"></span> Search
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -90,7 +93,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true"
                            aria-expanded="false">
                             <span class="ti-announcement"></span>
                         </a>
@@ -107,7 +111,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true"
                            aria-expanded="false">
                             <span class="ti-user"></span>
                         </a>
@@ -142,36 +147,43 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="patientName">姓名</label>
-                                    <input type="text" class="form-control" placeholder="patientName" id="patientName" name="patientName">
+                                    <input type="text" class="form-control" placeholder="patientName" id="patientName"
+                                           name="patientName">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientAge">年龄</label>
-                                    <input type="text"  class="form-control" placeholder="patientAge" id="patientAge" name="patientAge">
+                                    <input type="text" class="form-control" placeholder="patientAge" id="patientAge"
+                                           name="patientAge">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientAddress">地址</label>
-                                    <input type="text" placeholder="patientAddress" class="form-control" id="patientAddress" name="patientAddress">
+                                    <input type="text" placeholder="patientAddress" class="form-control"
+                                           id="patientAddress" name="patientAddress">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientComeDate">来的日期</label>
-                                    <input type="date" placeholder="patientComeDate" class="form-control" id="patientComeDate" name="patientComeDate">
+                                    <input type="date" placeholder="patientComeDate" class="form-control"
+                                           id="patientComeDate" name="patientComeDate">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientPhone">电话</label>
-                                    <input type="text" placeholder="patientPhone" class="form-control" id="patientPhone" name="patientPhone">
+                                    <input type="text" placeholder="patientPhone" class="form-control" id="patientPhone"
+                                           name="patientPhone">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientRoomNum">选择科室</label>
                                     <select class="form-control" id="patientRoomNum" name="patientRoomNum">
                                         <option value="">选择科室</option>
-                                        <option th:each="r:${roomPosition}" th:value="${r.roomPosition}" th:text="${r.roomPosition}"></option>
+                                        <option th:each="r:${rooms}" th:value="${r.roomNum}"
+                                                th:text="${r.roomPosition}"></option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientDoctorNum">选择医生</label>
                                     <select class="form-control" id="patientDoctorNum" name="patientDoctorNum">
                                         <option value="">选择医生</option>
-                                        <option th:each="d:${doctors}" th:value="${d.DoctorName}" th:text="${d.DoctorName}"></option>
+                                        <option th:each="d:${doctors}" th:value="${d.doctorNum}"
+                                                th:text="${d.doctorName}"></option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -228,18 +240,33 @@
 
 <!--某些字段不能为空-->
 <script th:inline="javascript">
-
+    $("#patientRoomNum").change(function () {
+        var room = $("#patientRoomNum").var();
+        if (room == " " || room == '选择科室') {
+            return;
+        }
+        $.ajax({
+            cache:true,
+            type:"get",
+            url:"/register/findDoctor"
+            data:{"room":room},
+            success: function (date) {
+console.log(date.data);
+//var patientDoctorNum = $
+            }
+        })
+    })
 
     $("#submit").click(function () {
         var patientDoctorNum = $("#patientDoctorNum").val();
         var patientRoomNum = $("#patientRoomNum").val();
-        if(patientDoctorNum.length==0){
+        if (patientDoctorNum.length == 0) {
             alert("医生不能空，请选择医生！")
             return false;
-        }else if(patientRoomNum.length==0){
+        } else if (patientRoomNum.length == 0) {
             alert("科室不能空，请选择科室！")
             return false;
-        }else {
+        } else {
             return true;
         }
     })
