@@ -31,6 +31,15 @@ public class Consumables {
     public Consumables() {
     }
 
+    public Consumables(String consumablesNum, String consumablesName, int consumablesNumber, Double consumablesPrice, String consumablesMsg, String consumablesIllness) {
+        this.consumablesNum = consumablesNum;
+        this.consumablesName = consumablesName;
+        this.consumablesNumber = consumablesNumber;
+        this.consumablesPrice = consumablesPrice;
+        this.consumablesMsg = consumablesMsg;
+        this.consumablesIllness = consumablesIllness;
+    }
+
     public Integer getId() {
         return id;
     }

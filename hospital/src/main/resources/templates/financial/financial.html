@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>财务管理</title>
     <!-- Fav  Icon Link -->
     <link rel="shortcut icon" type="image/png" th:href="@{/images/fav.png}">
@@ -20,6 +22,7 @@
     <link rel="stylesheet" th:href="@{/charts/css/morris.css}">
     <!-- jvectormap -->
     <link rel="stylesheet" th:href="@{/css/jquery-jvectormap.css}">
+    <link rel="stylesheet" th:href="@{/datatable/dataTables.bootstrap4.min.css}">
 
     <script th:src="@{/js/modernizr.min.js}"></script>
 </head>
@@ -33,7 +36,6 @@
     </div>
 </div>
 <!--/Pre Loader -->
-<!-- /Color Changer -->
 <div class="wrapper">
     <!-- Page Content -->
     <div id="content">
@@ -41,7 +43,7 @@
         <div class="container top-brand">
             <nav class="navbar navbar-default">
                 <div class="navbar-header">
-                    <div class="sidebar-header"> <a href="index.html"><img th:src="@{/images/logo-dark.png}" class="logo" alt="logo"></a>
+                    <div class="sidebar-header"> <a href="/personnel/index"><img th:src="@{/images/logo-dark.png}"  class="logo" alt="logo"></a>
                     </div>
                 </div>
                 <ul class="nav justify-content-end">
@@ -60,7 +62,7 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title">Search Patient/医生:</h5>
                                         <span class="ti-close" data-dismiss="modal" aria-label="Close">
-											</span>
+												</span>
                                     </div>
                                     <div class="modal-body">
                                         <form>
@@ -111,103 +113,74 @@
 
             </nav>
         </div>
-        <!-- /Top Navigation -->
-        <!-- Menu -->
-        <div class="container menu-nav">
-        </div>
-        <!-- /Menu -->
-        <!-- Breadcrumb -->
+
         <!-- Page Title -->
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">快速统计</h3>
+                    <h3 class="block-title">财务信息</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
-                        <li class="nav-item dropdown">
-                            <a  class="breadcrumb" href="/financial/financial">财务管理</a>
+                        <li class="breadcrumb-item">
+                            <a href="/financial/index">
+                                <span class="ti-home">主页</span>
+                            </a>
                         </li>
                     </ol>
                 </div>
             </div>
         </div>
         <!-- /Page Title -->
+
         <!-- /Breadcrumb -->
         <!-- Main Content -->
-        <div class="container home">
+        <div class="container">
             <div class="row">
                 <!-- Widget Item -->
-                <div class="col-md-4">
-                    <div class="widget-area lochana-box-shadow color-red">
-                        <div class="widget-left">
-                            <span class="ti-money"></span>
-                        </div>
-                        <div class="widget-right">
-                            <h4 class="wiget-title">支出</h4>
-                            <span class="numeric color-yellow">$7300</span>
-                            <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% 增长</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Widget Item -->
-                <!-- Widget Item -->
-                <div class="col-md-4">
-                    <div class="widget-area lochana-box-shadow color-green">
-                        <div class="widget-left">
-                            <span class="ti-money"></span>
-                        </div>
-                        <div class="widget-right">
-                            <h4 class="wiget-title">收入</h4>
-                            <span class="numeric color-yellow">$7300</span>
-                            <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% 增长</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Widget Item -->
-                <!-- Widget Item -->
-                <div class="col-md-4">
-                    <div class="widget-area lochana-box-shadow color-yellow">
-                        <div class="widget-left">
-                            <span class="ti-money"></span>
-                        </div>
-                        <div class="widget-right">
-                            <h4 class="wiget-title">总资产</h4>
-                            <span class="numeric color-yellow">$7300</span>
-                            <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% 增长</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Widget Item -->
-            </div>
-
-            <div class="row">
-                <!-- Widget Item -->
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">出诊按年统计</h3>
-                        <div id="lineMorris" class="chart-home"></div>
+                        <h3 class="widget-title">财务信息</h3>
+                        <div class="table-responsive mb-3">
+                            <table id="tableId" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>姓名</th>
+                                    <th>部门</th>
+                                    <th>类型</th>
+                                    <th>详细说明</th>
+                                    <th>时间</th>
+                                    <th>方式</th>
+                                    <th>金额</th>
+                                </tr>
+                                </thead>
+                                <tbody >
+                                <tr th:each="lists:${lists}">
+                                    <td th:text='${lists.get("statements_num")}'></td>
+                                    <td th:text='${lists.get("statements_name")}'></td>
+                                    <td th:text='${lists.get("statements_dept_name")}'></td>
+                                    <td th:text='${lists.get("statements_type")}'></td>
+                                    <td th:text='${lists.get("statements_event")}'></td>
+                                    <td th:text='${lists.get("statements_time")}'></td>
+                                    <td th:if='${lists.get("statements_state")==1}'>收入</td>
+                                    <td th:if='${lists.get("statements_state")==0}'>支出</td>
+<!--                                    <td th:text='${lists.get("statements_state")}'></td>-->
+                                    <td th:text='${lists.get("statements_money")}'></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <button type="button" class="btn btn-danger mt-3 mb-0" onclick=""><span class="ti-trash"></span>收入</button>
+                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick=""><span class="ti-pencil-alt"></span>支出</button>
+                        </div>
                     </div>
                 </div>
                 <!-- /Widget Item -->
-                <!-- Widget Item -->
-                <div class="col-md-6">
-                    <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title"> 病人按年统计</h3>
-                        <div id="barMorris" class="chart-home"></div>
-                    </div>
-                </div>
-                <!-- /Widget Item -->
             </div>
-
-            <div class="row">
-            </div>
-            </div>
-
         </div>
         <!-- /Main Content -->
-        <!--Copy Rights-->
-        <!-- /Copy Rights-->
+
     </div>
     <!-- /Page Content -->
 </div>
@@ -222,14 +195,15 @@
 <script th:src="@{/js/popper.min.js}"></script>
 <!-- Bootstrap Library-->
 <script th:src="@{/js/bootstrap.min.js}"></script>
-<!-- morris charts -->
-<script th:src="@{/charts/js/raphael-min.js}"></script>
-<script th:src="@{/charts/js/morris.min.js}"></script>
-<script th:src="@{/js/custom-morris.js}"></script>
-
+<!-- Datatable  -->
+<script th:src="@{/datatable/jquery.dataTables.min.js}"></script>
+<script th:src="@{/datatable/dataTables.bootstrap4.min.js}"></script>
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
-</body>
+<script th:src="@{/js/custom-datatables.js}"></script>
 
+</body>
+<script th:inline="javascript">
+</script>
 
 </html>

@@ -1,6 +1,8 @@
 package com.sxxy.hospital.equipment.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "equipment")
@@ -23,9 +25,20 @@ public class Equipment {
     Double equipmentPrice;
     @Column(name = "equipment_site")
     String equipmentSite;
+    @Column(name = "equipment_time")
+    Date equipmentTime;
 
 
     public Equipment() {
+    }
+
+    public Equipment(String equipmentNum, String equipmentName, String equipmentState, Double equipmentPrice, String equipmentSite, Date equipmentTime) {
+        this.equipmentNum = equipmentNum;
+        this.equipmentName = equipmentName;
+        this.equipmentState = equipmentState;
+        this.equipmentPrice = equipmentPrice;
+        this.equipmentSite = equipmentSite;
+        this.equipmentTime = equipmentTime;
     }
 
     public Integer getId() {
@@ -76,6 +89,14 @@ public class Equipment {
         this.equipmentSite = equipmentSite;
     }
 
+    public Date getEquipmentTime() {
+        return equipmentTime;
+    }
+
+    public void setEquipmentTime(Date equipmentTime) {
+        this.equipmentTime = equipmentTime;
+    }
+
     @Override
     public String toString() {
         return "Equipment{" +
@@ -85,6 +106,7 @@ public class Equipment {
                 ", equipmentState='" + equipmentState + '\'' +
                 ", equipmentPrice=" + equipmentPrice +
                 ", equipmentSite='" + equipmentSite + '\'' +
+                ", equipmentTime=" + equipmentTime +
                 '}';
     }
 }

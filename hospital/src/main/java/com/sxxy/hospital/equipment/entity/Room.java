@@ -17,6 +17,9 @@ public class Room {
     //房间名称
     @Column(name = "room_name")
     String roomName;
+    //房间科室
+    @Column(name = "room_position")
+    String roomPosition;
 
 
     public Room() {
@@ -46,12 +49,21 @@ public class Room {
         this.roomName = roomName;
     }
 
+    public String getRoomPosition() {
+        return roomPosition;
+    }
+
+    public void setRoomPosition(String roomPosition) {
+        this.roomPosition = roomPosition;
+    }
+
     @Override
     public String toString() {
         return "Room{" +
                 "id=" + id +
                 ", roomNum='" + roomNum + '\'' +
                 ", roomName='" + roomName + '\'' +
+                ", roomPosition='" + roomPosition + '\'' +
                 '}';
     }
 }

@@ -196,7 +196,9 @@
                                aria-expanded="false"><span class="ti-key"></span> 病房分配</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="/room/rooms">查询病房</a>
+                                <a class="dropdown-item" href="/equip/addequipment">增加器材</a>
                                 <a class="dropdown-item" href="/equipment/equipments">器材信息</a>
+                                <a class="dropdown-item" href="/equip/addconsumables">增加药材</a>
                                 <a class="dropdown-item" href="/consumables/allconsumables">药材信息</a>
                             </div>
                         </li>
@@ -287,6 +289,7 @@
                                     </th>
                                     <th>编号</th>
                                     <th>名称</th>
+                                    <th>科室</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -299,6 +302,7 @@
                                     </td>
                                     <td th:text="${room.roomNum}"></td>
                                     <td th:text="${room.roomName}"></td>
+                                    <td th:text="${room.roomPosition}"></td>
                                 </tr>
                                 </tbody>
                             </table>

@@ -55,16 +55,6 @@ public class PatientController {
         return "patient/patientAdd";
     }
 
-    //增加网上预约
-    @PostMapping("/registerAdd")
-    public String registerAdd(Patient patient){
-        try {
-            patientMapper.save(patient);
-        }catch (Exception e){
-            return "jump/flase";
-        }
-        return "jump/success";
-    }
 
     //跳转页面
     @RequestMapping("/addPatient")
@@ -90,7 +80,6 @@ public class PatientController {
     public String registerAll(){
         return "patient/registerAll";
     }
-
 
 
 }

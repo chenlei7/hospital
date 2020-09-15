@@ -26,17 +26,16 @@ public class TreatmentServiceImpl implements TreatmentService {
     @Scheduled(cron = "0 0 23 * * ?")
     public void Treatment() {
         //格式化时间
-        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String time = format.format(new Date());
-        System.out.println(time);
+
         //查询当天病人的资费信息
         List<Map> list = tm.Treatment(time);
-        System.out.println(list);
         for (Map m :list) {
-            sm.add((String) m.get("bill_num"),null,"病人","医药费",m.get("bill_drug")+""+m.get("bill_hospitalization")+""+m.get("bill_inspect"),time,1,(Double) m.get("bill_countcost"));
-            System.out.println(m);
+            sm.add((String) m.get("bill_num"),null,"病人","医药费","药品："+m.get("bill_drug")+",住院："+m.get("bill_hospitalization")+",检查："+m.get("bii_inspect"),time,1,(Double) m.get("bill_countcost"));
         }
 
+        //查询当天进货信息
 
     }
 }
