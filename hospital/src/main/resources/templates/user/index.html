@@ -23,15 +23,15 @@
         <li><a href="/user/registered">挂号</a></li>
         <li><a href="#">留言</a></li>
     </ul>
-    <div class="logo"><a>Mr.Yss</a></div>
+    <div class="logo"><a>Mr.L</a></div>
 </div>
-<div class="section" id="section1">
+<div class="section" id="section1" style="background-image: url('/images/hospitalBg2.jpg')">
     <div class="fp-tablecell">
         <div class="page1">
             <div class="nav wow zoomIn" data-wow-duration="2s">
                 <h1>健康医院</h1>
                 <p>用我们的热情,换大众的健康</p>
-                <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="#">Enter Blog</a>
+                <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="#">Enter HomePage</a>
             </div>
             <a class="next wow fadeInUp" data-wow-duration="2s" id="next"></a>
         </div>
@@ -43,10 +43,10 @@
             <div class="warp-box">
                 <div class="new-article">
                     <div class="inner wow fadeInDown" data-wow-delay=".2s">
-                        <h1>每日推荐</h1>
+                        <h1>防疫推荐</h1>
                         <p>
-                            很想给你写封信,告诉你这里的天气.
-                            <br>昨夜的那场电影,还有我的心情.
+                            在疫情期间，做好防疫工作，人人有责
+                            <br>那么，今天你做了以下防疫工作吗
                         </p>
                     </div>
                 </div>
@@ -54,75 +54,73 @@
                 <div class="layui-row">
 
 
-                    <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" style="padding: 0 10px">
-                        <div class="single-news">
-                            <div class="news-head">
-                                <img th:src="@{/images/222.jpg}">
-                                <a href="#" class="link"><i class="fa fa-link"></i></a>
-                            </div>
-                            <div class="news-content">
-                                <h4>
-                                    <a href="#">
 
+                                <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" style="padding: 0 10px">
+                                    <div class="single-news">
+                                        <div class="news-head">
+                                            <img th:src="@{/images/222.jpg}">
 
-                                    </a>
-                                </h4>
-                                <div class="date">
+                                        </div>
+                                        <div class="news-content">
+                                            <h4>
+                                                <a href="#">
+                                                    <span>[[${a1.title}]]</span>
+                                                </a>
+                                            </h4>
+                                            <div class="date">
+                                                <span>[[${a1.date}]]</span>
+                                            </div>
+                                            <p>
+                                                <span>[[${a1.content}]]</span>
+                                            </p>
 
+                                        </div>
+                                    </div>
                                 </div>
-                                <p>
 
-                                </p>
-                                <a href="#" class="btn">
-                                    阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" data-wow-delay=".2s" style="padding: 0 10px">
-                        <div class="single-news">
-                            <div class="news-head">
-                                <img th:src="@{/images/222.jpg}">
-                                <a href="#" class="link"><i class="fa fa-link"></i></a>
-                            </div>
-                            <div class="news-content">
-                                <h4>
-                                    <a href="#">
-
-                                    </a>
-                                </h4>
-                                <div class="date">
+                                <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" data-wow-delay=".2s" style="padding: 0 10px">
+                                    <div class="single-news">
+                                        <div class="news-head">
+                                            <img th:src="@{/images/222.jpg}">
+                                        </div>
+                                        <div class="news-content">
+                                            <h4>
+                                                <a href="#">
+                                                    <span>[[${a2.title}]]</span>
+                                                </a>
+                                            </h4>
+                                            <div class="date">
+                                                <span>[[${a2.date}]]</span>
+                                            </div>
+                                            <p>
+                                                <span>[[${a2.content}]]</span>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <p>
-                                </p>
-                                <a href="#" class="btn">
-                                    阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" data-wow-delay=".4s" style="padding: 0 10px">
-                        <div class="single-news">
-                            <div class="news-head">
-                                <img th:src="@{/images/222.jpg}">
-                                <a href="#" class="link"><i class="fa fa-link"></i></a>
-                            </div>
-                            <div class="news-content">
-                                <h4>
-                                    <a href="#">
-                                        <span>1</span>
-                                    </a>
-                                </h4>
-                                <div class="date">
+                                <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" data-wow-delay=".4s" style="padding: 0 10px">
+                                    <div class="single-news">
+                                        <div class="news-head">
+                                            <img th:src="@{/images/222.jpg}">
+
+                                        </div>
+                                        <div class="news-content">
+                                            <h4>
+                                                <a href="#">
+                                                    <span>[[${a3.title}]]</span>
+                                                </a>
+                                            </h4>
+                                            <div class="date">
+                                                <span>[[${a3.date}]]</span>
+                                            </div>
+                                            <p>
+                                                <span>[[${a3.content}]]</span>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <p>
-                                </p>
                             </div>
-                        </div>
-                    </div>
-                </div>
 
 
 
