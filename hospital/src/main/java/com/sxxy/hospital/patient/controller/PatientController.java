@@ -51,7 +51,11 @@ public class PatientController {
     //真正的添加病人
     @PostMapping("/patientAdd")
     public String patientAdd(Patient patient){
-        patientMapper.save(patient);
+        try {
+            patientMapper.save(patient);
+        }catch (Exception e){
+            return "patient/error";
+        }
         return "patient/patientAdd";
     }
 

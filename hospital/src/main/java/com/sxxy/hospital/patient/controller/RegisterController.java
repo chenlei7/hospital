@@ -37,9 +37,9 @@ public class RegisterController {
         try {
             patientMapper.save(patient);
         }catch (Exception e){
-            return "jump/flase";
+            return "redirect:/jump/false";
         }
-        return "jump/success";
+        return "redirect:/jump/success";
     }
 
     //查看所有医生
@@ -67,6 +67,8 @@ public class RegisterController {
         return "patient/register";
     }
 
+
+    //科室联动医生
     @ResponseBody
     @GetMapping("/findDoctor")
     public List<Doctor> findDoctor(String room){

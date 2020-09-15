@@ -11,13 +11,13 @@ public class JumpController {
     //挂号成功页面
     @RequestMapping("/success")
     public String success(){
-        return "jump/success";
+        return "patient/success";
     }
 
     //挂号失败页面
-    @RequestMapping("/flaes")
+    @RequestMapping("/false")
     public String flaes(){
-        return "jump/flaes";
+        return "patient/false";
     }
 
 }
