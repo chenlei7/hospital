@@ -48,7 +48,10 @@ public class RegisterController {
 
     //挂号界面
     @RequestMapping("/registered")
-    public String goRegistered(){
+    public String goRegistered(Model model){
+        List<Doctor> doctors = new ArrayList<>();
+        doctors = doctorMapper.findAll();
+        model.addAttribute("doctors",doctors);
         return "patient/register";
     }
 
