@@ -60,32 +60,7 @@
 						<li class="nav-item">
 							<a class="nav-link">
 								<span title="Fullscreen" class="ti-fullscreen fullscreen"></span>
-							</a>							
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" data-toggle="modal" data-target=".lochana-modal-lg">
-								<span class="ti-search"></span>
 							</a>
-							<div class="modal fade lochana-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-								<div class="modal-dialog modal-lorvens">
-									<div class="modal-content lochana-box-shadow2">
-										<div class="modal-header">
-											<h5 class="modal-title">Search Patient/医生:</h5>
-											<span class="ti-close" data-dismiss="modal" aria-label="Close">
-											</span>
-										</div>
-										<div class="modal-body">
-											<form>
-												<div class="form-group">
-													<input type="text" class="form-control" id="search-term" placeholder="Type text here">
-													<button type="button" class="btn btn-lorvens lochana-bg">
-														<span class="ti-location-arrow"></span> Search</button>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -110,13 +85,11 @@
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
-								<h5>John Willing</h5>
+								<h5>这里显示登录进来的人的名字</h5>
 								<a class="dropdown-item" href="#">
-									<span class="ti-settings"></span> Settings</a>
+									<span class="ti-help-alt"></span> 打卡</a>
 								<a class="dropdown-item" href="#">
-									<span class="ti-help-alt"></span> Help</a>
-								<a class="dropdown-item" href="#">
-									<span class="ti-power-off"></span> Logout</a>
+									<span class="ti-power-off"></span> 退出</a>
 							</div>
 						</li>
 					</ul>
@@ -136,9 +109,9 @@
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item dropdown active">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-home"></span> 控制面板</a>
+								 aria-expanded="false"><span class="ti-home"></span> 医院首页</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="/personnel/index">默认</a>
+									<a class="dropdown-item" href="/personnel/index">首页</a>
 								</div>
 							</li>
 							<li class="nav-item dropdown">
@@ -236,7 +209,7 @@
 			<div class="container mt-0">
 				<div class="row breadcrumb-bar">
 					<div class="col-md-6">
-						<h3 class="block-title">快速统计</h3>
+						<h3 class="block-title">健康医院首页</h3>
 					</div>
 					<div class="col-md-6">
 						<ol class="breadcrumb">
@@ -245,7 +218,7 @@
 									<span class="ti-home"></span>
 								</a>
 							</li>
-							<li class="breadcrumb-item active">控制面板</li>
+							<li class="breadcrumb-item active">首页</li>
 						</ol>
 					</div>
 				</div>
@@ -281,184 +254,27 @@
 						</div>
 					</div>
 					<!-- /Widget Item -->
-
 				</div>
 
 				<div class="row">
+
 					<!-- Widget Item -->
 					<div class="col-md-6" hidden>
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">出诊按年统计</h3>
 							<div id="lineMorris" class="chart-home"></div>
 						</div>
 					</div>
 					<!-- /Widget Item -->
 					<!-- Widget Item -->
-					<div class="col-md-6">
-						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">病人今日统计</h3>
-							<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-							<div id="main" style="width: 400px; height: 265px; margin: auto;"></div>
-						</div>
-					</div>
-					<!-- /Widget Item -->
-					<!-- Widget Item -->
-					<div class="col-md-6">
-						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title"> 病人按年统计</h3>
-							<div id="barMorris" class="chart-home"></div>
-						</div>
-					</div>
-					<!-- /Widget Item -->
-				</div>
-
-				<div class="row">
-					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">出诊</h3>
-							<div class="table-responsive">
-								<table class="table table-bordered table-striped">
-									<thead>
-										<tr>
-											<th>名人姓名</th>
-											<th>医生</th>
-											<th>检查</th>
-											<th>日期</th>
-											<th>时间</th>
-											<th>状态</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Rajesh</td>
-											<td>Manoj Kumar</td>
-											<td>牙科</td>
-											<td>12-10-2018</td>
-											<td>12:10PM</td>
-											<td>
-												<span class="badge badge-success">Completed</span>
-											</td>
-										</tr>
-										<tr>
-											<td>Riya</td>
-											<td>Daniel </td>
-											<td>皮肤科</td>
-											<td>12-10-2018</td>
-											<td>1:10PM</td>
-											<td>
-												<span class="badge badge-warning">Pending</span>
-											</td>
-										</tr>
-										<tr>
-											<td>Siri</td>
-											<td>Daniel </td>
-											<td>皮肤科</td>
-											<td>12-10-2018</td>
-											<td>1:30PM</td>
-											<td>
-												<span class="badge badge-danger">Cancelled</span>
-											</td>
-										</tr>
-										<tr>
-											<td>Rajesh</td>
-											<td>Manoj Kumar</td>
-											<td>牙科</td>
-											<td>12-10-2018</td>
-											<td>12:10PM</td>
-											<td>
-												<span class="badge badge-success">Completed</span>
-											</td>
-										</tr>
-										<tr>
-											<td>Riya</td>
-											<td>Daniel </td>
-											<td>皮肤科</td>
-											<td>12-10-2018</td>
-											<td>1:10PM</td>
-											<td>
-												<span class="badge badge-warning">Pending</span>
-											</td>
-										</tr>
-										<tr>
-											<td>Siri</td>
-											<td>Daniel </td>
-											<td>皮肤科</td>
-											<td>12-10-2018</td>
-											<td>1:30PM</td>
-											<td>
-												<span class="badge badge-danger">Cancelled</span>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+							<h3 class="widget-title">病人按日统计</h3>
+							<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+							<div id="main" style="width: 400px; height: 255px; margin: auto;"></div>
 						</div>
 					</div>
 					<!-- /Widget Item -->
 				</div>
-
-				<div class="row">
-					<!-- Widget Item -->
-					<div class="col-sm-6">
-						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">出诊 状态</h3>
-							<div id="donutMorris" class="chart-home"></div>
-						</div>
-					</div>
-					<!-- /Widget Item -->
-					<!-- Widget Item -->
-					<div class="col-md-6">
-						<div class="widget-area-2 progress-status lochana-box-shadow">
-							<h3 class="widget-title">医生情况</h3>
-							<div class="table-responsive">
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>医生</th>
-											<th>科室</th>
-											<th>情况</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Rajesh</td>
-											<td>牙科</td>
-											<td>
-												<span class="badge badge-success">可出诊</span>
-											</td>
-										</tr>
-										<tr>
-											<td>Riya</td>
-											<td>皮肤科</td>
-											<td>
-												<span class="badge badge-warning">休假</span>
-											</td>
-										</tr>
-										<tr>
-											<td>Siri</td>
-											<td>眼科</td>
-											<td>
-												<span class="badge badge-danger">不可出诊</span>
-											</td>
-										</tr>
-										<tr>
-											<td>Rajesh</td>
-											<td>牙科</td>
-											<td>
-												<span class="badge badge-success">可出诊</span>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-
-						</div>
-					</div>
-					<!-- /Widget Item -->
-
-				</div>
-
 			</div>
 			<!-- /Main Content -->
 		</div>
@@ -484,12 +300,12 @@
 	<script th:src="@{/js/custom.js}"></script>
 </body>
 <script th:inline="javascript">
+
 	// 基于准备好的dom，初始化echarts实例
 	var myChart = echarts.init(document.getElementById('main'));
-
 	var yesterday="[[${yesterdayNum}]]";
 	var today="[[${nowPatientNum}]]";
-
+	var beforeYesterDay = "[[${beforeYesterDayNum}]]"
 	// 指定图表的配置项和数据
 	var option = {
 		tooltip: {},
@@ -497,7 +313,7 @@
 			data: ['人数']
 		},
 		xAxis: {
-			data: ["yesterday","today"]
+			data: ["前天","昨日","今日"]
 		},
 		yAxis: {
 			minInterval: 1,
@@ -505,12 +321,19 @@
 		series: [{
 			name: '人数',
 			type: 'bar',
+			color: 'yellow',
 			barWidth : 30,
-			data: [yesterday,today]
+			data: [beforeYesterDay,yesterday,today]
+		},{
+			name: '人数',
+			type: 'line',
+			color:'black',
+			barWidth : 30,
+			data: [beforeYesterDay,yesterday,today]
 		}]
 	};
-
 	// 使用刚指定的配置项和数据显示图表。
 	myChart.setOption(option);
+
 </script>
 </html>

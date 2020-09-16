@@ -32,14 +32,19 @@ public class DeptController {
             List<Patient> patients = new ArrayList<>();
             patients = patientMapper.findAll();
             model.addAttribute("patients",patients);
+            //病人住院数
             int patientNoLeave = 0;
-            int nowPatientNum = 0;
-            int yesterdayNum = 0;
             //今日病人数
             String nowDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString();
+            int nowPatientNum = 0;
             //昨日病人数
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DATE, -1);
+            int yesterdayNum = 0;
+            //前天人数
+            Calendar calendar1 = Calendar.getInstance();
+            calendar1.add(Calendar.DATE, -2);
+            int beforeYesterDayNum = 0;
 
             for (int i = 0; i < patients.size(); i++) {
                 if(patients.get(i).getPatientLeaveDate()!=null){
@@ -51,10 +56,15 @@ public class DeptController {
                 if(patients.get(i).getPatientComeDate().equals(new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime()))){
                     yesterdayNum++;
                 }
+                if(patients.get(i).getPatientComeDate().equals(new SimpleDateFormat("yyyy-MM-dd").format(calendar1.getTime()))){
+                    beforeYesterDayNum++;
+                }
             }
+            model.addAttribute("patientNoLeave",patientNoLeave);
             model.addAttribute("nowPatientNum",nowPatientNum);
             model.addAttribute("yesterdayNum",yesterdayNum);
-            model.addAttribute("patientNoLeave",patientNoLeave);
+            model.addAttribute("beforeYesterDayNum",beforeYesterDayNum);
+
 
             return "personnel/index";
         }else {
