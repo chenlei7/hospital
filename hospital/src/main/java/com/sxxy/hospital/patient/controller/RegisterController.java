@@ -4,6 +4,7 @@ import com.sxxy.hospital.equipment.entity.Room;
 import com.sxxy.hospital.equipment.mapper.RoomMapper;
 import com.sxxy.hospital.patient.entity.Patient;
 import com.sxxy.hospital.patient.mapper.PatientMapper;
+import com.sxxy.hospital.patient.mapper.RoomMappers;
 import com.sxxy.hospital.personnel.entity.Doctor;
 import com.sxxy.hospital.personnel.mapper.DoctorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import  com.sxxy.hospital.patient.mapper.DoctorMappers;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,8 @@ public class RegisterController {
     RoomMapper roomMapper;
     @Autowired
     DoctorMappers doctorMappers;
+    @Autowired
+    RoomMappers roomMappers;
 
     //增加网上预约
     @PostMapping("/registerAdd")
@@ -79,17 +84,77 @@ public class RegisterController {
 
     }
 
-    //医院确认挂号信息，根据电话号码去修改病人
+
+
+    /**
+     * 医院确认挂号信息，根根据ID去修改病人信息
+     * @param patientId
+     * @param patientNums
+     * @param patientBillNum
+     * @param patientDoctorNum
+     * @param request
+     * @return
+     */
     @RequestMapping("/registerUpdate")
-    public String registerUpdate(String patientNums,String patientPhone){
-        System.out.println(patientNums+"...."+patientPhone);
-        int a = patientMapper.registerUpdate(patientNums,patientPhone);
-        if (a > 0){
-            return  "redirect:/jump/doctorSuccess";
-        }else {
-            return "patient/error";
-        }
+    public String registerUpdate(String patientId,String patientNums,String patientBillNum,String patientDoctorNum,HttpServletRequest request){
+        System.out.println(patientNums+"...."+patientId);
+        //int a = patientMapper.registerUpdate(patientNums,patientId);
+        String doctorNum = (String)request.getSession().getAttribute("doctorNum");
+        //专家号
+                if (doctorNum.length() > 1) {
+                    //更据医生编号去查找工作的地方
+                    List<Doctor> doctors = doctorMappers.findADoctorByDoctorNum(doctorNum);
+                    String doctorNum1 = doctors.get(0).getDoctorWorkspace();
+                    //根据工作地点查找工作房间编号
+                    List<Room> rooms = roomMappers.findRoomByName(doctorNum1);
+                    String roomNum = rooms.get(0).getRoomNum();
+                   int a =  patientMapper.registerUpdate(patientId, patientNums, patientBillNum, roomNum, doctorNum);
+                    System.out.println("到"+patientId+","+patientNums+","+patientBillNum+","+roomNum+","+doctorNum);
+                    System.out.println("是我：："+a);
+                    if (a>0){
+                        return  "redirect:/jump/doctorSuccess";
+                    }else {
+                        return "patient/error";
+                    }
+                } else { //不是专家号
+                    //更据医生编号去查找工作的地方
+                    List<Doctor> doctor = doctorMappers.findADoctorByDoctorNum(patientDoctorNum);
+                    String doctorNum1 = doctor.get(0).getDoctorWorkspace();
+                    //根据工作地点查找工作房间编号
+                    List<Room> rooms = roomMappers.findRoomByName(doctorNum1);
+                    String roomNum = rooms.get(0).getRoomNum();
+                    int b = patientMapper.registerUpdate(patientId, patientNums, patientBillNum, roomNum, patientDoctorNum);
+                    System.out.println("到了"+patientId+","+patientNums+","+patientBillNum+","+roomNum+","+patientDoctorNum);
+                    System.out.println("我不是专家号："+b);
+                    if (b>0){
+                        return  "redirect:/jump/doctorSuccess";
+                    }else {
+                        return "patient/error";
+                    }
+                }
+
+
+
+
+
     }
 
+
+    //根据id查询一个病人的信息
+    @ResponseBody
+    @GetMapping("/findOnePatient")
+    public List<Doctor> findOnePatient(int patientId, HttpServletRequest request){
+        System.out.println("....."+patientId);
+       List<Patient> patient = new ArrayList<>();
+        patient = patientMapper.findOnePatient(patientId);
+        //得到医生的编号
+        String doctorNum = patient.get(0).getPatientDoctorNum();
+        //存入session
+        request.getSession().setAttribute("doctorNum",doctorNum);
+        if (patient == null && patient.equals("")){
+            return null;
+        }
+        return  doctorMappers.findADoctorByRoom(patient.get(0).getPatientRoomNum());
+    }
 
 }

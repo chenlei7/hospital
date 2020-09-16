@@ -20,4 +20,9 @@ public interface DoctorMappers extends JpaRepository<Doctor,Object> {
     @Query(nativeQuery = true,value = "select * from doctor_info where doctor_position=:room")
     List<Doctor> findADoctorByRoom(@Param("room")String room);
 
+    //根据医生编号查找医生的工作地方
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true,value = "select * from doctor_info where doctor_num=:doctorNum")
+    List<Doctor> findADoctorByDoctorNum(@Param("doctorNum")String doctorNum);
 }
