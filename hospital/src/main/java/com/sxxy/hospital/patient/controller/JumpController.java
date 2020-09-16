@@ -20,4 +20,10 @@ public class JumpController {
         return "patient/false";
     }
 
+    //医生操作成功页面
+    @RequestMapping("/doctorSuccess")
+    public String doctorSuccess(){
+        return "patient/doctor/doctorSuccess";
+    }
+
 }
