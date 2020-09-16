@@ -187,19 +187,11 @@
                                aria-expanded="false"><span class="ti-key"></span> 病房分配</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="/room/rooms">查询病房</a>
-                                <a class="dropdown-item" href="/equipment/equipments">器材信息</a>
-                                <a class="dropdown-item" href="edit-room.html">编辑病房信息</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                               aria-expanded="false"><span class="ti-key"></span> 病房分配</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/room/rooms">查询病房</a>
                                 <a class="dropdown-item" href="/equip/addequipment">增加器材</a>
                                 <a class="dropdown-item" href="/equipment/equipments">器材信息</a>
                                 <a class="dropdown-item" href="/equip/addconsumables">增加药材</a>
                                 <a class="dropdown-item" href="/consumables/allconsumables">药材信息</a>
+                                <a class="dropdown-item" href="/consumables/consumableshistory">药材采购记录</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -299,7 +291,7 @@
                                 <tr th:each="consumables:${consumabless}">
                                     <td>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" th:id="${consumables.id}" name="roomNum" th:value="${consumables.consumablesNum}">
+                                            <input class="custom-control-input" type="checkbox" th:id="${consumables.id}" name="consumablesNum" th:value="${consumables.consumablesNum}">
                                             <label class="custom-control-label" th:for="${consumables.id}"></label>
                                         </div>
                                     </td>
@@ -380,16 +372,14 @@
     }
 
     /*采购药材*/
-    function editDoctor() {
+    function addConsumables() {
         var result="";
         var d = "";
         var consumablesNumber=$("#consumablesaddNumber").val();
-        parseInt(consumablesNumber);
         d = $("input[name='consumablesNum']:checked").each(function(){;
             result = $(this).attr('value');
         });
-        console.log(consumablesNumber)
-        if(consumablesNumber=""){
+        if(consumablesNumber==""){
             alert("请输入要采购的数量")
         }else{
             window.location.href= "/consumables/addConsumablesNumber?consumablesNumber="+consumablesNumber+"&tag="+result;
@@ -401,7 +391,15 @@
     /*打开修改模态框*/
     function openEditModal(editModal) {
         var result="";
-        $("#editModal").modal('show');
+        var consumablesNumber="";
+        consumablesNumber = $("input[name='consumablesNum']:checked").each(function(){
+            result = $(this).attr('value');
+        });
+        if(result==""){
+            alert("未做出选择")
+        }else{
+            $("#editModal").modal('show');
+        }
     }
 
 </script>
@@ -427,7 +425,7 @@
                     </div>
                 </form>
             </div>
-            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="editDoctor()"><span class="ti-pencil-alt"></span> EDIT</button>
+            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="addConsumables()"><span class="ti-pencil-alt"></span> EDIT</button>
         </div>
     </div>
 </div>

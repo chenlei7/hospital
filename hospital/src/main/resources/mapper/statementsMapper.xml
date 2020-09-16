@@ -14,11 +14,11 @@
     </select>
 <!--    查询所有的收入-->
     <select id="findByRevenue" resultType="java.util.LinkedHashMap">
-        select * from statements where statements_money>0
+        select * from statements where statements_state=1
     </select>
 <!--    查询所有的支出-->
     <select id="findByPay" resultType="java.util.LinkedHashMap">
-        select * from statements where statements_money>0
+        select * from statements where statements_state=0
     </select>
 <!--    添加财务数据-->
     <insert id="add">

@@ -22,4 +22,19 @@ public class ConsumablesServiceImpl implements ConsumablesService {
     public int addConsumablesNumber(int consumablesNumber, List<String> editNum) {
         return consumablesMapper.addConsumablesNumber(consumablesNumber,editNum);
     }
+
+    @Override
+    public int addHistory(List<String> editNum) {
+        return consumablesMapper.addHistroy(editNum);
+    }
+
+    @Override
+    public int addHistoryNumber(int consumablesNumber, List<String> editNum) {
+        return consumablesMapper.addHistoryNumber(consumablesNumber,editNum);
+    }
+
+    @Override
+    public int addHistoryPrice(int consumablesNumber, List<String> editNum) {
+        return consumablesMapper.addHistoryPrice(consumablesNumber,editNum);
+    }
 }
