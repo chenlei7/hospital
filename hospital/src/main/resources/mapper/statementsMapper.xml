@@ -20,6 +20,10 @@
     <select id="findByPay" resultType="java.util.LinkedHashMap">
         select * from statements where statements_state=0
     </select>
+<!--    id查询-->
+    <select id="findById" parameterType="int" resultType="java.util.LinkedHashMap">
+        select * from statements where statements_id=#{id}
+    </select>
 <!--    添加财务数据-->
     <insert id="add">
         insert into statements values (null,#{num},#{name},#{deptName},#{type},#{event},#{time},#{state},#{money})

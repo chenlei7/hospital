@@ -35,4 +35,9 @@ public class FinancialServiceImpl implements FinancialService {
     public List<Map> findByRevenue() {
         return mapper.findByRevenue();
     }
+
+    @Override
+    public Map findById(int id) {
+        return mapper.findById(id);
+    }
 }

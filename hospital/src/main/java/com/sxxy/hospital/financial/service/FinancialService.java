@@ -15,4 +15,7 @@ public interface FinancialService {
 
     //查询所有的收入信息
     List<Map> findByRevenue();
+
+    //id查询信息
+    Map findById(int id);
 }
