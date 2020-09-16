@@ -81,7 +81,10 @@ public class PatientController {
 
     //网上挂号的全部病人信息
     @RequestMapping("/registerAll")
-    public String registerAll(){
+    public String registerAll(Model model){
+        List<Patient> patientss = new ArrayList<>();
+        patientss = patientMapper.findAllRegister();
+        model.addAttribute("patients",patientss);
         return "patient/registerAll";
     }
 
