@@ -145,6 +145,12 @@
                             <table id="tableId" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
+                                    <th class="no-sort">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="select-all">
+                                            <label class="custom-control-label" for="select-all"></label>
+                                        </div>
+                                    </th>
                                     <th>编号</th>
                                     <th>姓名</th>
                                     <th>部门</th>
@@ -157,6 +163,12 @@
                                 </thead>
                                 <tbody >
                                 <tr th:each="lists:${lists}">
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" th:id='${lists.get("statements_id")}' name="financialNum" th:value='${lists.get("statements_id")}'>
+                                            <label class="custom-control-label" th:for='${lists.get("statements_id")}'></label>
+                                        </div>
+                                    </td>
                                     <td th:text='${lists.get("statements_num")}'></td>
                                     <td th:text='${lists.get("statements_name")}'></td>
                                     <td th:text='${lists.get("statements_dept_name")}'></td>
@@ -165,14 +177,11 @@
                                     <td th:text='${lists.get("statements_time")}'></td>
                                     <td th:if='${lists.get("statements_state")==1}'>收入</td>
                                     <td th:if='${lists.get("statements_state")==0}'>支出</td>
-<!--                                    <td th:text='${lists.get("statements_state")}'></td>-->
                                     <td th:text='${lists.get("statements_money")}'></td>
                                 </tr>
                                 </tbody>
                             </table>
-
-                            <button type="button" class="btn btn-danger mt-3 mb-0" onclick=""><span class="ti-trash"></span>收入</button>
-                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick=""><span class="ti-pencil-alt"></span>支出</button>
+                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span>Excel生成</button>
                         </div>
                     </div>
                 </div>
@@ -201,9 +210,76 @@
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
 <script th:src="@{/js/custom-datatables.js}"></script>
-
+<!--修改模态框-->
+<div class="modal fade" id="editModal" data-th-background="static" data-th-keytype="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--顶部标题-->
+            <div class="modal-header">
+                <!--标题-->
+                <h5>Excel导出</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--内容-->
+            <div class="modal-body">
+                <form id="formEditDoctor">
+                    <input type="text" hidden id="academeIDU">
+                    <div class="form-group col-md-6">
+                        <label for="excel">表名</label>
+                        <input type="text" class="form-control" placeholder="Excel表名" id="excel" name="excel">
+                    </div>
+                </form>
+            </div>
+            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="outExcel()"><span class="ti-pencil-alt"></span>导出</button>
+        </div>
+    </div>
+</div>
 </body>
 <script th:inline="javascript">
+    /*全选*/
+    $("#select-all").click(function(){
+        $("input[name='financialNum']").each(function(){
+            if (this.checked) {
+                this.checked = false;
+            }
+            else {
+                this.checked = true;
+            }
+        });
+    })
+    function outExcel() {
+        var result="";
+        var count=0;
+        var doctorState=$("#excel").val();
+        $("input[name='financialNum']:checked").each(function(){
+            if($(this).is(':checked')){
+                result+=$(this).attr('value') +",";
+                count++;
+            }else{}
+        });
+        if(result==""){
+            alert("请输入表名")
+        }else{
+            window.location.href= "/excel/out?excelName="+doctorState+"&tag="+result;
+            alert("导出成功")
+            window.location.href= "/financial/financial"
+        }
+    }
+    /*打开修改模态框*/
+    function openEditModal(editModal) {
+        var result="";
+        var doctorState="";
+        doctorState = $("input[name='financialNum']:checked").each(function(){
+            result = $(this).attr('value');
+        });
+        if(result==""){
+            alert("未做出选择")
+        }else{
+            $("#editModal").modal('show');
+        }
+    }
 </script>
 
 </html>
