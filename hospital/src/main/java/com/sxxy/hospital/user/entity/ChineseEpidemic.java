@@ -14,6 +14,8 @@ public class ChineseEpidemic {
     @Column
     String provinceShortName;
     @Column
+    String currentConfirmedCount;
+    @Column
     String cityName;
     @Column
     String confirmCount;
@@ -26,6 +28,13 @@ public class ChineseEpidemic {
     }
 
 
+    public String getCurrentConfirmedCount() {
+        return currentConfirmedCount;
+    }
+
+    public void setCurrentConfirmedCount(String currentConfirmedCount) {
+        this.currentConfirmedCount = currentConfirmedCount;
+    }
 
     public Integer getCode() {
         return code;
@@ -85,10 +94,11 @@ public class ChineseEpidemic {
 
     @Override
     public String toString() {
-        return "EpidemicEntity{" +
+        return "ChineseEpidemic{" +
                 "code=" + code +
                 ", time='" + time + '\'' +
                 ", provinceShortName='" + provinceShortName + '\'' +
+                ", currentConfirmedCount='" + currentConfirmedCount + '\'' +
                 ", cityName='" + cityName + '\'' +
                 ", confirmCount='" + confirmCount + '\'' +
                 ", curedCount='" + curedCount + '\'' +

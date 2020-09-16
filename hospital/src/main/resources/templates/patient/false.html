@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>失败</title>
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+</head>
+<body>
+<h2 style="color: red">抱歉，你的信息已经提交失败！</h2>
+<h2 style="color: red">请您注意重新填写！！</h2>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            /*返回上一个页面并刷新*/
+            self.location = document.referrer;
+        }, 2000);
+    })
+</script>
+</body>
+</html>
