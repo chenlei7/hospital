@@ -499,10 +499,13 @@
 		xAxis: {
 			data: ["yesterday","today"]
 		},
-		yAxis: {},
+		yAxis: {
+			minInterval: 1,
+		},
 		series: [{
 			name: '人数',
 			type: 'bar',
+			barWidth : 30,
 			data: [yesterday,today]
 		}]
 	};
