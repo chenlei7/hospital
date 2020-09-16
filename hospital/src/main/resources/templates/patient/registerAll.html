@@ -305,7 +305,7 @@
                                 <tr th:each="patient:${patientss}">
                                     <td>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" th:id="${patient.id}" name="patientNum" th:value="${patient.patientNum}">
+                                            <input class="custom-control-input" type="checkbox" th:id="${patient.id}" name="patientPhone" th:value="${patient.patientPhone}">
                                             <label class="custom-control-label" th:for="${patient.id}"></label>
                                         </div>
                                     </td>
@@ -365,10 +365,10 @@
 
     /*打开修改模态框*/
     function openEditModal() {
-        var patientNum="";
-        $("input[name='patientNum']:checked").each(function(){
-            patientNum = $(this).attr('value');
-            $("#patientNum").val(patientNum);
+        var patientPhone="";
+        $("input[name='patientPhone']:checked").each(function(){
+            patientPhone = $(this).attr('value');
+            $("#patientPhone").val(patientPhone);
             $("#editModal").modal('show');
         });
 
@@ -389,19 +389,11 @@
             </div>
             <!--内容-->
             <div class="modal-body">
-                <form id="formEditDoctor" action="/patient/patientUpadte" method="post" >
-                    <input type="text" hidden id="patientNum" name="patientNum">
+                <form id="formEditDoctor" action="/register/registerUpdate" method="post" >
+                    <input type="text" hidden id="patientPhone" name="patientPhone">
                     <div class="form-group col-md-6">
-                        <label for="patientNurseNum">护士编号</label>
-                        <input type="text"  class="form-control" placeholder="patientNurseNum" id="patientNurseNum" name="patientNurseNum">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="patientIllnessNum">病情编号</label>
-                        <input type="text"  class="form-control" placeholder="patientIllnessNum" id="patientIllnessNum" name="patientIllnessNum">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="patientLeaveDate">离开日期</label>
-                        <input type="date" placeholder="patientLeaveDate" class="form-control" id="patientLeaveDate" name="patientLeaveDate">
+                        <label for="patientNums">病人编号</label>
+                        <input type="text"  class="form-control" placeholder="patientNums" id="patientNums" name="patientNums">
                     </div>
                     <div class="form-group col-md-6 mb-3">
                         <button type="submit" class="btn btn-primary btn-lg">保存</button>

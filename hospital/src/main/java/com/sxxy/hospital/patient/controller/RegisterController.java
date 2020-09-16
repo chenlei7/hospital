@@ -79,4 +79,17 @@ public class RegisterController {
 
     }
 
+    //医院确认挂号信息，根据电话号码去修改病人
+    @RequestMapping("/registerUpdate")
+    public String registerUpdate(String patientNums,String patientPhone){
+        System.out.println(patientNums+"...."+patientPhone);
+        int a = patientMapper.registerUpdate(patientNums,patientPhone);
+        if (a > 0){
+            return  "redirect:/jump/doctorSuccess";
+        }else {
+            return "patient/error";
+        }
+    }
+
+
 }

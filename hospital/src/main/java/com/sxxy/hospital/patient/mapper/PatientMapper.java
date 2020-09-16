@@ -35,4 +35,10 @@ public interface PatientMapper extends JpaRepository<Patient,Integer> {
     @Modifying
     @Query(nativeQuery = true,value = "select count(*) from patient_info ")
     int queryAllNum();
+
+    //确认挂号信息,根据电话号码去修改病人信息
+    @Transactional()
+    @Modifying
+    @Query(nativeQuery = true,value = "update patient_info  set patient_num=:patientNum where patient_phone =:patientPhone")
+    int registerUpdate(@Param("patientNum")String patientNum,@Param("patientPhone")String patientPhone);
 }
