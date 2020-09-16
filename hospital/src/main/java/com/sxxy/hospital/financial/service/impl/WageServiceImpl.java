@@ -32,12 +32,11 @@ public class WageServiceImpl implements WageService {
     StatementsMapper statementsMapper;
 
     //格式化时间
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-    String time = format.format(new Date());
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 //    @Scheduled(fixedDelay = 60*60*1000)
-    @Scheduled(cron = "0 0 9 1 * ?")//每月1号分发工资
+    @Scheduled(cron = "0 0 9 1 * ?")//每月1号9点分发工资
     public void DoctorWage(){
-
+        String time = format.format(new Date());
         //获取所有医生的信息
         List<Doctor> doctors = doctorMapper.findAll();
         //将医生有关信息和工资添加到财务表中
@@ -46,8 +45,9 @@ public class WageServiceImpl implements WageService {
         }
     }
 
-    @Scheduled(cron = "0 0 9 1 * ?")//每月1号分发工资
+    @Scheduled(cron = "0 0 9 1 * ?")//每月1号9点分发工资
     public void NurseWage(){
+        String time = format.format(new Date());
         //获取所有护士的信息
         List<Nurse> nurses = nurseMapper.findAll();
         //将护士有关信息和工资添加到财务表中
@@ -56,8 +56,9 @@ public class WageServiceImpl implements WageService {
         }
     }
 
-    @Scheduled(cron = "0 0 9 1 * ?")//每月1号分发工资
+    @Scheduled(cron = "0 0 9 1 * ?")//每月1号9点分发工资
     public void OtherWage(){
+        String time = format.format(new Date());
         //获取所有其他人员的信息
         List<Other> nurses = otherMapper.findAll();
         //将其他人员有关信息和工资添加到财务表中
