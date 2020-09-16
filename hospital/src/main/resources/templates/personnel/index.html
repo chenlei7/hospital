@@ -21,7 +21,8 @@
 	<!-- jvectormap -->
 	<link rel="stylesheet" th:href="@{/css/jquery-jvectormap.css}">
 
-	<script th:src="@{/js/modernizr.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/echarts.min.js}"></script>
+	<script th:src="@{/js/modernizr.min.js}" type="text/javascript"></script>
 </head>
 
 <body>
@@ -255,55 +256,49 @@
 			<div class="container home">
 				<div class="row">
 					<!-- Widget Item -->
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<div class="widget-area lochana-box-shadow color-red">
 							<div class="widget-left">
 								<span class="ti-user"></span>
 							</div>
 							<div class="widget-right">
-								<h4 class="wiget-title">病人</h4>
-								<span class="numeric color-red">348</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up"></span> +20% 增长</p>
+								<h4 class="wiget-title">病人总数</h4>
+								<span class="numeric color-red">[[${patients.size()}]]</span>
 							</div>
 						</div>
 					</div>
 					<!-- /Widget Item -->
 					<!-- Widget Item -->
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<div class="widget-area lochana-box-shadow color-green">
 							<div class="widget-left">
 								<span class="ti-bar-chart"></span>
 							</div>
 							<div class="widget-right">
-								<h4 class="wiget-title">出诊</h4>
-								<span class="numeric color-green">1585</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-down"></span> -15% 减少</p>
+								<h4 class="wiget-title">住院人数</h4>
+								<span class="numeric color-green">[[${patientNoLeave}]]</span>
 							</div>
 						</div>
 					</div>
 					<!-- /Widget Item -->
-					<!-- Widget Item -->
-					<div class="col-md-4">
-						<div class="widget-area lochana-box-shadow color-yellow">
-							<div class="widget-left">
-								<span class="ti-money"></span>
-							</div>
-							<div class="widget-right">
-								<h4 class="wiget-title">收入</h4>
-								<span class="numeric color-yellow">$7300</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% 增长</p>
-							</div>
-						</div>
-					</div>
-					<!-- /Widget Item -->
+
 				</div>
 
 				<div class="row">
 					<!-- Widget Item -->
-					<div class="col-md-6">
+					<div class="col-md-6" hidden>
 						<div class="widget-area-2 lochana-box-shadow">
 							<h3 class="widget-title">出诊按年统计</h3>
 							<div id="lineMorris" class="chart-home"></div>
+						</div>
+					</div>
+					<!-- /Widget Item -->
+					<!-- Widget Item -->
+					<div class="col-md-6">
+						<div class="widget-area-2 lochana-box-shadow">
+							<h3 class="widget-title">病人今日统计</h3>
+							<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+							<div id="main" style="width: 400px; height: 265px; margin: auto;"></div>
 						</div>
 					</div>
 					<!-- /Widget Item -->
@@ -466,13 +461,6 @@
 
 			</div>
 			<!-- /Main Content -->
-			<!--Copy Rights-->
-			<div class="container">
-				<div class="d-sm-flex justify-content-center">
-				  <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span> 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-				</div>
-			</div>
-			<!-- /Copy Rights-->
 		</div>
 		<!-- /Page Content -->
 	</div>
@@ -495,5 +483,34 @@
 	<!-- Custom Script-->
 	<script th:src="@{/js/custom.js}"></script>
 </body>
+<script th:inline="javascript">
+	// 基于准备好的dom，初始化echarts实例
+	var myChart = echarts.init(document.getElementById('main'));
 
+	var yesterday="[[${yesterdayNum}]]";
+	var today="[[${nowPatientNum}]]";
+
+	// 指定图表的配置项和数据
+	var option = {
+		tooltip: {},
+		legend: {
+			data: ['人数']
+		},
+		xAxis: {
+			data: ["yesterday","today"]
+		},
+		yAxis: {
+			minInterval: 1,
+		},
+		series: [{
+			name: '人数',
+			type: 'bar',
+			barWidth : 30,
+			data: [yesterday,today]
+		}]
+	};
+
+	// 使用刚指定的配置项和数据显示图表。
+	myChart.setOption(option);
+</script>
 </html>

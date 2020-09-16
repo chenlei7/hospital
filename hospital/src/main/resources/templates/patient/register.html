@@ -179,9 +179,9 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="patientRoomNum">选择科室</label>
+                                    <label for="patientRoomNum" >选择科室</label>
                                     <select class="form-control" id="patientRoomNum" name="patientRoomNum">
-                                        <option value="">选择科室</option>
+                                        <option value="" id="select1">选择科室</option>
                                         <option th:each="r:${rooms}" th:value="${r.roomPosition}"
                                                 th:text="${r.roomPosition}"></option>
                                     </select>
@@ -239,13 +239,18 @@
         var msg = "专家号可能参生更高的挂号费，您确定要选择专家号码？\n\n请确认！";
         if (confirm(msg) == true) {
             document.getElementById("btnDoctor").style.display="none";
+            document.getElementById("patientRoomNum").options[0].selected = true;
             $("#doctor").show();
+            alert("请先重新选择科室哦!");
+            //调用联动方法
+            m();
         } else {
             return false;
         }
     }
 
     //科室联动专家
+    function m(){
     $("#patientRoomNum").change(function () {
         var room = $("#patientRoomNum").val();
         if (room == " " || room == '选择科室') {
@@ -269,22 +274,8 @@
             }
         })
     })
+    }
 
-
-    //填写说明
-    $("#submit").click(function () {
-        var patientDoctorNum = $("#patientDoctorNum").val();
-        var patientRoomNum = $("#patientRoomNum").val();
-        if (patientDoctorNum.length == 0) {
-            alert("医生不能空，请选择医生！")
-            return false;
-        } else if (patientRoomNum.length == 0) {
-            alert("科室不能空，请选择科室！")
-            return false;
-        } else {
-            return true;
-        }
-    })
 </script>
 
 </body>

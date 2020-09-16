@@ -27,7 +27,7 @@ public interface PatientMapper extends JpaRepository<Patient,Integer> {
     //查询网上挂号的用户
     @Transactional
     @Modifying
-    @Query(nativeQuery = true,value = "select * from patient_info where patient_num is null or patient_num != ''")
+    @Query(nativeQuery = true,value = "select * from patient_info where patient_num is null or patient_num = ''")
     List<Patient> findAllRegister();
 
     //查找全部的病人
@@ -35,4 +35,10 @@ public interface PatientMapper extends JpaRepository<Patient,Integer> {
     @Modifying
     @Query(nativeQuery = true,value = "select count(*) from patient_info ")
     int queryAllNum();
+
+    //确认挂号信息,根据电话号码去修改病人信息
+    @Transactional()
+    @Modifying
+    @Query(nativeQuery = true,value = "update patient_info  set patient_num=:patientNum where patient_phone =:patientPhone")
+    int registerUpdate(@Param("patientNum")String patientNum,@Param("patientPhone")String patientPhone);
 }
