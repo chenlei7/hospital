@@ -51,7 +51,11 @@ public class PatientController {
     //真正的添加病人
     @PostMapping("/patientAdd")
     public String patientAdd(Patient patient){
-        patientMapper.save(patient);
+        try {
+            patientMapper.save(patient);
+        }catch (Exception e){
+            return "patient/error";
+        }
         return "patient/patientAdd";
     }
 
@@ -77,7 +81,10 @@ public class PatientController {
 
     //网上挂号的全部病人信息
     @RequestMapping("/registerAll")
-    public String registerAll(){
+    public String registerAll(Model model){
+        List<Patient> patientss = new ArrayList<>();
+        patientss = patientMapper.findAllRegister();
+        model.addAttribute("patients",patientss);
         return "patient/registerAll";
     }
 
