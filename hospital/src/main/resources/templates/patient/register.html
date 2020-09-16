@@ -171,22 +171,6 @@
                                            name="patientPhone">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="patientRoomNum">选择科室</label>
-                                    <select class="form-control" id="patientRoomNum" name="patientRoomNum">
-                                        <option value="">选择科室</option>
-                                        <option th:each="r:${rooms}" th:value="${r.roomPosition}"
-                                                th:text="${r.roomPosition}"></option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientDoctorNum">选择医生</label>
-                                    <select class="form-control" id="patientDoctorNum" name="patientDoctorNum">
-                                        <option value="">选择医生</option>
-                                        <option th:each="d:${doctors}" th:value="${d.doctorNum}"
-                                                th:text="${d.doctorName}"></option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
                                     <label for="patientGender">性别</label>
                                     <select class="form-control" id="patientGender" name="patientGender">
                                         <option>男</option>
@@ -194,9 +178,28 @@
                                         <option>其它</option>
                                     </select>
                                 </div>
-
+                                <div class="form-group col-md-6">
+                                    <label for="patientRoomNum">选择科室</label>
+                                    <select class="form-control" id="patientRoomNum" name="patientRoomNum">
+                                        <option value="">选择科室</option>
+                                        <option th:each="r:${rooms}" th:value="${r.roomPosition}"
+                                                th:text="${r.roomPosition}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6" id="btnDoctor">
+                                    <label for="patientPhone">可选专家号</label>
+                                    <input style="background-color: #00C2FF" type="button" placeholder="patientPhone" class="form-control" name="patientPhone" onclick="doDoctor()" value="专家号">
+                                </div>
+                                <div class="form-group col-md-6" id="doctor" style="display: none">
+                                    <label for="patientDoctorNum">选择医生</label>
+                                    <select class="form-control" id="patientDoctorNum" name="patientDoctorNum">
+                                        <option value="">选择医生</option>
+                                        <option th:each="d:${doctors}" th:value="${d.doctorNum}"
+                                                th:text="${d.doctorName}"></option>
+                                    </select>
+                                </div>
                                 <div class="form-group col-md-6 mb-3">
-                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                    <button type="submit" class="btn btn-primary btn-lg">提交</button>
                                 </div>
                             </div>
                         </form>
@@ -231,12 +234,24 @@
 <script th:src="@{/js/custom.js}"></script>
 
 <script th:inline="javascript">
+    //专家号
+    function doDoctor() {
+        var msg = "专家号可能参生更高的挂号费，您确定要选择专家号码？\n\n请确认！";
+        if (confirm(msg) == true) {
+            document.getElementById("btnDoctor").style.display="none";
+            $("#doctor").show();
+        } else {
+            return false;
+        }
+    }
+
+    //科室联动专家
     $("#patientRoomNum").change(function () {
         var room = $("#patientRoomNum").val();
         if (room == " " || room == '选择科室') {
             return;
         }
-        console.log("我是"+room);
+        console.log("我是" + room);
         $.ajax({
             cache: true,
             type: "get",
