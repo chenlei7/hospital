@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+//房间
 @Repository
 public interface RoomMappers extends JpaRepository<Room,Object>{
     //根据房间名字查找房间编号

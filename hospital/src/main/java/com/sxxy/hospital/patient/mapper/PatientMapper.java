@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+//病人
 @Repository
 public interface PatientMapper extends JpaRepository<Patient,Integer> {
     //查询有编号的全部病人信息

@@ -1,6 +1,8 @@
 package com.sxxy.hospital.patient.controller;
 
+import com.sxxy.hospital.patient.entity.Bill;
 import com.sxxy.hospital.patient.entity.Patient;
+import com.sxxy.hospital.patient.mapper.BillMapper;
 import com.sxxy.hospital.patient.mapper.PatientMapper;
 import com.sxxy.hospital.patient.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class PatientController {
 
     @Autowired
     PatientService patientService;
+
+    @Autowired
+    BillMapper billMapper;
 
     //主页面
     @RequestMapping("/index")
@@ -53,6 +58,11 @@ public class PatientController {
     public String patientAdd(Patient patient){
         try {
             patientMapper.save(patient);
+            Bill bill = new Bill();
+            bill.setBillNum(patient.getPatientNum());
+            bill.setBillRegisterCost(15.00);
+            bill.setBillCountCost(15.00);
+            billMapper.save(bill);
         }catch (Exception e){
             return "patient/error";
         }

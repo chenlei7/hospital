@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+//医生
 @Repository
 public interface DoctorMappers extends JpaRepository<Doctor,Object> {
 
