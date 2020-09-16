@@ -16,5 +16,5 @@ public interface EquipmentMapper extends JpaRepository<Equipment,Object> {
     @Transactional
     @Modifying
     @Query(nativeQuery = true,value = "update equipment set equipment_state=:equipmentState  where  equipment_num in (:editNum) ")
-    int editequipmentNowState(@Param("equipmentState")String equipmentState, @Param("editNum") List<String> editNum);
+    int editequipmentNowState(@Param("equipmentState") String equipmentState, @Param("editNum") List<String> editNum);
 }

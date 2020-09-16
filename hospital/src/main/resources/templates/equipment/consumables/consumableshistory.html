@@ -243,7 +243,7 @@
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">房间</h3>
+                    <h3 class="block-title">药品采购记录</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
@@ -252,8 +252,8 @@
                                 <span class="ti-home"></span>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">房间</li>
-                        <li class="breadcrumb-item active">所有房间</li>
+                        <li class="breadcrumb-item">药品采购记录</li>
+                        <li class="breadcrumb-item active">记录</li>
                     </ol>
                 </div>
             </div>
@@ -268,7 +268,7 @@
                 <!-- Widget Item -->
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">房间列表</h3>
+                        <h3 class="widget-title">药品列表</h3>
                         <div class="table-responsive mb-3">
                             <table id="tableId" class="table table-bordered table-striped">
                                 <thead>
@@ -279,45 +279,36 @@
                                             <label class="custom-control-label" for="select-all"></label>
                                         </div>
                                     </th>
-                                    <th>编号</th>
-                                    <th>名称</th>
-                                    <th>科室</th>
+                                    <th>药品编号</th>
+                                    <th>药品名称</th>
+                                    <th>药品采购数量</th>
+                                    <th>药品单价</th>
+                                    <th>药品总价</th>
+                                    <th>采购时间</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="room:${rooms}">
+                                <tr th:each="stock:${stocks}">
                                     <td>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" th:id="${room.id}" name="roomNum" th:value="${room.roomNum}">
-                                            <label class="custom-control-label" th:for="${room.id}"></label>
+                                            <input class="custom-control-input" type="checkbox" th:id="${stock.id}" name="stockNum" th:value="${stock.stockNum}">
+                                            <label class="custom-control-label" th:for="${stock.id}"></label>
                                         </div>
                                     </td>
-                                    <td th:text="${room.roomNum}"></td>
-                                    <td th:text="${room.roomName}"></td>
-                                    <td th:text="${room.roomPosition}"></td>
+                                    <td th:text="${stock.stockNum}"></td>
+                                    <td th:text="${stock.stockName}"></td>
+                                    <td th:text="${stock.stockNumber}"></td>
+                                    <td th:text="${stock.stockMoney}"></td>
+                                    <td th:text="${stock.stockPrice}"></td>
+                                    <td th:text="${stock.stockTime}"></td>
+
+
                                 </tr>
                                 </tbody>
                             </table>
 
 
-                            <!--Export links-->
-                            <!--							<nav aria-label="Page navigation example">-->
-                            <!--								<ul class="pagination justify-content-center export-pagination">-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-download"></span> csv</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>-->
-                            <!--									</li>-->
-                            <!--								</ul>-->
-                            <!--							</nav>-->
-                            <!-- /Export links-->
+
                             <button type="button" class="btn btn-danger mt-3 mb-0" onclick="delDoctor()"><span class="ti-trash"></span> DELETE</button>
                             <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
                         </div>
@@ -380,33 +371,32 @@
         }
     }
 
-    /*修改医生的现状*/
-    function editDoctor() {
+    /*采购药材*/
+    function addConsumables() {
         var result="";
         var d = "";
-        var doctorState=$("#doctorNowState").val();
-        d = $("input[name='doctorNum']:checked").each(function(){;
+        var consumablesNumber=$("#consumablesaddNumber").val();
+        d = $("input[name='consumablesNum']:checked").each(function(){;
             result = $(this).attr('value');
         });
-        console.log(doctorState)
-        if(doctorState==""){
-            alert("请输入要修改的现状")
+        if(consumablesNumber==""){
+            alert("请输入要采购的数量")
         }else{
-            window.location.href= "/doctor/editDoctorNowState?doctorState="+doctorState+"&tag="+result;
-            alert("修改成功");
-            window.location.href = "http://localhost:8080/doctor/doctors";
+            window.location.href= "/consumables/addConsumablesNumber?consumablesNumber="+consumablesNumber+"&tag="+result;
+            alert("采购成功");
+            window.location.href = "http://localhost:8080/consumables/allconsumables";
         }
     }
 
     /*打开修改模态框*/
     function openEditModal(editModal) {
         var result="";
-        var doctorState="";
-        doctorState = $("input[name='doctorNum']:checked").each(function(){
+        var consumablesNumber="";
+        consumablesNumber = $("input[name='consumablesNum']:checked").each(function(){
             result = $(this).attr('value');
         });
         if(result==""){
-            alert("选择出错")
+            alert("未做出选择")
         }else{
             $("#editModal").modal('show');
         }
@@ -420,7 +410,7 @@
             <!--顶部标题-->
             <div class="modal-header">
                 <!--标题-->
-                <h5>修改医生现状</h5>
+                <h5>药材增加数量</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -429,20 +419,13 @@
             <div class="modal-body">
                 <form id="formEditDoctor">
                     <input type="text" hidden id="academeIDU">
-                    <div class="form-group row">
-                        <label for="doctorNowState"  class="col-3">医生现状 NowState</label>
-                        <div class="form-group col-md-6">
-                            <select class="form-control" id="doctorNowState" name="doctorNowState">
-                                <option>出诊中</option>
-                                <option>可出诊</option>
-                                <option>请假</option>
-                                <option>休假</option>
-                            </select>
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label for="consumablesaddNumber">药材增加数量</label>
+                        <input type="text" class="form-control" placeholder="增加数量" id="consumablesaddNumber" name="consumablesaddNumber">
                     </div>
                 </form>
             </div>
-            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="editDoctor()"><span class="ti-pencil-alt"></span> EDIT</button>
+            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="addConsumables()"><span class="ti-pencil-alt"></span> EDIT</button>
         </div>
     </div>
 </div>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +21,6 @@
     <link rel="stylesheet" th:href="@{/charts/css/morris.css}">
     <!-- jvectormap -->
     <link rel="stylesheet" th:href="@{/css/jquery-jvectormap.css}">
-    <link rel="stylesheet" th:href="@{/datatable/dataTables.bootstrap4.min.css}">
-
-    <script th:src="@{/js/modernizr.min.js}"></script>
 </head>
 
 <body>
@@ -153,6 +149,7 @@
                                 <a class="dropdown-item" href="edit-patient.html">编辑病人信息</a>
                             </div>
                         </li>
+                        <!--医生管理-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-user"></span> 医生管理</a>
@@ -161,6 +158,28 @@
                                 <a class="dropdown-item" href="/doctor/doctors">查询医生信息</a>
                                 <a class="dropdown-item" href="/doctor/doctorInfo">医生信息详情</a>
                                 <a class="dropdown-item" href="/personnel/editDoctor">编辑医生信息</a>
+                            </div>
+                        </li>
+                        <!--护士管理-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                               aria-expanded="false"><span class="ti-user"></span> 护士管理</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/personnel/addNurse">添加护士信息</a>
+                                <a class="dropdown-item" href="/nurse/nurses">查询护士信息</a>
+                                <a class="dropdown-item" href="/nurse/nurseInfo">护士信息详情</a>
+                                <a class="dropdown-item" href="/personnel/editNurse">编辑护士信息</a>
+                            </div>
+                        </li>
+                        <!--员工管理-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                               aria-expanded="false"><span class="ti-user"></span> 员工管理</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/personnel/addOther">添加员工信息</a>
+                                <a class="dropdown-item" href="/other/others">查询员工信息</a>
+                                <a class="dropdown-item" href="/other/otherInfo">员工信息详情</a>
+                                <a class="dropdown-item" href="/personnel/editOther">编辑员工信息</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -196,32 +215,6 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                               aria-expanded="false"><span class="ti-layout-tab"></span> UI框架</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="typography.html">排版</a>
-                                <a class="dropdown-item" href="buttons.html">按钮</a>
-                                <a class="dropdown-item" href="cards.html">卡片</a>
-                                <a class="dropdown-item" href="tabs.html">选项卡</a>
-                                <a class="dropdown-item" href="accordions.html">手风琴</a>
-                                <a class="dropdown-item" href="modals.html">模态窗口</a>
-                                <a class="dropdown-item" href="lists.html">媒体和列表</a>
-                                <a class="dropdown-item" href="grid.html">网格</a>
-                                <a class="dropdown-item" href="progress-bars.html">进度条</a>
-                                <a class="dropdown-item" href="notifications-alerts.html">预警和提示</a>
-                                <a class="dropdown-item" href="pagination.html">分页</a>
-                                <a class="dropdown-item" href="carousel.html">滑块</a>
-                                <a class="dropdown-item" href="tables.html">表格</a>
-                                <a class="dropdown-item" href="charts-1.html">Morris图表</a>
-                                <a class="dropdown-item" href="charts-2.html">Flot图表</a>
-                                <a class="dropdown-item" href="map-1.html">谷歌地图</a>
-                                <a class="dropdown-item" href="map-2.html">Vector地图</a>
-                                <a class="dropdown-item" href="forms.html">表单</a>
-                                <a class="dropdown-item" href="font-awesome.html">Font Awesome </a>
-                                <a class="dropdown-item" href="themify.html">Themify图标</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-file"></span> 其它页面</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="login.html">登录</a>
@@ -243,17 +236,17 @@
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">房间</h3>
+                    <h3 class="block-title">药材 增加</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/personnel/index">
+                            <a href="index.html">
                                 <span class="ti-home"></span>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">房间</li>
-                        <li class="breadcrumb-item active">所有房间</li>
+                        <li class="breadcrumb-item">药材 </li>
+                        <li class="breadcrumb-item active">药材 增加</li>
                     </ol>
                 </div>
             </div>
@@ -268,59 +261,49 @@
                 <!-- Widget Item -->
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">房间列表</h3>
-                        <div class="table-responsive mb-3">
-                            <table id="tableId" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th class="no-sort">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="select-all">
-                                            <label class="custom-control-label" for="select-all"></label>
-                                        </div>
-                                    </th>
-                                    <th>编号</th>
-                                    <th>名称</th>
-                                    <th>科室</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="room:${rooms}">
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" th:id="${room.id}" name="roomNum" th:value="${room.roomNum}">
-                                            <label class="custom-control-label" th:for="${room.id}"></label>
-                                        </div>
-                                    </td>
-                                    <td th:text="${room.roomNum}"></td>
-                                    <td th:text="${room.roomName}"></td>
-                                    <td th:text="${room.roomPosition}"></td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <h3 class="widget-title">药材 增加</h3>
+                        <form action="/consumables/addConsumables" method="post" onsubmit="return check()">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="consumablesNum">药材 编号</label>
+                                    <input type="text" class="form-control" placeholder="Num" id="consumablesNum" name="consumablesNum">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="consumablesName">药材 名称</label>
+                                    <input type="text" class="form-control" placeholder="name" id="consumablesName" name="consumablesName">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="consumablesNumber">药材 数量</label>
+                                    <input type="text" class="form-control" placeholder="Number" id="consumablesNumber" name="consumablesNumber">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="consumablesPrice">药材 价格</label>
+                                    <input type="text" class="form-control" placeholder="Price" id="consumablesPrice" name="consumablesPrice">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="consumablesMsg">药材 药效</label>
+                                    <input type="text" class="form-control" placeholder="药效" id="consumablesMsg" name="consumablesMsg">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="consumablesIllness">药材 治疗病症</label>
+                                    <input type="text" class="form-control" placeholder="病症" id="consumablesIllness" name="consumablesIllness">
+                                </div>
 
 
-                            <!--Export links-->
-                            <!--							<nav aria-label="Page navigation example">-->
-                            <!--								<ul class="pagination justify-content-center export-pagination">-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-download"></span> csv</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>-->
-                            <!--									</li>-->
-                            <!--								</ul>-->
-                            <!--							</nav>-->
-                            <!-- /Export links-->
-                            <button type="button" class="btn btn-danger mt-3 mb-0" onclick="delDoctor()"><span class="ti-trash"></span> DELETE</button>
-                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
-                        </div>
+                                <!--									<div class="form-check col-md-12 mb-2">-->
+                                <!--										<div class="text-left">-->
+                                <!--											<div class="custom-control custom-checkbox">-->
+                                <!--												<input class="custom-control-input" type="checkbox" id="ex-check-2">-->
+                                <!--												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>-->
+                                <!--											</div>-->
+                                <!--										</div>-->
+                                <!--									</div>-->
+                            </div>
+                            <div class="form-group col-md-6 mb-3">
+                                <button type="submit" class="btn btn-primary btn-lg" id="submit">提交</button>
+                                <button type="reset" class="btn btn-primary btn-lg">重置</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!-- /Widget Item -->
@@ -330,7 +313,7 @@
         <!--Copy Rights-->
         <div class="container">
             <div class="d-sm-flex justify-content-center">
-                <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span>
+                <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2020 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span>
             </div>
         </div>
         <!-- /Copy Rights-->
@@ -348,104 +331,25 @@
 <script th:src="@{/js/popper.min.js}"></script>
 <!-- Bootstrap Library-->
 <script th:src="@{/js/bootstrap.min.js}"></script>
-<!-- Datatable  -->
-<script th:src="@{/datatable/jquery.dataTables.min.js}"></script>
-<script th:src="@{/datatable/dataTables.bootstrap4.min.js}"></script>
-
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
-<script th:src="@{/js/custom-datatables.js}"></script>
 
-
+<!--新增判断,年龄和编号不能为空-->
 <script th:inline="javascript">
-    /*批量删除*/
-    function delDoctor() {
-        var result="";
-        var count=0;
-        $("input[name='doctorNum']:checked").each(function(){
-            if($(this).is(':checked')){
-                result+=$(this).attr('value') +",";
-                count++;
-            }else{}
-        });
-        if(!confirm("确定删除这"+count+"医生信息?")){
-            return;
+    $("#submit").click(function () {
+        var doctorNum = $("#doctorNum").val();
+        var doctorAge = $("#doctorAge").val();
+        if(doctorNum.length==0){
+            alert("编号不能空，请输入编号！")
+            return false;
+        }else if(doctorAge.length==0){
+            alert("年龄不能空，请输入年龄！")
+            return false;
+        }else {
+            return true;
         }
-        if(result==",,"){
-            alert("删除的信息有误")
-        }else{
-            window.location.href= "/doctor/deleteDoctor?tag="+result;
-            alert("删除成功");
-            window.location.href = "http://localhost:8080/doctor/doctors";
-        }
-    }
-
-    /*修改医生的现状*/
-    function editDoctor() {
-        var result="";
-        var d = "";
-        var doctorState=$("#doctorNowState").val();
-        d = $("input[name='doctorNum']:checked").each(function(){;
-            result = $(this).attr('value');
-        });
-        console.log(doctorState)
-        if(doctorState==""){
-            alert("请输入要修改的现状")
-        }else{
-            window.location.href= "/doctor/editDoctorNowState?doctorState="+doctorState+"&tag="+result;
-            alert("修改成功");
-            window.location.href = "http://localhost:8080/doctor/doctors";
-        }
-    }
-
-    /*打开修改模态框*/
-    function openEditModal(editModal) {
-        var result="";
-        var doctorState="";
-        doctorState = $("input[name='doctorNum']:checked").each(function(){
-            result = $(this).attr('value');
-        });
-        if(result==""){
-            alert("选择出错")
-        }else{
-            $("#editModal").modal('show');
-        }
-    }
-
+    })
 </script>
-<!--修改模态框-->
-<div class="modal fade" id="editModal" data-th-background="static" data-th-keytype="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!--顶部标题-->
-            <div class="modal-header">
-                <!--标题-->
-                <h5>修改医生现状</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!--内容-->
-            <div class="modal-body">
-                <form id="formEditDoctor">
-                    <input type="text" hidden id="academeIDU">
-                    <div class="form-group row">
-                        <label for="doctorNowState"  class="col-3">医生现状 NowState</label>
-                        <div class="form-group col-md-6">
-                            <select class="form-control" id="doctorNowState" name="doctorNowState">
-                                <option>出诊中</option>
-                                <option>可出诊</option>
-                                <option>请假</option>
-                                <option>休假</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="editDoctor()"><span class="ti-pencil-alt"></span> EDIT</button>
-        </div>
-    </div>
-</div>
-
 </body>
+
 </html>
