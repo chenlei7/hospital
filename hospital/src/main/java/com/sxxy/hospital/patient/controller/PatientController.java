@@ -84,7 +84,7 @@ public class PatientController {
     public String registerAll(Model model){
         List<Patient> patientss = new ArrayList<>();
         patientss = patientMapper.findAllRegister();
-        model.addAttribute("patients",patientss);
+        model.addAttribute("patientss",patientss);
         return "patient/registerAll";
     }
 
