@@ -311,6 +311,7 @@
                                 </tbody>
                             </table>
                             <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> 编辑</button>
+                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openAddModal()"><span class="ti-pencil-alt"></span> 添加实时病情</button>
                         </div>
                     </div>
                 </div>
@@ -319,11 +320,6 @@
         </div>
         <!-- /Main Content -->
         <!--Copy Rights-->
-        <div class="container">
-            <div class="d-sm-flex justify-content-center">
-                <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span>
-            </div>
-        </div>
         <!-- /Copy Rights-->
     </div>
     <!-- /Page Content -->
@@ -348,13 +344,34 @@
 
 
 <script th:inline="javascript">
+    //打开增加模态框
+    function openAddModal() {
+        $("#addModal").modal('show');
+        $.ajax({
+            cache: true,
+            type: "get",
+            url: "/illness/findAllIllness",
+            success: function (data) {
+                console.log(data);
+                var patientDoctorNum = $("#illnessNum").empty();
+                for (var i = 0; i < data.length; i++) {
+                    patientDoctorNum.append("<option value ='" + data[i] + "'>" + data[i] + "</option>");
+                }
+            },
+            error: function () {
+                notifyError("获取数据失败，请重新刷新！")
+            }
+        });
+    }
+
 
     /*打开修改模态框*/
     function openEditModal() {
         var illnessId="";
+        alert("不要忘记选择一条数据哦")
         $("input[name='illnessId']:checked").each(function(){
             illnessId = $(this).attr('value');
-            $("#illnessId").val(illnessId);
+            $("#illnessId1").val(illnessId);
             $("#editModal").modal('show');
         });
 
@@ -376,7 +393,54 @@
             <!--内容-->
             <div class="modal-body">
                 <form id="formEditDoctor" action="/illness/illnessUpdate" method="post" >
-                    <input type="text" hidden id="illnessId" name="illnessId">
+                    <input type="text" hidden id="illnessId1" name="illnessId1">
+                    <div class="form-group col-md-6">
+                        <label for="illnessTime">时间(yyyy-MM-dd hh:mm:ss)</label>
+                        <input type="text"  class="form-control" placeholder="illnessTime1" id="illnessTime1" name="illnessTime1">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="illness_condition">描述</label>
+                        <input type="text"  class="form-control" placeholder="illness_condition1" id="illness_condition1" name="illness_condition1">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="illnessSeverity1">严重程度</label>
+                        <input type="text"  class="form-control" placeholder="illnessSeverity1" id="illnessSeverity1" name="illnessSeverity1">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="illnessAlive1">生还几率</label>
+                        <input type="text"  class="form-control" placeholder="illnessAlive1" id="illnessAlive1" name="illnessAlive1">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--增加模态框-->
+<div class="modal fade" id="addModal" data-th-background="static" data-th-keytype="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--顶部标题-->
+            <div class="modal-header">
+                <!--标题-->
+                <h5>增加实时病情信息</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--内容-->
+            <div class="modal-body">
+                <form id="formAddIllness" action="/illness/illnessAdd" method="post" >
+                    <div class="form-group col-md-6" id="doctor">
+                        <label for="illnessNum">请选择要增加的病情编号</label>
+                        <select class="form-control" id="illnessNum" name="illnessNum">
+                            <option value="">选择编号</option>
+                        </select>
+                    </div>
                     <div class="form-group col-md-6">
                         <label for="illnessTime">时间(yyyy-MM-dd hh:mm:ss)</label>
                         <input type="text"  class="form-control" placeholder="illnessTime" id="illnessTime" name="illnessTime">

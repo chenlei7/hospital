@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface BillMapper extends JpaRepository<Bill,Object> {
 
 
+
 }
