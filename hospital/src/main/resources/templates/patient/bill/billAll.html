@@ -371,7 +371,9 @@
                 url: "/bill/billUpdate",
                 data: {"billId": billId},
                 success: function (data) {
-
+                    if (data == 1){
+                        window.location.href = "/jump/billUpdate";
+                    }
                 },
                 error: function () {
                     notifyError("获取数据失败，请重新刷新！")

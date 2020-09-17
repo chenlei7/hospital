@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,10 +32,21 @@ public class BillController {
 
 
     //修改账单信息
-    @PostMapping("/billUpdate")
-    public String billUpdate(Integer billId,Model model){
-        Bill bills = billMapper.findBillById(billId);
-        model.addAttribute("bills",bills);
-        return "patient/bill/billUpdate";
+    @ResponseBody
+    @RequestMapping("/billUpdate")
+    public String billUpdate(Integer billId, HttpSession session){
+        try {
+            List<Bill> bills = billMapper.findBillById(billId);
+            session.setAttribute("bills",bills);
+        }catch (Exception e){
+            return "0";
+        }
+        return "1";
+    }
+
+    //真正的去执行修改账单的方法
+    @RequestMapping("/billUpdates")
+    public String billUpdates(Bill bill){
+        return null;
     }
 }

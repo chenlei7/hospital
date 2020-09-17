@@ -19,6 +19,6 @@ public interface BillMapper extends JpaRepository<Bill, Object> {
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value = "select * from bill_info where id=:billId")
-    Bill findBillById(@Param("billId") Integer billId);
+    List<Bill> findBillById(@Param("billId") Integer billId);
 
 }
