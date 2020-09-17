@@ -1,8 +1,10 @@
 package com.sxxy.hospital.patient.controller;
 
 import com.sxxy.hospital.patient.entity.Bill;
+import com.sxxy.hospital.patient.entity.Illness;
 import com.sxxy.hospital.patient.entity.Patient;
 import com.sxxy.hospital.patient.mapper.BillMapper;
+import com.sxxy.hospital.patient.mapper.IllnessMapper;
 import com.sxxy.hospital.patient.mapper.PatientMapper;
 import com.sxxy.hospital.patient.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class PatientController {
 
     @Autowired
     BillMapper billMapper;
+
+    @Autowired
+    IllnessMapper illnessMapper;
 
     //主页面
     @RequestMapping("/index")
@@ -80,7 +85,12 @@ public class PatientController {
     @PostMapping("/patientUpadte")
     public  String patientUpadte(Patient patient){
         System.out.println(patient);
+        //修改病人信息表
         int a = patientService.PatientUpdate(patient);
+        //添加病情表
+        Illness illness = new Illness();
+        illness.setIllnessNum(patient.getPatientIllnessNum());
+        illnessMapper.save(illness);
         if (a > 0){
             return  "redirect:/patient/patientsInfo";
         }else {
