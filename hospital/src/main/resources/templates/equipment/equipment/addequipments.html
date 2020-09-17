@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ProClinic-医院管理系统Bootstrap4前端框架</title>
+    <title>添加器材</title>
     <!-- Fav  Icon Link -->
     <link rel="shortcut icon" type="image/png" th:href="@{/images/fav.png}">
     <!-- Bootstrap core CSS -->
@@ -68,7 +68,7 @@
                             <div class="modal-dialog modal-lorvens">
                                 <div class="modal-content lochana-box-shadow2">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Search Patient/医生:</h5>
+                                        <h5 class="modal-title">器材:</h5>
                                         <span class="ti-close" data-dismiss="modal" aria-label="Close">
 												</span>
                                     </div>
@@ -304,37 +304,12 @@
                                         <option>403</option>
                                     </select>
                                 </div>
-
-
-
-                                <!--									<div class="form-check col-md-12 mb-2">-->
-                                <!--										<div class="text-left">-->
-                                <!--											<div class="custom-control custom-checkbox">-->
-                                <!--												<input class="custom-control-input" type="checkbox" id="ex-check-2">-->
-                                <!--												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>-->
-                                <!--											</div>-->
-                                <!--										</div>-->
-                                <!--									</div>-->
                             </div>
                             <div class="form-group col-md-6 mb-3">
                                 <button type="submit" class="btn btn-primary btn-lg" id="submit">提交</button>
                                 <button type="reset" class="btn btn-primary btn-lg">重置</button>
                             </div>
                         </form>
-                        <!-- Alerts-->
-                        <!--							<div class="alert alert-success alert-dismissible fade show" role="alert">-->
-                        <!--								<strong>Successfully Done!</strong> Please Check in doctors list-->
-                        <!--								<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-                        <!--									<span aria-hidden="true">×</span>-->
-                        <!--								</button>-->
-                        <!--							</div>-->
-                        <!--							<div class="alert alert-warning alert-dismissible fade show" role="alert">-->
-                        <!--								<strong>Holy guacamole!</strong> You should check in on some of those fields below.-->
-                        <!--								<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-                        <!--									<span aria-hidden="true">×</span>-->
-                        <!--								</button>-->
-                        <!--							</div>-->
-                        <!-- /Alerts-->
                     </div>
                 </div>
                 <!-- /Widget Item -->
@@ -365,22 +340,7 @@
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
 
-<!--新增判断,年龄和编号不能为空-->
-<script th:inline="javascript">
-    $("#submit").click(function () {
-        var doctorNum = $("#doctorNum").val();
-        var doctorAge = $("#doctorAge").val();
-        if(doctorNum.length==0){
-            alert("编号不能空，请输入编号！")
-            return false;
-        }else if(doctorAge.length==0){
-            alert("年龄不能空，请输入年龄！")
-            return false;
-        }else {
-            return true;
-        }
-    })
-</script>
+<script th:inline="javascript"></script>
 </body>
 
 </html>

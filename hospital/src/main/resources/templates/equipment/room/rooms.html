@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ProClinic-医院管理系统Bootstrap4前端框架</title>
+    <title>医院房间</title>
     <!-- Fav  Icon Link -->
     <link rel="shortcut icon" type="image/png" th:href="@{/images/fav.png}">
     <!-- Bootstrap core CSS -->
@@ -72,7 +72,7 @@
                             <div class="modal-dialog modal-lorvens">
                                 <div class="modal-content lochana-box-shadow2">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Search Patient/医生:</h5>
+                                        <h5 class="modal-title">病房:</h5>
                                         <span class="ti-close" data-dismiss="modal" aria-label="Close">
 												</span>
                                     </div>
@@ -81,7 +81,7 @@
                                             <div class="form-group">
                                                 <input type="text" class="form-control" id="search-term" placeholder="Type text here">
                                                 <button type="button" class="btn btn-lorvens lochana-bg">
-                                                    <span class="ti-location-arrow"></span> Search</button>
+                                                    <span class="ti-location-arrow"></span> 搜索</button>
                                             </div>
                                         </form>
                                     </div>
@@ -143,12 +143,12 @@
                                 <a class="dropdown-item" href="/personnel/index">默认</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-wheelchair"></span> 病人管理</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="add-patient.html">添加病人信息</a>
-                                <a class="dropdown-item" href="patients.html">查看病人信息</a>
+                                <a class="dropdown-item" th:href="@{/patient/addPatient}">添加病人信息</a>
+                                <a class="dropdown-item" th:href="@{/patient/patientsInfo}">查看病人信息</a>
                                 <a class="dropdown-item" href="about-patient.html">病人详情</a>
                                 <a class="dropdown-item" href="edit-patient.html">编辑病人信息</a>
                             </div>
@@ -298,28 +298,6 @@
                                 </tr>
                                 </tbody>
                             </table>
-
-
-                            <!--Export links-->
-                            <!--							<nav aria-label="Page navigation example">-->
-                            <!--								<ul class="pagination justify-content-center export-pagination">-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-download"></span> csv</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>-->
-                            <!--									</li>-->
-                            <!--									<li class="page-item">-->
-                            <!--										<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>-->
-                            <!--									</li>-->
-                            <!--								</ul>-->
-                            <!--							</nav>-->
-                            <!-- /Export links-->
-                            <button type="button" class="btn btn-danger mt-3 mb-0" onclick="delDoctor()"><span class="ti-trash"></span> DELETE</button>
-                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
                         </div>
                     </div>
                 </div>
@@ -379,73 +357,6 @@
             window.location.href = "http://localhost:8080/doctor/doctors";
         }
     }
-
-    /*修改医生的现状*/
-    function editDoctor() {
-        var result="";
-        var d = "";
-        var doctorState=$("#doctorNowState").val();
-        d = $("input[name='doctorNum']:checked").each(function(){;
-            result = $(this).attr('value');
-        });
-        console.log(doctorState)
-        if(doctorState==""){
-            alert("请输入要修改的现状")
-        }else{
-            window.location.href= "/doctor/editDoctorNowState?doctorState="+doctorState+"&tag="+result;
-            alert("修改成功");
-            window.location.href = "http://localhost:8080/doctor/doctors";
-        }
-    }
-
-    /*打开修改模态框*/
-    function openEditModal(editModal) {
-        var result="";
-        var doctorState="";
-        doctorState = $("input[name='doctorNum']:checked").each(function(){
-            result = $(this).attr('value');
-        });
-        if(result==""){
-            alert("选择出错")
-        }else{
-            $("#editModal").modal('show');
-        }
-    }
-
 </script>
-<!--修改模态框-->
-<div class="modal fade" id="editModal" data-th-background="static" data-th-keytype="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!--顶部标题-->
-            <div class="modal-header">
-                <!--标题-->
-                <h5>修改医生现状</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!--内容-->
-            <div class="modal-body">
-                <form id="formEditDoctor">
-                    <input type="text" hidden id="academeIDU">
-                    <div class="form-group row">
-                        <label for="doctorNowState"  class="col-3">医生现状 NowState</label>
-                        <div class="form-group col-md-6">
-                            <select class="form-control" id="doctorNowState" name="doctorNowState">
-                                <option>出诊中</option>
-                                <option>可出诊</option>
-                                <option>请假</option>
-                                <option>休假</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="editDoctor()"><span class="ti-pencil-alt"></span> EDIT</button>
-        </div>
-    </div>
-</div>
-
 </body>
 </html>

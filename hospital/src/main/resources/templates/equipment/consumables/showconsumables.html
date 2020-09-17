@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ProClinic-医院管理系统Bootstrap4前端框架</title>
+    <title>药材库存和采购</title>
     <!-- Fav  Icon Link -->
     <link rel="shortcut icon" type="image/png" th:href="@{/images/fav.png}">
     <!-- Bootstrap core CSS -->
@@ -237,9 +237,6 @@
                 </div>
             </nav>
         </div>
-        <!-- /Menu -->
-        <!-- Breadcrumb -->
-        <!-- Page Title -->
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
@@ -258,10 +255,6 @@
                 </div>
             </div>
         </div>
-        <!-- /Page Title -->
-
-        <!-- /Breadcrumb -->
-        <!-- Main Content -->
         <div class="container">
 
             <div class="row">
@@ -306,11 +299,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-
-
-
-                            <button type="button" class="btn btn-danger mt-3 mb-0" onclick="delDoctor()"><span class="ti-trash"></span> DELETE</button>
-                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
+                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> 采购药材</button>
                         </div>
                     </div>
                 </div>
@@ -349,28 +338,6 @@
 
 
 <script th:inline="javascript">
-    /*批量删除*/
-    function delDoctor() {
-        var result="";
-        var count=0;
-        $("input[name='doctorNum']:checked").each(function(){
-            if($(this).is(':checked')){
-                result+=$(this).attr('value') +",";
-                count++;
-            }else{}
-        });
-        if(!confirm("确定删除这"+count+"医生信息?")){
-            return;
-        }
-        if(result==",,"){
-            alert("删除的信息有误")
-        }else{
-            window.location.href= "/doctor/deleteDoctor?tag="+result;
-            alert("删除成功");
-            window.location.href = "http://localhost:8080/doctor/doctors";
-        }
-    }
-
     /*采购药材*/
     function addConsumables() {
         var result="";
