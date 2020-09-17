@@ -238,27 +238,73 @@
 </div>
 </body>
 <script th:inline="javascript">
+
+    var result="";
+    var choice=[];
+
     /*全选*/
-    $("#select-all").click(function(){
-        $("input[name='financialNum']").each(function(){
-            if (this.checked) {
-                this.checked = false;
+    $(function() {
+        $('#select-all').on('click',function(){
+            if(this.checked) {
+                // $("input[name='financialNum']").attr('checked',true);
+                $("input[name='financialNum']").prop("checked",true);
+            }else {
+                // $("input[name='financialNum']").attr('checked',false);
+                $("input[name='financialNum']").prop("checked",false);
             }
-            else {
-                this.checked = true;
-            }
+
         });
-    })
-    function outExcel() {
-        var result="";
-        var count=0;
-        var doctorState=$("#excel").val();
+    });
+
+    //获取选中元素
+    $("#tableId").change(function () {
+        //将选中的元素值放入数组change中
         $("input[name='financialNum']:checked").each(function(){
             if($(this).is(':checked')){
-                result+=$(this).attr('value') +",";
-                count++;
-            }else{}
+                choice.push($(this).attr('value'))
+            }
+            //去除重复的元素
+            choice=uniqueArray(choice)
+
         });
+        var arr=[];
+        //获取未选中的值
+        $("input[name='financialNum']").not("input:checked").each(function () {
+            arr.push($(this).attr('value'))
+        })
+        //去重
+        arr=uniqueArray(arr)
+        //去除选中元素中未选中的值
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = 0; j < choice.length; j++) {
+                if (arr[i]==choice[j]){
+                    choice.splice(j,1)
+                }
+            }
+        }
+    })
+
+    //去除数组中重复的元素
+    function uniqueArray(arr){
+        if(null == arr || arr.length == 0 ){
+            return arr;
+        }else{
+            var innerHashMap = {};
+            for(var i = 0, j = arr.length; i<j; i++){
+                innerHashMap[arr[i]] = null;
+            }
+            var rs = [];
+            for (obj in innerHashMap){
+                rs.push(obj);
+            }
+            return rs;
+        }
+    }
+
+    //输出Excel表
+    function outExcel() {
+        var doctorState=$("#excel").val();
+        console.log(result)
         if(result==""){
             alert("请输入表名")
         }else{
@@ -267,13 +313,11 @@
             window.location.href= "/financial/financial"
         }
     }
+
     /*打开修改模态框*/
     function openEditModal(editModal) {
-        var result="";
-        var doctorState="";
-        doctorState = $("input[name='financialNum']:checked").each(function(){
-            result = $(this).attr('value');
-        });
+       //选中数组转为字符串
+        result=uniqueArray(choice).join(",")
         if(result==""){
             alert("未做出选择")
         }else{

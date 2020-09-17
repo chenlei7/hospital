@@ -237,9 +237,7 @@
                 </div>
             </nav>
         </div>
-        <!-- /Menu -->
-        <!-- Breadcrumb -->
-        <!-- Page Title -->
+
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
@@ -258,10 +256,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Page Title -->
 
-        <!-- /Breadcrumb -->
-        <!-- Main Content -->
         <div class="container">
 
             <div class="row">
@@ -302,31 +297,16 @@
                                     <td th:text="${stock.stockPrice}"></td>
                                     <td th:text="${stock.stockTime}"></td>
 
-
                                 </tr>
                                 </tbody>
                             </table>
 
-
-
-                            <button type="button" class="btn btn-danger mt-3 mb-0" onclick="delDoctor()"><span class="ti-trash"></span> DELETE</button>
-                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
                         </div>
                     </div>
                 </div>
-                <!-- /Widget Item -->
             </div>
         </div>
-        <!-- /Main Content -->
-        <!--Copy Rights-->
-        <div class="container">
-            <div class="d-sm-flex justify-content-center">
-                <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span>
-            </div>
-        </div>
-        <!-- /Copy Rights-->
     </div>
-    <!-- /Page Content -->
 </div>
 <!-- Back to Top -->
 <a id="back-to-top" href="#" class="back-to-top">
@@ -348,87 +328,6 @@
 <script th:src="@{/js/custom-datatables.js}"></script>
 
 
-<script th:inline="javascript">
-    /*批量删除*/
-    function delDoctor() {
-        var result="";
-        var count=0;
-        $("input[name='doctorNum']:checked").each(function(){
-            if($(this).is(':checked')){
-                result+=$(this).attr('value') +",";
-                count++;
-            }else{}
-        });
-        if(!confirm("确定删除这"+count+"医生信息?")){
-            return;
-        }
-        if(result==",,"){
-            alert("删除的信息有误")
-        }else{
-            window.location.href= "/doctor/deleteDoctor?tag="+result;
-            alert("删除成功");
-            window.location.href = "http://localhost:8080/doctor/doctors";
-        }
-    }
-
-    /*采购药材*/
-    function addConsumables() {
-        var result="";
-        var d = "";
-        var consumablesNumber=$("#consumablesaddNumber").val();
-        d = $("input[name='consumablesNum']:checked").each(function(){;
-            result = $(this).attr('value');
-        });
-        if(consumablesNumber==""){
-            alert("请输入要采购的数量")
-        }else{
-            window.location.href= "/consumables/addConsumablesNumber?consumablesNumber="+consumablesNumber+"&tag="+result;
-            alert("采购成功");
-            window.location.href = "http://localhost:8080/consumables/allconsumables";
-        }
-    }
-
-    /*打开修改模态框*/
-    function openEditModal(editModal) {
-        var result="";
-        var consumablesNumber="";
-        consumablesNumber = $("input[name='consumablesNum']:checked").each(function(){
-            result = $(this).attr('value');
-        });
-        if(result==""){
-            alert("未做出选择")
-        }else{
-            $("#editModal").modal('show');
-        }
-    }
-
-</script>
-<!--修改模态框-->
-<div class="modal fade" id="editModal" data-th-background="static" data-th-keytype="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!--顶部标题-->
-            <div class="modal-header">
-                <!--标题-->
-                <h5>药材增加数量</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!--内容-->
-            <div class="modal-body">
-                <form id="formEditDoctor">
-                    <input type="text" hidden id="academeIDU">
-                    <div class="form-group col-md-6">
-                        <label for="consumablesaddNumber">药材增加数量</label>
-                        <input type="text" class="form-control" placeholder="增加数量" id="consumablesaddNumber" name="consumablesaddNumber">
-                    </div>
-                </form>
-            </div>
-            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="addConsumables()"><span class="ti-pencil-alt"></span> EDIT</button>
-        </div>
-    </div>
-</div>
-
+<script th:inline="javascript"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ProClinic-医院管理系统Bootstrap4前端框架</title>
+    <title>增加药品种类</title>
     <!-- Fav  Icon Link -->
     <link rel="shortcut icon" type="image/png" th:href="@{/images/fav.png}">
     <!-- Bootstrap core CSS -->
@@ -68,7 +68,7 @@
                             <div class="modal-dialog modal-lorvens">
                                 <div class="modal-content lochana-box-shadow2">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Search Patient/医生:</h5>
+                                        <h5 class="modal-title">增加药品:</h5>
                                         <span class="ti-close" data-dismiss="modal" aria-label="Close">
 												</span>
                                     </div>
@@ -334,22 +334,7 @@
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
 
-<!--新增判断,年龄和编号不能为空-->
-<script th:inline="javascript">
-    $("#submit").click(function () {
-        var doctorNum = $("#doctorNum").val();
-        var doctorAge = $("#doctorAge").val();
-        if(doctorNum.length==0){
-            alert("编号不能空，请输入编号！")
-            return false;
-        }else if(doctorAge.length==0){
-            alert("年龄不能空，请输入年龄！")
-            return false;
-        }else {
-            return true;
-        }
-    })
-</script>
+<script th:inline="javascript"></script>
 </body>
 
 </html>
