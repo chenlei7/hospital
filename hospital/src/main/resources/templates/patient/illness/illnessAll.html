@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>增加病人</title>
+    <title>病人实时病情</title>
     <!-- Fav  Icon Link -->
     <link rel="shortcut icon" type="image/png" th:href="@{/images/fav.png}">
     <!-- Bootstrap core CSS -->
@@ -55,7 +54,7 @@
         <div class="container top-brand">
             <nav class="navbar navbar-default">
                 <div class="navbar-header">
-                    <div class="sidebar-header"> <a th:href="@{/patient/index}"><img th:src="@{/images/logo-dark.png}" class="logo" alt="logo"></a>
+                    <div class="sidebar-header"> <a href="/personnel/index"><img th:src="@{/images/logo-dark.png}"  class="logo" alt="logo"></a>
                     </div>
                 </div>
                 <ul class="nav justify-content-end">
@@ -140,27 +139,39 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-home"></span> 控制面板</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/patient/index}">默认</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                               aria-expanded="false"><span class="ti-wheelchair"></span> 病人管理</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/patient/addPatient}">添加病人信息</a>
-                                <a class="dropdown-item" th:href="@{/patient/patientsInfo}">查看病人信息</a>
-                                <a class="dropdown-item" href="about-patient.html">病人详情</a>
-                                <a class="dropdown-item" href="edit-patient.html">编辑病人信息</a>
+                                <a class="dropdown-item" href="/personnel/index">默认</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                               aria-expanded="false"><span class="ti-wheelchair"></span> 病人管理</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/patient/addPatient">添加病人信息</a>
+                                <a class="dropdown-item" href="/patient/patientsInfo">查看病人信息</a>
+                                <a class="dropdown-item" href="about-patient.html">病人详情</a>
+                                <a class="dropdown-item" href="edit-patient.html">编辑病人信息</a>
+                            </div>
+                        </li>
+                        <!--医生管理-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-user"></span> 医生管理</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="add-doctor.html">添加医生信息</a>
-                                <a class="dropdown-item" href="doctors.html">查询医生信息</a>
-                                <a class="dropdown-item" href="about-doctor.html">医生信息详情</a>
-                                <a class="dropdown-item" href="edit-doctor.html">编辑医生信息</a>
+                                <a class="dropdown-item" href="/personnel/addDoctor">添加医生信息</a>
+                                <a class="dropdown-item" href="/doctor/doctors">查询医生信息</a>
+                                <a class="dropdown-item" href="/doctor/doctorInfo">医生信息详情</a>
+                                <a class="dropdown-item" href="/personnel/editDoctor">编辑医生信息</a>
+                            </div>
+                        </li>
+                        <!--护士管理-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                               aria-expanded="false"><span class="ti-user"></span> 护士管理</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/personnel/addNurse">添加护士信息</a>
+                                <a class="dropdown-item" href="/nurse/nurses">查询护士信息</a>
+                                <a class="dropdown-item" href="/nurse/nurseInfo">护士信息详情</a>
+                                <a class="dropdown-item" href="/personnel/editNurse">编辑护士信息</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -176,7 +187,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-money"></span> 支付管理</a>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu">、
                                 <a class="dropdown-item" href="add-payment.html">添加支付</a>
                                 <a class="dropdown-item" href="payments.html">所有支付</a>
                                 <a class="dropdown-item" href="about-payment.html">发票</a>
@@ -240,7 +251,7 @@
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">添加病人信息</h3>
+                    <h3 class="block-title">病人 All</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
@@ -249,8 +260,8 @@
                                 <span class="ti-home"></span>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">病人管理</li>
-                        <li class="breadcrumb-item active">添加病人信息</li>
+                        <li class="breadcrumb-item">病人 </li>
+                        <li class="breadcrumb-item active">病人 All</li>
                     </ol>
                 </div>
             </div>
@@ -265,59 +276,43 @@
                 <!-- Widget Item -->
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">添加病人信息</h3>
-                        <form action="/patient/patientAdd" method="post" onsubmit="return check()">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="patientNum">病人编号</label>
-                                    <input type="text" class="form-control" placeholder="patientNum" id="patientNum" name="patientNum">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientName">病人姓名</label>
-                                    <input type="text" class="form-control" placeholder="patientName" id="patientName" name="patientName">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientAge">年龄</label>
-                                    <input type="text"  class="form-control" placeholder="patientAge" id="patientAge" name="patientAge">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientAddress">地址</label>
-                                    <input type="text" placeholder="patientAddress" class="form-control" id="patientAddress" name="patientAddress">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientComeDate">来的日期</label>
-                                    <input type="date" placeholder="patientComeDate" class="form-control" id="patientComeDate" name="patientComeDate">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientPhone">电话</label>
-                                    <input type="text" placeholder="patientPhone" class="form-control" id="patientPhone" name="patientPhone">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientDoctorNum">主治医生编号</label>
-                                    <input type="text" placeholder="patientDoctorNum" class="form-control" id="patientDoctorNum" name="patientDoctorNum">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientRoomNum">科室编号</label>
-                                    <input type="text" placeholder="patientRoomNum" class="form-control" id="patientRoomNum" name="patientRoomNum">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientBillNum">账单号</label>
-                                    <input type="text" placeholder="patientBillNum" class="form-control" id="patientBillNum" name="patientBillNum">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientGender">性别</label>
-                                    <select class="form-control" id="patientGender" name="patientGender">
-                                        <option>男</option>
-                                        <option>女</option>
-                                        <option>其它</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6 mb-3">
-                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-
+                        <h3 class="widget-title">病人 All</h3>
+                        <div class="table-responsive mb-3">
+                            <table id="tableId" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th class="no-sort">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="select-all">
+                                            <label class="custom-control-label" for="select-all"></label>
+                                        </div>
+                                    </th>
+                                    <th>病情编号</th>
+                                    <th>时间</th>
+                                    <th>描述</th>
+                                    <th>严重程度</th>
+                                    <th>生还几率</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="illness:${illnesses}">
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" th:id="${illness.id}" name="illnessId" th:value="${illness.id}">
+                                            <label class="custom-control-label" th:for="${illness.id}"></label>
+                                        </div>
+                                    </td>
+                                    <td th:text="${illness.illnessNum}"></td>
+                                    <td th:text="${illness.illnessTime}"></td>
+                                    <td th:text="${illness.illness_condition}"></td>
+                                    <td th:text="${illness.illnessSeverity}"></td>
+                                    <td th:text="${illness.illnessAlive}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> 编辑</button>
+                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openAddModal()"><span class="ti-pencil-alt"></span> 添加实时病情</button>
+                        </div>
                     </div>
                 </div>
                 <!-- /Widget Item -->
@@ -325,7 +320,6 @@
         </div>
         <!-- /Main Content -->
         <!--Copy Rights-->
-
         <!-- /Copy Rights-->
     </div>
     <!-- /Page Content -->
@@ -341,35 +335,136 @@
 <script th:src="@{/js/popper.min.js}"></script>
 <!-- Bootstrap Library-->
 <script th:src="@{/js/bootstrap.min.js}"></script>
-
 <!-- Datatable  -->
 <script th:src="@{/datatable/jquery.dataTables.min.js}"></script>
 <script th:src="@{/datatable/dataTables.bootstrap4.min.js}"></script>
-
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
+<script th:src="@{/js/custom-datatables.js}"></script>
 
-<!--某些字段不能为空-->
+
 <script th:inline="javascript">
-    $("#submit").click(function () {
-        var patientNum = $("#patientNum").val();
-        var patientDoctorNum = $("#patientDoctorNum").val();
-        var patientRoomNum = $("#patientRoomNum").val();
-        if(patientNum.length==0){
-            alert("病人编号不能空，请输入病人编号！")
-            return false;
-        }else if(patientDoctorNum.length==0){
-            alert("医生不能空，请输入医生编号！")
-            return false;
-        }else if(patientRoomNum.length==0){
-            alert("科室不能空，请输入科室！")
-            return false;
-        }else {
-            return true;
-        }
-    })
+    //打开增加模态框
+    function openAddModal() {
+        $("#addModal").modal('show');
+        $.ajax({
+            cache: true,
+            type: "get",
+            url: "/illness/findAllIllness",
+            success: function (data) {
+                console.log(data);
+                var patientDoctorNum = $("#illnessNum").empty();
+                for (var i = 0; i < data.length; i++) {
+                    patientDoctorNum.append("<option value ='" + data[i] + "'>" + data[i] + "</option>");
+                }
+            },
+            error: function () {
+                notifyError("获取数据失败，请重新刷新！")
+            }
+        });
+    }
+
+
+    /*打开修改模态框*/
+    function openEditModal() {
+        var illnessId="";
+        alert("不要忘记选择一条数据哦")
+        $("input[name='illnessId']:checked").each(function(){
+            illnessId = $(this).attr('value');
+            $("#illnessId1").val(illnessId);
+            $("#editModal").modal('show');
+        });
+
+    }
+
 </script>
+<!--修改模态框-->
+<div class="modal fade" id="editModal" data-th-background="static" data-th-keytype="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--顶部标题-->
+            <div class="modal-header">
+                <!--标题-->
+                <h5>编辑病人信息</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--内容-->
+            <div class="modal-body">
+                <form id="formEditDoctor" action="/illness/illnessUpdate" method="post" >
+                    <input type="text" hidden id="illnessId1" name="illnessId1">
+                    <div class="form-group col-md-6">
+                        <label for="illnessTime">时间(yyyy-MM-dd hh:mm:ss)</label>
+                        <input type="text"  class="form-control" placeholder="illnessTime1" id="illnessTime1" name="illnessTime1">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="illness_condition">描述</label>
+                        <input type="text"  class="form-control" placeholder="illness_condition1" id="illness_condition1" name="illness_condition1">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="illnessSeverity1">严重程度</label>
+                        <input type="text"  class="form-control" placeholder="illnessSeverity1" id="illnessSeverity1" name="illnessSeverity1">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="illnessAlive1">生还几率</label>
+                        <input type="text"  class="form-control" placeholder="illnessAlive1" id="illnessAlive1" name="illnessAlive1">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--增加模态框-->
+<div class="modal fade" id="addModal" data-th-background="static" data-th-keytype="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--顶部标题-->
+            <div class="modal-header">
+                <!--标题-->
+                <h5>增加实时病情信息</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--内容-->
+            <div class="modal-body">
+                <form id="formAddIllness" action="/illness/illnessAdd" method="post" >
+                    <div class="form-group col-md-6" id="doctor">
+                        <label for="illnessNum">请选择要增加的病情编号</label>
+                        <select class="form-control" id="illnessNum" name="illnessNum">
+                            <option value="">选择编号</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="illnessTime">时间(yyyy-MM-dd hh:mm:ss)</label>
+                        <input type="text"  class="form-control" placeholder="illnessTime" id="illnessTime" name="illnessTime">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="illness_condition">描述</label>
+                        <input type="text"  class="form-control" placeholder="illness_condition" id="illness_condition" name="illness_condition">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="illnessSeverity">严重程度</label>
+                        <input type="text"  class="form-control" placeholder="illnessSeverity" id="illnessSeverity" name="illnessSeverity">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="illnessAlive">生还几率</label>
+                        <input type="text"  class="form-control" placeholder="illnessAlive" id="illnessAlive" name="illnessAlive">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
-
 </html>

@@ -7,9 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+//病人
 @Repository
 public interface PatientMapper extends JpaRepository<Patient,Integer> {
     //查询有编号的全部病人信息
@@ -31,14 +33,20 @@ public interface PatientMapper extends JpaRepository<Patient,Integer> {
     List<Patient> findAllRegister();
 
     //查找全部的病人
-    @Transactional
+    /*@Transactional
     @Modifying
     @Query(nativeQuery = true,value = "select count(*) from patient_info ")
-    int queryAllNum();
+    int queryAllNum();*/
 
-    //确认挂号信息,根据电话号码去修改病人信息
+    //确认挂号信息,根据ID去修改病人信息
     @Transactional()
     @Modifying
-    @Query(nativeQuery = true,value = "update patient_info  set patient_num=:patientNum where patient_phone =:patientPhone")
-    int registerUpdate(@Param("patientNum")String patientNum,@Param("patientPhone")String patientPhone);
+    @Query(nativeQuery = true,value = "update patient_info  set patient_num=:patientNums,patient_doctor_num=:patientDoctorNum,patient_bill_num=:patientBillNum,patient_room_num=:patientRoomNum where id =:patientId")
+    int registerUpdate(@Param("patientId")String patientId, @Param("patientNums")String patientNums, @Param("patientBillNum")String patientBillNum,@Param("patientRoomNum")String patientRoomNum, @Param("patientDoctorNum")String patientDoctorNum);
+
+    //根据id查找病人
+    @Transactional()
+    @Modifying
+    @Query(nativeQuery = true,value = "select * from patient_info where id=:id")
+    List<Patient> findOnePatient(@Param("id")Integer id);
 }
