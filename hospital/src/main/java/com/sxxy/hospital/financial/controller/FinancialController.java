@@ -1,5 +1,6 @@
 package com.sxxy.hospital.financial.controller;
 
+import com.sxxy.hospital.financial.service.DAService;
 import com.sxxy.hospital.financial.service.FinancialService;
 import com.sxxy.hospital.financial.service.impl.FinancialServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class FinancialController {
 
     @Autowired
     FinancialService service;
+    @Autowired
+    DAService daService;
 
     //get方式访问login
     @GetMapping("/login")
@@ -29,21 +32,27 @@ public class FinancialController {
     @PostMapping("/login")
     public String login(String name ,String password){
         if(true){
-            return "/financial/index";
+            return "redirect:financial/index";
         }else {
-            return "redirect:financial/login";
+            return "financial/login";
         }
     }
     //跳转到登录主界面
     @RequestMapping("/index")
-    public String index(){
-        return "/financial/index";
+    public String index(Model model){
+        List<Map> lists = daService.findMoneyByDate();
+        Map map = lists.get(0);
+        double totalMoney = daService.totalMoney();
+        model.addAttribute("map",map);
+        model.addAttribute("total",totalMoney);
+        model.addAttribute("lists",lists);
+        return "financial/index";
     }
     //跳转到财务表
     @RequestMapping("/financial")
     public String financial(Model model){
-        List<Map> list = service.findAll();
-        model.addAttribute("lists", list);
+        List<Map> lists = service.findAll();
+        model.addAttribute("lists", lists);
         return "financial/financial";
     }
 

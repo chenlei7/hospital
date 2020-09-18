@@ -24,18 +24,6 @@ public class FinancialServiceImpl implements FinancialService {
         return mapper.findByType(type);
     }
 
-    //查询所有的支出信息
-    @Override
-    public List<Map> findByPay() {
-        return mapper.findByPay();
-    }
-
-    //查询所有的收入信息
-    @Override
-    public List<Map> findByRevenue() {
-        return mapper.findByRevenue();
-    }
-
     @Override
     public Map findById(int id) {
         return mapper.findById(id);

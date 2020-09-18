@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxxy.hospital.financial.mapper.DAMapper">
+<!-- 添加一条的支出收入信息   -->
+    <insert id="add">
+        insert into DAMoney values (null,#{pay},#{revenue},#{total},#{date})
+    </insert>
+
+<!--    查询最新7条数据-->
+    <select id="findMoneyByDate" resultType="java.util.LinkedHashMap">
+        select * from DAmoney ORDER BY DA_date DESC limit 0,7
+    </select>
+<!--    统计总资产-->
+    <select id="totalMoney" resultType="double">
+        SELECT SUM(DA_total) FROM DAmoney
+    </select>
+</mapper>

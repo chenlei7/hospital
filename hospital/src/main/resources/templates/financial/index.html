@@ -21,7 +21,8 @@
     <!-- jvectormap -->
     <link rel="stylesheet" th:href="@{/css/jquery-jvectormap.css}">
 
-    <script th:src="@{/js/modernizr.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/echarts.min.js}"></script>
+    <script th:src="@{/js/modernizr.min.js}" type="text/javascript"></script>
 </head>
 
 <body>
@@ -58,7 +59,7 @@
                             <div class="modal-dialog modal-lorvens">
                                 <div class="modal-content lochana-box-shadow2">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Search Patient/医生:</h5>
+                                        <h5 class="modal-title">Search Patient/财务:</h5>
                                         <span class="ti-close" data-dismiss="modal" aria-label="Close">
 											</span>
                                     </div>
@@ -144,9 +145,8 @@
                             <span class="ti-money"></span>
                         </div>
                         <div class="widget-right">
-                            <h4 class="wiget-title">支出</h4>
-                            <span class="numeric color-yellow">$7300</span>
-                            <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% 增长</p>
+                            <h4 class="wiget-title">昨日支出</h4>
+                            <span class="numeric color-yellow" th:text='${map.get("DA_pay")}'>$7300</span>
                         </div>
                     </div>
                 </div>
@@ -158,9 +158,8 @@
                             <span class="ti-money"></span>
                         </div>
                         <div class="widget-right">
-                            <h4 class="wiget-title">收入</h4>
-                            <span class="numeric color-yellow">$7300</span>
-                            <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% 增长</p>
+                            <h4 class="wiget-title">昨日收入</h4>
+                            <span class="numeric color-yellow" th:text='${map.get("DA_revenue")}'>$7300</span>
                         </div>
                     </div>
                 </div>
@@ -173,8 +172,7 @@
                         </div>
                         <div class="widget-right">
                             <h4 class="wiget-title">总资产</h4>
-                            <span class="numeric color-yellow">$7300</span>
-                            <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% 增长</p>
+                            <span class="numeric color-yellow" th:text="${total}">$7300</span>
                         </div>
                     </div>
                 </div>
@@ -185,16 +183,17 @@
                 <!-- Widget Item -->
                 <div class="col-md-6">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">出诊按年统计</h3>
-                        <div id="lineMorris" class="chart-home"></div>
+                        <h3 class="widget-title">近七天收入总览</h3>
+                        <div id="DARevenue" style="width: 450px; height:300px; margin: auto;"></div>
                     </div>
                 </div>
                 <!-- /Widget Item -->
                 <!-- Widget Item -->
                 <div class="col-md-6">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title"> 病人按年统计</h3>
-                        <div id="barMorris" class="chart-home"></div>
+                        <h3 class="widget-title"> 近7天支出总览</h3>
+                        <div id="DAPay" style="width: 450px; height: 300px; margin: auto;"></div>
+
                     </div>
                 </div>
                 <!-- /Widget Item -->
@@ -206,8 +205,6 @@
 
         </div>
         <!-- /Main Content -->
-        <!--Copy Rights-->
-        <!-- /Copy Rights-->
     </div>
     <!-- /Page Content -->
 </div>
@@ -223,13 +220,60 @@
 <!-- Bootstrap Library-->
 <script th:src="@{/js/bootstrap.min.js}"></script>
 <!-- morris charts -->
-<script th:src="@{/charts/js/raphael-min.js}"></script>
-<script th:src="@{/charts/js/morris.min.js}"></script>
-<script th:src="@{/js/custom-morris.js}"></script>
+<!--<script th:src="@{/charts/js/raphael-min.js}"></script>-->
+<!--<script th:src="@{/charts/js/morris.min.js}"></script>-->
+<!--<script th:src="@{/js/custom-morris.js}"></script>-->
 
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
 </body>
+<script th:inline="javascript">
+    var myChartPay = echarts.init(document.getElementById('DAPay'));
+    var myChartRevenue = echarts.init(document.getElementById('DARevenue'));
 
+var optionRevenue = {
+    title:{
+        text:"近7天收入情况"
+    },
+    tooltip:{},
+    legend:{
+        data:['金额']
+    },
+    xAxis:{
+        data:["第一天","第二天","第三天","第四天","第五天","第六天","第七天"]
+    },
+    yAxis:{
+
+    },
+    series:[{
+        name: '收入',
+        type: 'bar',
+        data: [5, 20, 36, 10, 10, 20,50]
+    }]
+}
+var optionPay = {
+    title:{
+        text:"近7天支出情况"
+    },
+    tooltip:{},
+    legend:{
+        data:['金额']
+    },
+    xAxis:{
+        data:["第一天","第二天","第三天","第四天","第五天","第六天","第七天"]
+    },
+    yAxis:{
+
+    },
+    series:[{
+        name: '支出',
+        type: 'bar',
+        data: [5, 20, 36, 10, 10, 20,50]
+    }]
+}
+    myChartPay.setOption(optionPay);
+    myChartRevenue.setOption(optionRevenue);
+
+</script>
 
 </html>
