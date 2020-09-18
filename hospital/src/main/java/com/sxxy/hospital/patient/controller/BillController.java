@@ -47,7 +47,14 @@ public class BillController {
     //真正的去执行修改账单的方法
     @RequestMapping("/billUpdates")
     public String billUpdates(Bill bill){
-
-        return null;
+        try {
+            //计算总的花费
+            Double count = bill.getBillRegisterCost()+bill.getBillDrugCost()+bill.getBillHospitalizationCost()+bill.getBiiInspectCost();
+            bill.setBillCountCost(count);
+            billMapper.save(bill);
+        }catch (Exception e){
+            return "patient/error";
+        }
+        return "patient/doctor/doctorSuccess1";
     }
 }

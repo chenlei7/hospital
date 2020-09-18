@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sxxy.hospital.patient.mapper.DoctorMappers;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,6 +125,8 @@ public class RegisterController {
                 bill.setBiiInspectCost(0.00);
                 bill.setBill_medicalInsurance(0.00);
                 bill.setBillPaid(00.00);
+                DateTimeFormatter FORMAT_NINETEEN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                bill.setBill_date(FORMAT_NINETEEN.toString());
                 billMapper.save(bill);
                 return "redirect:/jump/doctorSuccess";
             } else {
@@ -149,6 +152,8 @@ public class RegisterController {
                 bill.setBiiInspectCost(0.00);
                 bill.setBill_medicalInsurance(0.00);
                 bill.setBillPaid(00.00);
+                DateTimeFormatter FORMAT_NINETEEN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                bill.setBill_date(FORMAT_NINETEEN.toString());
                 billMapper.save(bill);
                 return "redirect:/jump/doctorSuccess";
             } else {
