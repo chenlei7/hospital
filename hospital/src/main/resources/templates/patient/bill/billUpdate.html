@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>修改账单</title>
+    <title>开药与账单修改</title>
     <!-- Fav  Icon Link -->
     <link rel="shortcut icon" type="image/png" th:href="@{/images/fav.png}">
     <!-- Bootstrap core CSS -->
@@ -302,7 +302,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="billCountCost">总花费</label>
-                                    <input type="text" placeholder="billCountCost" class="form-control" id="billCountCost" name="billCountCost" th:value="${bill.billCountCost}">
+                                    <input type="text" placeholder="billCountCost" class="form-control" id="billCountCost" name="billCountCost" th:value="${bill.billCountCost}" readonly="readonly">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="bill_medicalInsurance">医疗保险支出</label>
@@ -313,7 +313,7 @@
                                     <input type="text" placeholder="billPaid" class="form-control" id="billPaid" name="billPaid" th:value="${bill.billPaid}">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="billPaymentMethod">支付方式</label>
+                                    <label for="billPaymentMethod">支付方式(支持支付宝,微信,现金,刷卡)</label>
                                     <input type="text" placeholder="billPaymentMethod" class="form-control" id="billPaymentMethod" name="billPaymentMethod" th:value="${bill.billPaymentMethod}">
                                 </div>
                                 <div class="form-group col-md-6">
@@ -362,23 +362,6 @@
 
 <!--某些字段不能为空-->
 <script th:inline="javascript">
-    $("#submit").click(function () {
-        var patientNum = $("#patientNum").val();
-        var patientDoctorNum = $("#patientDoctorNum").val();
-        var patientRoomNum = $("#patientRoomNum").val();
-        if(patientNum.length==0){
-            alert("病人编号不能空，请输入病人编号！")
-            return false;
-        }else if(patientDoctorNum.length==0){
-            alert("医生不能空，请输入医生编号！")
-            return false;
-        }else if(patientRoomNum.length==0){
-            alert("科室不能空，请输入科室！")
-            return false;
-        }else {
-            return true;
-        }
-    })
 </script>
 
 </body>

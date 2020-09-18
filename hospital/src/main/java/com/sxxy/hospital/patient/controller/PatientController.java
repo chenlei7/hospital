@@ -67,6 +67,11 @@ public class PatientController {
             bill.setBillNum(patient.getPatientNum());
             bill.setBillRegisterCost(15.00);
             bill.setBillCountCost(15.00);
+            bill.setBillDrugCost(0.00);
+            bill.setBillHospitalizationCost(0.00);
+            bill.setBiiInspectCost(0.00);
+            bill.setBill_medicalInsurance(0.00);
+            bill.setBillPaid(15.00);
             billMapper.save(bill);
         }catch (Exception e){
             return "patient/error";

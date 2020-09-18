@@ -119,6 +119,11 @@ public class RegisterController {
                 bill.setBillNum(patientBillNum);
                 bill.setBillRegisterCost(200.00);
                 bill.setBillCountCost(200.00);
+                bill.setBillDrugCost(0.00);
+                bill.setBillHospitalizationCost(0.00);
+                bill.setBiiInspectCost(0.00);
+                bill.setBill_medicalInsurance(0.00);
+                bill.setBillPaid(00.00);
                 billMapper.save(bill);
                 return "redirect:/jump/doctorSuccess";
             } else {
@@ -139,6 +144,11 @@ public class RegisterController {
                 bill.setBillNum(patientBillNum);
                 bill.setBillRegisterCost(15.00);
                 bill.setBillCountCost(15.00);
+                bill.setBillDrugCost(0.00);
+                bill.setBillHospitalizationCost(0.00);
+                bill.setBiiInspectCost(0.00);
+                bill.setBill_medicalInsurance(0.00);
+                bill.setBillPaid(00.00);
                 billMapper.save(bill);
                 return "redirect:/jump/doctorSuccess";
             } else {
