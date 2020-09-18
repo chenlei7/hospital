@@ -10,12 +10,6 @@ public interface FinancialService {
     //用过类型查询财务信息
     List<Map> findByType(String type);
 
-    //查询所有的支出信息
-    List<Map> findByPay();
-
-    //查询所有的收入信息
-    List<Map> findByRevenue();
-
     //id查询信息
     Map findById(int id);
 }

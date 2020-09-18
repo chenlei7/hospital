@@ -11,6 +11,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+/**
+ * 就医部门的资金流水
+ */
 @Service
 public class TreatmentServiceImpl implements TreatmentService {
     @Autowired
@@ -23,7 +27,6 @@ public class TreatmentServiceImpl implements TreatmentService {
     /**
      * 定时任务，每天23点对当天的收入进行一个数据整理
      */
-
     @Override
     @Scheduled(cron = "0 0 23 * * ?")
     public void Treatment() {

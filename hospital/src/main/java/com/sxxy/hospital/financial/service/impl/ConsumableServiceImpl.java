@@ -12,6 +12,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *后勤部资金流动
+ */
 @Service
 public class ConsumableServiceImpl implements ConsumableService {
     @Autowired

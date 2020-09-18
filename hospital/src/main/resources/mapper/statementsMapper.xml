@@ -12,13 +12,13 @@
     <select id="findByType" parameterType="String" resultType="java.util.LinkedHashMap">
         select * from statements where statements=#{type}
     </select>
-<!--    查询所有的收入-->
-    <select id="findByRevenue" resultType="java.util.LinkedHashMap">
-        select * from statements where statements_state=1
+<!--    查询某天的收入-->
+    <select id="findRevenueByDate" parameterType="String" resultType="double">
+        select * from statements where statements_state=1 and statements_time like CONCAT('%',#{time},'%')
     </select>
-<!--    查询所有的支出-->
-    <select id="findByPay" resultType="java.util.LinkedHashMap">
-        select * from statements where statements_state=0
+<!--    查询某天的支出-->
+    <select id="findPayByDate" parameterType="String" resultType="double">
+        select * from statements where statements_state=0 and statements_time like CONCAT('%',#{time},'%')
     </select>
 <!--    id查询-->
     <select id="findById" parameterType="int" resultType="java.util.LinkedHashMap">

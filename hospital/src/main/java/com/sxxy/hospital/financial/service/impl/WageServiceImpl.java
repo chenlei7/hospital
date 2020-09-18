@@ -16,6 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 工资的发放
+ */
 @Service
 public class WageServiceImpl implements WageService {
     //注入Doctor的dao接口
