@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sxxy.hospital.patient.mapper.DoctorMappers;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //用户网上挂号
@@ -125,8 +127,10 @@ public class RegisterController {
                 bill.setBiiInspectCost(0.00);
                 bill.setBill_medicalInsurance(0.00);
                 bill.setBillPaid(00.00);
-                DateTimeFormatter FORMAT_NINETEEN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                bill.setBill_date(FORMAT_NINETEEN.toString());
+                Date date = new Date();//获取当前的日期
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+                String str = df.format(date);//获取String类型的时间
+                bill.setBill_date(str);
                 billMapper.save(bill);
                 return "redirect:/jump/doctorSuccess";
             } else {
@@ -152,8 +156,10 @@ public class RegisterController {
                 bill.setBiiInspectCost(0.00);
                 bill.setBill_medicalInsurance(0.00);
                 bill.setBillPaid(00.00);
-                DateTimeFormatter FORMAT_NINETEEN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                bill.setBill_date(FORMAT_NINETEEN.toString());
+                Date date = new Date();//获取当前的日期
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+                String str = df.format(date);//获取String类型的时间
+                bill.setBill_date(str);
                 billMapper.save(bill);
                 return "redirect:/jump/doctorSuccess";
             } else {

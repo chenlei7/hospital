@@ -55,7 +55,8 @@
         <div class="container top-brand">
             <nav class="navbar navbar-default">
                 <div class="navbar-header">
-                    <div class="sidebar-header"> <a th:href="@{/patient/index}"><img th:src="@{/images/logo-dark.png}" class="logo" alt="logo"></a>
+                    <div class="sidebar-header"><a th:href="@{/patient/index}"><img th:src="@{/images/logo-dark.png}"
+                                                                                    class="logo" alt="logo"></a>
                     </div>
                 </div>
                 <ul class="nav justify-content-end">
@@ -79,9 +80,11 @@
                                     <div class="modal-body">
                                         <form>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="search-term" placeholder="Type text here">
+                                                <input type="text" class="form-control" id="search-term"
+                                                       placeholder="Type text here">
                                                 <button type="button" class="btn btn-lorvens lochana-bg">
-                                                    <span class="ti-location-arrow"></span> Search</button>
+                                                    <span class="ti-location-arrow"></span> Search
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -90,7 +93,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true"
                            aria-expanded="false">
                             <span class="ti-announcement"></span>
                         </a>
@@ -107,7 +111,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true"
                            aria-expanded="false">
                             <span class="ti-user"></span>
                         </a>
@@ -129,7 +134,8 @@
         <!-- Menu -->
         <div class="container menu-nav">
             <nav class="navbar navbar-expand-lg lochana-bg text-white">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="ti-menu text-white"></span>
                 </button>
@@ -137,14 +143,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true"
                                aria-expanded="false"><span class="ti-home"></span> 控制面板</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" th:href="@{/patient/index}">默认</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true"
                                aria-expanded="false"><span class="ti-wheelchair"></span> 病人管理</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" th:href="@{/patient/addPatient}">添加病人信息</a>
@@ -154,7 +162,8 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true"
                                aria-expanded="false"><span class="ti-user"></span> 医生管理</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="add-doctor.html">添加医生信息</a>
@@ -164,7 +173,8 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true"
                                aria-expanded="false"><span class="ti-pencil-alt"></span> 出诊管理</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="add-appointment.html">添加出诊信息</a>
@@ -174,7 +184,8 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true"
                                aria-expanded="false"><span class="ti-money"></span> 支付管理</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="add-payment.html">添加支付</a>
@@ -183,7 +194,8 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true"
                                aria-expanded="false"><span class="ti-key"></span> 病房分配</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="add-room.html">添加病房</a>
@@ -192,7 +204,8 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true"
                                aria-expanded="false"><span class="ti-layout-tab"></span> UI框架</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="typography.html">排版</a>
@@ -218,7 +231,8 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true"
                                aria-expanded="false"><span class="ti-file"></span> 其它页面</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="login.html">登录</a>
@@ -270,52 +284,65 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="patientNum">病人编号</label>
-                                    <input type="text" class="form-control" placeholder="patientNum" id="patientNum" name="patientNum">
+                                    <input type="text" class="form-control" placeholder="patientNum" id="patientNum"
+                                           name="patientNum">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientName">病人姓名</label>
-                                    <input type="text" class="form-control" placeholder="patientName" id="patientName" name="patientName">
+                                    <input type="text" class="form-control" placeholder="patientName" id="patientName"
+                                           name="patientName">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientAge">年龄</label>
-                                    <input type="text"  class="form-control" placeholder="patientAge" id="patientAge" name="patientAge">
+                                    <input type="text" class="form-control" placeholder="patientAge" id="patientAge"
+                                           name="patientAge">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientAddress">地址</label>
-                                    <input type="text" placeholder="patientAddress" class="form-control" id="patientAddress" name="patientAddress">
+                                    <input type="text" placeholder="patientAddress" class="form-control"
+                                           id="patientAddress" name="patientAddress">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientComeDate">来的日期</label>
-                                    <input type="date" placeholder="patientComeDate" class="form-control" id="patientComeDate" name="patientComeDate">
+                                    <input type="date" placeholder="patientComeDate" class="form-control"
+                                           id="patientComeDate" name="patientComeDate">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientPhone">电话</label>
-                                    <input type="text" placeholder="patientPhone" class="form-control" id="patientPhone" name="patientPhone">
+                                    <input type="text" placeholder="patientPhone" class="form-control" id="patientPhone"
+                                           name="patientPhone">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="patientDoctorNum">主治医生编号</label>
-                                    <input type="text" placeholder="patientDoctorNum" class="form-control" id="patientDoctorNum" name="patientDoctorNum">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientRoomNum">科室编号</label>
-                                    <input type="text" placeholder="patientRoomNum" class="form-control" id="patientRoomNum" name="patientRoomNum">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientBillNum">账单号</label>
-                                    <input type="text" placeholder="patientBillNum" class="form-control" id="patientBillNum" name="patientBillNum">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="patientGender">性别</label>
-                                    <select class="form-control" id="patientGender" name="patientGender">
-                                        <option>男</option>
-                                        <option>女</option>
-                                        <option>其它</option>
+                                    <label for="patientRoomNum">选择科室</label>
+                                    <select class="form-control" id="patientRoomNum" name="patientRoomNum">
+                                        <option value="" id="select1">选择科室</option>
+                                        <option th:each="r:${rooms}" th:value="${r.roomPosition}"
+                                                th:text="${r.roomPosition}"></option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-6 mb-3">
-                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                <div class="form-group col-md-6" id="doctor">
+                                    <label for="patientDoctorNum">选择医生</label>
+                                    <select class="form-control" id="patientDoctorNum" name="patientDoctorNum">
+                                        <option value="">选择医生</option>
+                                    </select>
                                 </div>
-                            </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="patientBillNum">账单号</label>
+                                        <input type="text" placeholder="patientBillNum" class="form-control"
+                                               id="patientBillNum" name="patientBillNum">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="patientGender">性别</label>
+                                        <select class="form-control" id="patientGender" name="patientGender">
+                                            <option>男</option>
+                                            <option>女</option>
+                                            <option>其它</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6 mb-3">
+                                        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                    </div>
+                                </div>
                         </form>
 
                     </div>
@@ -355,18 +382,43 @@
         var patientNum = $("#patientNum").val();
         var patientDoctorNum = $("#patientDoctorNum").val();
         var patientRoomNum = $("#patientRoomNum").val();
-        if(patientNum.length==0){
+        if (patientNum.length == 0) {
             alert("病人编号不能空，请输入病人编号！")
             return false;
-        }else if(patientDoctorNum.length==0){
+        } else if (patientDoctorNum.length == 0) {
             alert("医生不能空，请输入医生编号！")
             return false;
-        }else if(patientRoomNum.length==0){
+        } else if (patientRoomNum.length == 0) {
             alert("科室不能空，请输入科室！")
             return false;
-        }else {
+        } else {
             return true;
         }
+    })
+
+    //科室联动专家
+    $("#patientRoomNum").change(function () {
+        var room = $("#patientRoomNum").val();
+        if (room == " " || room == '选择科室') {
+            return;
+        }
+        console.log("我是" + room);
+        $.ajax({
+            cache: true,
+            type: "get",
+            url: "/register/findDoctor",
+            data: {"room": room},
+            success: function (data) {
+                console.log(data);
+                var patientDoctorNum = $("#patientDoctorNum").empty();
+                for (var i = 0; i < data.length; i++) {
+                    patientDoctorNum.append("<option value ='" + data[i].doctorNum + "'>" + data[i].doctorName + "</option>");
+                }
+            },
+            error: function () {
+                notifyError("获取数据失败，请重新刷新！")
+            }
+        })
     })
 </script>
 

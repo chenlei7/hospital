@@ -365,6 +365,7 @@
 
     /*打开修改模态框*/
     function openEditModal() {
+        alert("不要忘记选择一条数据哦")
         var patientNum="";
         $("input[name='patientNum']:checked").each(function(){
             patientNum = $(this).attr('value');

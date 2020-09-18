@@ -1,18 +1,20 @@
 package com.sxxy.hospital.patient.controller;
 
+import com.sxxy.hospital.equipment.entity.Room;
+import com.sxxy.hospital.equipment.mapper.RoomMapper;
 import com.sxxy.hospital.patient.entity.Bill;
 import com.sxxy.hospital.patient.entity.Illness;
 import com.sxxy.hospital.patient.entity.Patient;
-import com.sxxy.hospital.patient.mapper.BillMapper;
-import com.sxxy.hospital.patient.mapper.IllnessMapper;
-import com.sxxy.hospital.patient.mapper.PatientMapper;
+import com.sxxy.hospital.patient.mapper.*;
 import com.sxxy.hospital.patient.service.PatientService;
+import com.sxxy.hospital.personnel.entity.Doctor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +34,15 @@ public class PatientController {
 
     @Autowired
     IllnessMapper illnessMapper;
+
+    @Autowired
+    RoomMapper roomMapper;
+
+    @Autowired
+    RoomMappers roomMappers;
+
+    @Autowired
+    DoctorMappers doctorMappers;
 
     //主页面
     @RequestMapping("/index")
@@ -64,9 +75,17 @@ public class PatientController {
     @PostMapping("/patientAdd")
     public String patientAdd(Patient patient){
         try {
+            //更据医生编号去查找工作的地方
+            List<Doctor> doctors = doctorMappers.findADoctorByDoctorNum(patient.getPatientDoctorNum());
+            String doctorNum1 = doctors.get(0).getDoctorWorkspace();
+            //根据工作地点查找工作房间编号
+            List<Room> rooms = roomMappers.findRoomByName(doctorNum1);
+            String roomNum = rooms.get(0).getRoomNum();
+            //把医生工作的地方存入patient对象
+            patient.setPatientRoomNum(roomNum);
             patientMapper.save(patient);
             Bill bill = new Bill();
-            bill.setBillNum(patient.getPatientNum());
+            bill.setBillNum(patient.getPatientBillNum());
             bill.setBillRegisterCost(15.00);
             bill.setBillCountCost(15.00);
             bill.setBillDrugCost(0.00);
@@ -74,8 +93,7 @@ public class PatientController {
             bill.setBiiInspectCost(0.00);
             bill.setBill_medicalInsurance(0.00);
             bill.setBillPaid(15.00);
-            DateTimeFormatter FORMAT_NINETEEN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            bill.setBill_date(FORMAT_NINETEEN.toString());
+            bill.setBill_date(patient.getPatientComeDate());
             billMapper.save(bill);
         }catch (Exception e){
             return "patient/error";
@@ -86,7 +104,11 @@ public class PatientController {
 
     //跳转页面
     @RequestMapping("/addPatient")
-    public String addPatient(){
+    public String addPatient(Model model){
+        List<Doctor> doctors = new ArrayList<>();
+        List<Room> rooms = new ArrayList<>();
+        rooms = roomMapper.findAll();
+        model.addAttribute("rooms", rooms);
         return "patient/patientAdd";
     }
 
