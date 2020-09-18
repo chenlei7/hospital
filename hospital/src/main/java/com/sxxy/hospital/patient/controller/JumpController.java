@@ -26,4 +26,10 @@ public class JumpController {
         return "patient/doctor/doctorSuccess";
     }
 
+    //跳到账单修改页面
+    @RequestMapping("/billUpdate")
+    public String billUpdate(){
+        return "patient/bill/billUpdate";
+    }
+
 }

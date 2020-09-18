@@ -13,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -67,11 +69,18 @@ public class PatientController {
             bill.setBillNum(patient.getPatientNum());
             bill.setBillRegisterCost(15.00);
             bill.setBillCountCost(15.00);
+            bill.setBillDrugCost(0.00);
+            bill.setBillHospitalizationCost(0.00);
+            bill.setBiiInspectCost(0.00);
+            bill.setBill_medicalInsurance(0.00);
+            bill.setBillPaid(15.00);
+            DateTimeFormatter FORMAT_NINETEEN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            bill.setBill_date(FORMAT_NINETEEN.toString());
             billMapper.save(bill);
         }catch (Exception e){
             return "patient/error";
         }
-        return "patient/patientAdd";
+        return "patient/doctor/doctorSuccess";
     }
 
 

@@ -1,0 +1,60 @@
+package com.sxxy.hospital.patient.controller;
+
+import com.sxxy.hospital.patient.entity.Bill;
+import com.sxxy.hospital.patient.entity.Illness;
+import com.sxxy.hospital.patient.mapper.BillMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+
+//账单与开药
+@Controller
+@RequestMapping("/bill")
+public class BillController {
+    @Autowired
+    BillMapper billMapper;
+
+    //查询出全部的账单信息
+    @RequestMapping("/billAll")
+    public String illnessAll(Model model){
+        List<Bill> bills = new ArrayList<>();
+        bills = billMapper.findAll();
+        model.addAttribute("bills",bills);
+        return "patient/bill/billAll";
+    }
+
+
+    //修改账单信息
+    @ResponseBody
+    @RequestMapping("/billUpdate")
+    public String billUpdate(Integer billId, HttpSession session){
+        try {
+            List<Bill> bills = billMapper.findBillById(billId);
+            session.setAttribute("bills",bills);
+        }catch (Exception e){
+            return "0";
+        }
+        return "1";
+    }
+
+    //真正的去执行修改账单的方法
+    @RequestMapping("/billUpdates")
+    public String billUpdates(Bill bill){
+        try {
+            //计算总的花费
+            Double count = bill.getBillRegisterCost()+bill.getBillDrugCost()+bill.getBillHospitalizationCost()+bill.getBiiInspectCost();
+            bill.setBillCountCost(count);
+            billMapper.save(bill);
+        }catch (Exception e){
+            return "patient/error";
+        }
+        return "patient/doctor/doctorSuccess1";
+    }
+}
