@@ -172,11 +172,20 @@
                         </div>
                         <div class="widget-right">
                             <h4 class="wiget-title">总资产</h4>
-                            <span class="numeric color-yellow" th:text="${total}">$7300</span>
+                            <span class="numeric color-yellow" th:text="${totalMoney}">$7300</span>
                         </div>
                     </div>
                 </div>
                 <!-- /Widget Item -->
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget-area-2 lochana-box-shadow">
+                        <h3 class="widget-title">近七天财务情况总览</h3>
+                        <div id="DATotal" style="width: 900px; height:300px; margin: auto;"></div>
+                    </div>
+                </div>
             </div>
 
             <div class="row">
@@ -193,21 +202,17 @@
                     <div class="widget-area-2 lochana-box-shadow">
                         <h3 class="widget-title"> 近7天支出总览</h3>
                         <div id="DAPay" style="width: 450px; height: 300px; margin: auto;"></div>
-
                     </div>
                 </div>
                 <!-- /Widget Item -->
             </div>
 
-            <div class="row">
-            </div>
-            </div>
-
         </div>
-        <!-- /Main Content -->
     </div>
-    <!-- /Page Content -->
+        <!-- /Main Content -->
 </div>
+    <!-- /Page Content -->
+
 <!-- Back to Top -->
 <a id="back-to-top" href="#" class="back-to-top">
     <span class="ti-angle-up"></span>
@@ -230,7 +235,13 @@
 <script th:inline="javascript">
     var myChartPay = echarts.init(document.getElementById('DAPay'));
     var myChartRevenue = echarts.init(document.getElementById('DARevenue'));
+    var myChartTotal = echarts.init(document.getElementById('DATotal'));
 
+    var pays=[[${pays}]];
+    var revenues=[[${revenues}]];
+    var totals=[[${totals}]];
+    var dates=[[${dates}]];
+    console.log(pays+"="+revenues+"="+dates)
 var optionRevenue = {
     title:{
         text:"近7天收入情况"
@@ -240,7 +251,7 @@ var optionRevenue = {
         data:['金额']
     },
     xAxis:{
-        data:["第一天","第二天","第三天","第四天","第五天","第六天","第七天"]
+        data:dates
     },
     yAxis:{
 
@@ -248,7 +259,7 @@ var optionRevenue = {
     series:[{
         name: '收入',
         type: 'bar',
-        data: [5, 20, 36, 10, 10, 20,50]
+        data: revenues
     }]
 }
 var optionPay = {
@@ -260,7 +271,7 @@ var optionPay = {
         data:['金额']
     },
     xAxis:{
-        data:["第一天","第二天","第三天","第四天","第五天","第六天","第七天"]
+        data:dates
     },
     yAxis:{
 
@@ -268,11 +279,33 @@ var optionPay = {
     series:[{
         name: '支出',
         type: 'bar',
-        data: [5, 20, 36, 10, 10, 20,50]
+        data: pays
+    }]
+}
+
+var optionTotal = {
+    title:{
+        text:"近七天财务情况"
+    },
+    tooltip:{},
+    legend:{
+        data:['金额']
+    },
+    xAxis:{
+        data:dates
+    },
+    yAxis:{
+
+    },
+    series:[{
+        name: '支出',
+        type: 'line',
+        data: totals
     }]
 }
     myChartPay.setOption(optionPay);
     myChartRevenue.setOption(optionRevenue);
+    myChartTotal.setOption(optionTotal);
 
 </script>
 
