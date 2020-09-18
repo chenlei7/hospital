@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 财务表的操作
+ */
 @Service
 public class FinancialServiceImpl implements FinancialService {
    @Autowired

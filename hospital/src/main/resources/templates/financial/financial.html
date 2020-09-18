@@ -267,6 +267,7 @@
             choice=uniqueArray(choice)
 
         });
+
         var arr=[];
         //获取未选中的值
         $("input[name='financialNum']").not("input:checked").each(function () {
@@ -274,6 +275,7 @@
         })
         //去重
         arr=uniqueArray(arr)
+
         //去除选中元素中未选中的值
         for (var i = 0; i < arr.length; i++) {
             for (var j = 0; j < choice.length; j++) {

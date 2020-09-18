@@ -12,6 +12,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 主页数据统计
+ */
 @Service
 public class DAServiceImpl implements DAService {
 

@@ -122,12 +122,14 @@
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">快速统计</h3>
+                    <h3 class="block-title">医院财务系统</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
-                        <li class="nav-item dropdown">
-                            <a  class="breadcrumb" href="/financial/financial">财务管理</a>
+                        <li class="breadcrumb-item">
+                            <a href="/financial/financial">
+                                <span class="ti-search">财务管理</span>
+                            </a>
                         </li>
                     </ol>
                 </div>
@@ -224,85 +226,83 @@
 <script th:src="@{/js/popper.min.js}"></script>
 <!-- Bootstrap Library-->
 <script th:src="@{/js/bootstrap.min.js}"></script>
-<!-- morris charts -->
-<!--<script th:src="@{/charts/js/raphael-min.js}"></script>-->
-<!--<script th:src="@{/charts/js/morris.min.js}"></script>-->
-<!--<script th:src="@{/js/custom-morris.js}"></script>-->
-
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
 </body>
 <script th:inline="javascript">
+    //初始化echarts
     var myChartPay = echarts.init(document.getElementById('DAPay'));
     var myChartRevenue = echarts.init(document.getElementById('DARevenue'));
     var myChartTotal = echarts.init(document.getElementById('DATotal'));
 
+    //后台传来的数据
     var pays=[[${pays}]];
     var revenues=[[${revenues}]];
     var totals=[[${totals}]];
     var dates=[[${dates}]];
-    console.log(pays+"="+revenues+"="+dates)
-var optionRevenue = {
-    title:{
-        text:"近7天收入情况"
-    },
-    tooltip:{},
-    legend:{
-        data:['金额']
-    },
-    xAxis:{
-        data:dates
-    },
-    yAxis:{
 
-    },
-    series:[{
-        name: '收入',
-        type: 'bar',
-        data: revenues
-    }]
-}
-var optionPay = {
-    title:{
-        text:"近7天支出情况"
-    },
-    tooltip:{},
-    legend:{
-        data:['金额']
-    },
-    xAxis:{
-        data:dates
-    },
-    yAxis:{
+    //echarts配置
+    var optionRevenue = {
+        title:{
+            text:"近7天收入情况"
+        },
+        tooltip:{},
+        legend:{
+            data:['金额']
+        },
+        xAxis:{
+            data:dates
+        },
+        yAxis:{
 
-    },
-    series:[{
-        name: '支出',
-        type: 'bar',
-        data: pays
-    }]
-}
+        },
+        series:[{
+            name: '收入',
+            type: 'bar',
+            data: revenues
+        }]
+    }
+    var optionPay = {
+        title:{
+            text:"近7天支出情况"
+        },
+        tooltip:{},
+        legend:{
+            data:['金额']
+        },
+        xAxis:{
+            data:dates
+        },
+        yAxis:{
 
-var optionTotal = {
-    title:{
-        text:"近七天财务情况"
-    },
-    tooltip:{},
-    legend:{
-        data:['金额']
-    },
-    xAxis:{
-        data:dates
-    },
-    yAxis:{
+        },
+        series:[{
+            name: '支出',
+            type: 'bar',
+            data: pays
+        }]
+    }
+    var optionTotal = {
+        title:{
+            text:"近七天财务情况"
+        },
+        tooltip:{},
+        legend:{
+            data:['金额']
+        },
+        xAxis:{
+            data:dates
+        },
+        yAxis:{
 
-    },
-    series:[{
-        name: '支出',
-        type: 'line',
-        data: totals
-    }]
-}
+        },
+        series:[{
+            name: '支出',
+            type: 'line',
+            data: totals
+        }]
+    }
+
     myChartPay.setOption(optionPay);
     myChartRevenue.setOption(optionRevenue);
     myChartTotal.setOption(optionTotal);
