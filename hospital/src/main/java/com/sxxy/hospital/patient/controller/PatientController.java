@@ -115,7 +115,7 @@ public class PatientController {
     public String addPatient(Model model){
         List<Doctor> doctors = new ArrayList<>();
         List<Room> rooms = new ArrayList<>();
-        rooms = roomMapper.findAll();
+        rooms = roomMappers.findAllRoom();
         model.addAttribute("rooms", rooms);
         return "patient/patientAdd";
     }
