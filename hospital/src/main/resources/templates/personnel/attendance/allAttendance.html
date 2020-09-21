@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -22,6 +22,9 @@
     <link rel="stylesheet" th:href="@{/charts/css/morris.css}">
     <!-- jvectormap -->
     <link rel="stylesheet" th:href="@{/css/jquery-jvectormap.css}">
+    <link rel="stylesheet" th:href="@{/datatable/dataTables.bootstrap4.min.css}">
+
+    <script th:src="@{/js/modernizr.min.js}"></script>
 </head>
 
 <body>
@@ -33,6 +36,7 @@
     </div>
 </div>
 <!--/Pre Loader -->
+
 <div class="wrapper">
     <!-- Page Content -->
     <div id="content">
@@ -56,6 +60,7 @@
                         </a>
                         <div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
                             <h5>这里显示登录进来的人的名字</h5>
+
                             <a class="dropdown-item" href="/login">
                                 <span class="ti-power-off"></span> 退出</a>
                         </div>
@@ -133,7 +138,7 @@
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">护士 Update</h3>
+                    <h3 class="block-title">考勤 All</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
@@ -142,8 +147,8 @@
                                 <span class="ti-home"></span>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">护士 </li>
-                        <li class="breadcrumb-item active">护士 Update</li>
+                        <li class="breadcrumb-item">考勤 </li>
+                        <li class="breadcrumb-item active">考勤 All</li>
                     </ol>
                 </div>
             </div>
@@ -158,79 +163,57 @@
                 <!-- Widget Item -->
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">护士 Update</h3>
-                        <form action="/nurse/updateNurse" method="post" onsubmit="return check()">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="nurseNumber">编号 Number</label>
-                                    <input type="text" class="form-control" placeholder="Number" id="nurseNumber" name="nurseNum">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="nurseWorkDate">工作时间 WorkDate</label>
-                                    <input type="text" class="form-control" placeholder="WorkDate" id="nurseWorkDate" name="nurseWorkDate">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="nurseWorkspace">工作地点 Workspace</label>
-                                    <input type="text" class="form-control" placeholder="Workspace" id="nurseWorkspace" name="nurseWorkspace">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="nursePosition">科室 Position</label>
-                                    <input type="text" placeholder="Position" class="form-control" id="nursePosition" name="nursePosition">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="nursePhone">电话 Phone</label>
-                                    <input type="text" placeholder="Phone" class="form-control" id="nursePhone" name="nursePhone">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="nurseEmail">邮箱 Email</label>
-                                    <input type="email" placeholder="email" class="form-control" id="nurseEmail" name="nurseEmail">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="nursePassword">密码 Password</label>
-                                    <input type="text" placeholder="Password" class="form-control" id="nursePassword" name="nursePassword">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="nurseMoney">工资 Salary</label>
-                                    <input type="text" placeholder="Salary" class="form-control" id="nurseMoney" name="nurseMoney">
-                                </div>
+                        <h3 class="widget-title">考勤 All</h3>
+                        <div class="table-responsive mb-3">
+                            <table id="tableId" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th class="no-sort">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="select-all">
+                                            <label class="custom-control-label" for="select-all"></label>
+                                        </div>
+                                    </th>
+                                    <th>Number</th>
+                                    <th>Name</th>
+                                    <th>attendanceDate</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="attendance:${attendances}">
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" th:id="${attendance.id}" name="doctorNum" th:value="${attendance.attendanceNum}">
+                                            <label class="custom-control-label" th:for="${attendance.id}"></label>
+                                        </div>
+                                    </td>
+                                    <td th:text="${attendance.attendanceNum}"></td>
+                                    <td th:text="${attendance.attendanceName}"></td>
+                                    <td th:text="${attendance.attendanceDate}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
 
-                                <div class="form-group col-md-6">
-                                    <label for="nurseAbout">自我介绍 Details</label>
-                                    <textarea placeholder="Details" class="form-control" id="nurseAbout" rows="3" name="nurseAbout"></textarea>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="nurseAddress">地址 Address</label>
-                                    <textarea placeholder="Address" class="form-control" id="nurseAddress" rows="3" name="nurseAddress"></textarea>
-                                </div>
 
-                                <!--									<div class="form-check col-md-12 mb-2">-->
-                                <!--										<div class="text-left">-->
-                                <!--											<div class="custom-control custom-checkbox">-->
-                                <!--												<input class="custom-control-input" type="checkbox" id="ex-check-2">-->
-                                <!--												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>-->
-                                <!--											</div>-->
-                                <!--										</div>-->
-                                <!--									</div>-->
-                                <div class="form-group col-md-6 mb-3">
-                                    <button type="submit" class="btn btn-primary btn-lg" id="submit">Submit</button>
-                                    <button type="reset" class="btn btn-primary btn-lg">Reset</button>
-                                </div>
-                            </div>
-                        </form>
-                        <!-- Alerts-->
-                        <!--							<div class="alert alert-success alert-dismissible fade show" role="alert">-->
-                        <!--								<strong>Successfully Done!</strong> Please Check in doctors list-->
-                        <!--								<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-                        <!--									<span aria-hidden="true">×</span>-->
-                        <!--								</button>-->
-                        <!--							</div>-->
-                        <!--							<div class="alert alert-warning alert-dismissible fade show" role="alert">-->
-                        <!--								<strong>Holy guacamole!</strong> You should check in on some of those fields below.-->
-                        <!--								<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-                        <!--									<span aria-hidden="true">×</span>-->
-                        <!--								</button>-->
-                        <!--							</div>-->
-                        <!-- /Alerts-->
+                            <!--Export links-->
+                            <!--							<nav aria-label="Page navigation example">-->
+                            <!--								<ul class="pagination justify-content-center export-pagination">-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-download"></span> csv</a>-->
+                            <!--									</li>-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>-->
+                            <!--									</li>-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>-->
+                            <!--									</li>-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>-->
+                            <!--									</li>-->
+                            <!--								</ul>-->
+                            <!--							</nav>-->
+                            <!-- /Export links-->
+                        </div>
                     </div>
                 </div>
                 <!-- /Widget Item -->
@@ -258,25 +241,12 @@
 <script th:src="@{/js/popper.min.js}"></script>
 <!-- Bootstrap Library-->
 <script th:src="@{/js/bootstrap.min.js}"></script>
-<!-- morris charts -->
-<!--	<script th:src="@{/charts/js/raphael-min.js}"></script>-->
-<!--	<script th:src="@{/charts/js/morris.min.js}"></script>-->
-<!--	<script th:src="@{/js/custom-morris.js}"></script>-->
-
+<!-- Datatable  -->
+<script th:src="@{/datatable/jquery.dataTables.min.js}"></script>
+<script th:src="@{/datatable/dataTables.bootstrap4.min.js}"></script>
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
+<script th:src="@{/js/custom-datatables.js}"></script>
 
-<script th:inline="javascript">
-    $("#submit").click(function () {
-        var nurseMoney = $("#nurseMoney").val();
-        if(nurseMoney.length==0){
-            alert("工资不能空，请输入编号！")
-            return false;
-        }else {
-            return true;
-        }
-    })
-</script>
 </body>
-
 </html>
