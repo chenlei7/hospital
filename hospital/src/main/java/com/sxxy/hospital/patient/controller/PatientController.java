@@ -11,6 +11,8 @@ import com.sxxy.hospital.personnel.entity.Doctor;
 import com.sxxy.hospital.personnel.entity.Nurse;
 import com.sxxy.hospital.personnel.mapper.NurseMapper;
 import com.sxxy.hospital.personnel.service.NurseService;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,6 +73,7 @@ public class PatientController {
     }
 
     //查询全部病人信息
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @RequestMapping("/patientsInfo")
     public String patientsInfo(Model model){
         List<Patient> patients = new ArrayList<>();
@@ -80,6 +83,7 @@ public class PatientController {
     }
 
     //真正的添加病人
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @PostMapping("/patientAdd")
     public String patientAdd(Patient patient){
         try {
@@ -111,6 +115,7 @@ public class PatientController {
 
 
     //跳转页面
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @RequestMapping("/addPatient")
     public String addPatient(Model model){
         List<Doctor> doctors = new ArrayList<>();
@@ -122,6 +127,7 @@ public class PatientController {
 
     //修改病人信息
     @PostMapping("/patientUpadte")
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     public  String patientUpadte(Patient patient){
         System.out.println(patient);
         //修改病人信息表
@@ -139,6 +145,7 @@ public class PatientController {
     }
 
     //网上挂号的全部病人信息
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @RequestMapping("/registerAll")
     public String registerAll(Model model){
         List<Patient> patientss = new ArrayList<>();
@@ -149,6 +156,7 @@ public class PatientController {
 
 
     //修改护士信息
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @RequestMapping("/updateNurse")
     public String updateNurse(String nursePhone, String nurseAddress, String nurseEmail, String nursePosition, String nurseWorkspace, String nurseWorkDate, String nurseAbout, String nursePassword, double nurseMoney, String nurseNum) {
         System.out.println(nurseNum);
@@ -161,6 +169,7 @@ public class PatientController {
     }
 
     //查看所有护士
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @RequestMapping("/nurses")
     public String allNurse(Model model) {
         List<Nurse> nurses = new ArrayList<>();

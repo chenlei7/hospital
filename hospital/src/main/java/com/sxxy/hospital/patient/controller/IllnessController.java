@@ -3,6 +3,8 @@ package com.sxxy.hospital.patient.controller;
 import com.sxxy.hospital.patient.entity.Illness;
 import com.sxxy.hospital.patient.entity.Patient;
 import com.sxxy.hospital.patient.mapper.IllnessMapper;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ public class IllnessController {
 
 
     //查询出全部的病情信息
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @RequestMapping("/illnessAll")
     public String illnessAll(Model model){
         List<Illness> illnesses = new ArrayList<>();
@@ -32,6 +35,7 @@ public class IllnessController {
     }
 
     //修改病情信息
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @PostMapping("/illnessUpdate")
     public  String illnessUpdate(int illnessId,String illnessTime,String illness_condition,String illnessSeverity,String illnessAlive) {
         int a = illnessMapper.illnessUpdate(illnessTime,illness_condition,illnessSeverity,illnessAlive,illnessId);
@@ -44,6 +48,7 @@ public class IllnessController {
     }
 
     //增加实时病情
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @PostMapping("/illnessAdd")
     public String illnessAdd(Illness illness){
         try {
@@ -55,6 +60,7 @@ public class IllnessController {
     }
 
     //查询全部病情
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @ResponseBody
     @GetMapping("/findAllIllness")
     public Set<String> findAllIllness(){
