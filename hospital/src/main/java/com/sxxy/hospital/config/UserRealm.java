@@ -47,8 +47,17 @@ public class UserRealm extends AuthorizingRealm {
         info.addStringPermissions(permissionList);
 
 
+
         if (role.equals("财务部")){
-            info.addRole("财务部");
+            info.addRole("financialer");
+        }else if (role.equals("人事部")){
+            info.addRole("dept");
+        }else if (role.equals("医生")){
+            info.addRole("doctor");
+        }else if (role.equals("护士")){
+            info.addRole("nurse");
+        }else if (role.equals("后勤部")){
+            info.addRole("other");
         }
         return info;
     }
@@ -62,7 +71,7 @@ public class UserRealm extends AuthorizingRealm {
         Doctor doctor = null;
         Other other = null;
         Nurse nurse =null;
-        //判断查询的表
+        //判断查询的表并获取密码
         String role = (String) request.getSession().getAttribute("role");
         if("财务部".equals(role)||"人事部".equals(role)){
            dept = deptService.deptLodin(name);
@@ -95,7 +104,7 @@ public class UserRealm extends AuthorizingRealm {
         }
 
         //判断查出来的值非空
-        if (null!=password||"".equals(password)){
+        if (null!=password||!"".equals(password)){
             if (pwd.equals(password)){
                 return new SimpleAuthenticationInfo(name,pwd,getName());
             }else {

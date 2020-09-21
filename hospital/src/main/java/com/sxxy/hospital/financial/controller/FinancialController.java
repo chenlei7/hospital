@@ -6,6 +6,8 @@ import com.sxxy.hospital.financial.service.impl.FinancialServiceImpl;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,37 +33,8 @@ public class FinancialController {
     @Autowired
     DAService daService;
 
-    //get方式访问login
-    @GetMapping("/login")
-    public String login(){
-        return "financial/login";
-    }
-    //post方式进行登录
-
-    @PostMapping("/login")
-    public String login(String name , String password, String role, HttpSession session){
-        session.setAttribute("role",role);
-        System.out.println(role+"--------------------------");
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(name,password);
-        try {
-            subject.login(token);
-        }catch (AuthenticationException ae){
-            return "/financial/login";
-        }
-        if ("人事部".equals(role)){
-            return "redirect:/personnel/index";
-        }else if ("财务部".equals(role)){
-            return "redirect:/financial/index";
-        }else if ("医生".equals(role)||"护士".equals(role)){
-            return "redirect:/patient/index";
-        }else if ("后勤部".equals(role)){
-            return "";
-        }else {
-            return "/financial/login";
-        }
-    }
     //跳转到登录主界面
+    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
     @RequestMapping("/index")
     public String index(Model model){
         List<Map> lists = daService.findMoneyByDate();
@@ -103,6 +76,7 @@ public class FinancialController {
         return "financial/index";
     }
     //跳转到财务表
+    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
     @RequestMapping("/financial")
     public String financial(Model model){
         List<Map> lists = service.findAll();
