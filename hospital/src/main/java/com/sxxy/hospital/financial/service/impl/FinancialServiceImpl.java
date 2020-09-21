@@ -31,4 +31,9 @@ public class FinancialServiceImpl implements FinancialService {
     public Map findById(int id) {
         return mapper.findById(id);
     }
+
+    @Override
+    public int add(String statementNum,String statementName,String statementDeptName,String statementType,String statementEvent,String statementTime,int statementState,double statementMoney) {
+        return mapper.add(statementNum, statementName, statementDeptName, statementType, statementEvent, statementTime, statementState, statementMoney);
+    }
 }
