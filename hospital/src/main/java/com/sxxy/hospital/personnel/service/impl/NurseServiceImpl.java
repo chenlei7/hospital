@@ -38,4 +38,10 @@ public class NurseServiceImpl implements NurseService {
     public int editNurseNowState(String nurseState, List<String> editNum) {
         return nurseMapper.editNurseNowState(nurseState, editNum);
     }
+
+    //查询某个护士
+    @Override
+    public Nurse findByNurseNum(String num) {
+        return nurseMapper.findByNurseNum(num);
+    }
 }

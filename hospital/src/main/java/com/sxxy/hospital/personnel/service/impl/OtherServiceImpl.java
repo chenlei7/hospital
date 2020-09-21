@@ -36,4 +36,11 @@ public class OtherServiceImpl implements OtherService {
     public int editOtherNowState(String otherState, List<String> editNum) {
         return otherMapper.editNurseNowState(otherState,editNum);
     }
+
+    @Override
+    public Other findByOtherNum(String num) {
+        return otherMapper.findByOtherNum(num);
+    }
+
+
 }

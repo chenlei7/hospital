@@ -31,4 +31,7 @@ public interface NurseMapper extends JpaRepository<Nurse,Object> {
     @Modifying
     @Query(nativeQuery = true,value = "update nurse_info set nurse_state=:nurseState  where  nurse_num in (:editNum) ")
     int editNurseNowState(@Param("nurseState")String nurseState, @Param("editNum") List<String> editNum);
+
+    //查询某个护士
+    Nurse findByNurseNum(String num);
 }

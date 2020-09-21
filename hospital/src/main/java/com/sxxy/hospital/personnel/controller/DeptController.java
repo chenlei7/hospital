@@ -28,7 +28,7 @@ public class DeptController {
     //部门登录
     @RequestMapping("/login")
     public String deptLogin(String deptNum, String deptPassword, Model model){
-        if(deptService.deptLodin(deptNum,deptPassword)!=null) {
+        if(deptService.deptLodin(deptNum)!=null) {
             List<Patient> patients = new ArrayList<>();
             patients = patientMapper.findAll();
             model.addAttribute("patients",patients);
@@ -75,7 +75,7 @@ public class DeptController {
     //查询部门  (代写)
     @RequestMapping("/allDept")
     public String allDept(String deptNum, String deptPassword){
-        if(deptService.deptLodin(deptNum,deptPassword)!=null) {
+        if(deptService.deptLodin(deptNum)!=null) {
             return "personnel/index";
         }else {
             return "personnel/login";
