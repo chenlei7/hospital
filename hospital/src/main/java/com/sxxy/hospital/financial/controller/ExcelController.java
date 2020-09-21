@@ -3,6 +3,8 @@ package com.sxxy.hospital.financial.controller;
 import com.sxxy.hospital.financial.entity.ExcelData;
 import com.sxxy.hospital.financial.service.FinancialService;
 import com.sxxy.hospital.utils.ExcelUtils;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,7 @@ public class ExcelController {
 
     @Autowired
     FinancialService financialService;
-
+    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
     @RequestMapping("/out")
     public void outExcel(String excelName, String tag,HttpServletResponse response){
         int rowIndex = 0;

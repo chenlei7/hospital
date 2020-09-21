@@ -86,12 +86,13 @@ public class FinancialController {
         return "/financial/financial";
     }
 
+    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
     @GetMapping("/add")
     public String add(){
         return "/financial/add";
     }
 
-
+    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
     @PostMapping("/add")
     @ResponseBody
     public String addFinancial(String statementNum,String statementName,String statementDeptName,String statementType,String statementEvent,String statementTime,int statementState,double statementMoney){
