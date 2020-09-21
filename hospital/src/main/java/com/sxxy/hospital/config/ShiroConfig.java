@@ -46,6 +46,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/world/**", "anon");
         filterChainDefinitionMap.put("/patient/**", "anon");
         filterChainDefinitionMap.put("/register/**", "anon");
+        filterChainDefinitionMap.put("/jump/**", "anon");
         //登录后访问界面
         filterChainDefinitionMap.put("/financial/**", "authc");
         filterChainDefinitionMap.put("/equipment/**", "authc");
