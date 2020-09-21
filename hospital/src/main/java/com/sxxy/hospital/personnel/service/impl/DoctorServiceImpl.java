@@ -36,4 +36,10 @@ public class DoctorServiceImpl implements DoctorService {
     public int editDoctorNowState(String doctorState, List<String> editNum) {
         return doctorMapper.editDoctorNowState(doctorState,editNum);
     }
+
+    //查询某个医生
+    @Override
+    public Doctor findByDoctorNum(String num) {
+        return doctorMapper.findByDoctorNum(num);
+    }
 }

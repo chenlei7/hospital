@@ -31,4 +31,7 @@ public interface OtherMapper extends JpaRepository<Other,Object> {
     @Modifying
     @Query(nativeQuery = true,value = "update other_info set other_state=:otherState  where  other_num in (:editNum) ")
     int editNurseNowState(@Param("otherState")String otherState, @Param("editNum") List<String> editNum);
+
+    //num查询员工
+    Other findByOtherNum(String num);
 }

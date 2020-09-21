@@ -3,6 +3,10 @@ package com.sxxy.hospital.financial.controller;
 import com.sxxy.hospital.financial.service.DAService;
 import com.sxxy.hospital.financial.service.FinancialService;
 import com.sxxy.hospital.financial.service.impl.FinancialServiceImpl;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,15 +34,31 @@ public class FinancialController {
     //get方式访问login
     @GetMapping("/login")
     public String login(){
-        return "/financial/login";
+        return "financial/login";
     }
     //post方式进行登录
+
     @PostMapping("/login")
-    public String login(String name ,String password){
-        if(true){
-            return "redirect:financial/index";
+    public String login(String name , String password, String role, HttpSession session){
+        session.setAttribute("role",role);
+        System.out.println(role+"--------------------------");
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(name,password);
+        try {
+            subject.login(token);
+        }catch (AuthenticationException ae){
+            return "/financial/login";
+        }
+        if ("人事部".equals(role)){
+            return "redirect:/personnel/index";
+        }else if ("财务部".equals(role)){
+            return "redirect:/financial/index";
+        }else if ("医生".equals(role)||"护士".equals(role)){
+            return "redirect:/patient/index";
+        }else if ("后勤部".equals(role)){
+            return "";
         }else {
-            return "financial/login";
+            return "/financial/login";
         }
     }
     //跳转到登录主界面
