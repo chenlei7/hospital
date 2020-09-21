@@ -26,11 +26,24 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("/notRole");
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-        filterChainDefinitionMap.put("/static/**", "anon");
+
+        //静态资源过滤
+        filterChainDefinitionMap.put("/charts/**", "anon");
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/datatable/**", "anon");
+        filterChainDefinitionMap.put("/dist/**", "anon");
+        filterChainDefinitionMap.put("/font-awesome/**", "anon");
+        filterChainDefinitionMap.put("/fonts/**", "anon");
+        filterChainDefinitionMap.put("/images/**", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/layui/**", "anon");
+
+        //未登录可访问的界面
         filterChainDefinitionMap.put("/user/**", "anon");
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/login", "anon");
 
+        //登录后访问界面
         filterChainDefinitionMap.put("/financial/**", "authc");
         filterChainDefinitionMap.put("/patient/**", "authc");
         filterChainDefinitionMap.put("/equipment/**", "authc");

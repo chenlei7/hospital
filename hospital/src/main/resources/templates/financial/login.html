@@ -1,20 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>登录</title>
-</head>
-<body>
-<form action="/login" method="post">
-    账号:<input type="text" name="name"><br>
-    密码:<input type="password" name="password"><br>
-    <input type="radio" name="role" value="医生">医生
-    <input type="radio" name="role" value="护士">护士
-    <input type="radio" name="role" value="财务部">财务
-    <input type="radio" name="role" value="人事部">人事
-    <input type="radio" name="role" value="后勤部">后勤
-    <input type="submit" value="登录">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>医院管理系统登录</title>
+	<link rel="shortcut icon" type="image/png" href="images/fav.png">
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- themify icons CSS -->
+	<link rel="stylesheet" href="css/themify-icons.css">
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/green.css" id="style_theme">
+	<link rel="stylesheet" href="css/responsive.css">
 
-</form>
+	<script src="js/modernizr.min.js"></script>
+
+    <style>
+        .select_style {width:240px; height:30px; overflow:hidden; background:color(cyan) no-repeat 215px;
+            border:1px solid #ccc;
+            -moz-border-radius: 5px; /* Gecko browsers */
+            -webkit-border-radius: 5px; /* Webkit browsers */
+            border-radius:5px;
+        }
+        .select_style select { padding:5px; background:transparent; width:268px; font-size: 16px; border:none; height:30px;
+            -webkit-appearance: none; /*for Webkit browsers*/
+        }
+    </style>
+</head>
+
+<body class="auth-bg">
+	<!-- Pre Loader -->
+	<div class="loading">
+		<div class="spinner">
+			<div class="double-bounce1"></div>
+			<div class="double-bounce2"></div>
+		</div>
+	</div>
+	<!--/Pre Loader -->
+	<!-- Color Changer -->
+	<div class="theme-settings" id="switcher">
+		<span class="theme-click">
+			<span class="ti-settings"></span>
+		</span>
+		<span class="theme-color theme-default theme-active" data-color="green"></span>
+		<span class="theme-color theme-blue" data-color="blue"></span>
+		<span class="theme-color theme-red" data-color="red"></span>
+		<span class="theme-color theme-violet" data-color="violet"></span>
+		<span class="theme-color theme-yellow" data-color="yellow"></span>
+	</div>
+	<!-- /Color Changer -->
+	<div class="wrapper">
+		<!-- Page Content  -->
+		<div id="content">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 auth-box">
+						<div class="lochana-box-shadow">
+							<h3 class="widget-title">登录</h3>
+							<form class="widget-form" action="/login" method="post">
+								<!-- form-group -->
+								<div class="form-group row">
+									<div class="col-sm-12">
+										<input type="text" name="name" placeholder="账号" class="form-control" required="" data-validation="length alphanumeric" data-validation-length="3-12"
+										 data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)" data-validation-has-keyup-event="true">
+									</div>
+								</div>
+								<!-- /.form-group -->
+								<!-- form-group -->
+								<div class="form-group row">
+									<div class="col-sm-12">
+										<input type="password" placeholder="Password" name="密码" class="form-control" data-validation="strength" data-validation-strength="2"
+										 data-validation-has-keyup-event="true">
+									</div>
+								</div>
+								<!-- /.form-group -->
+								<!-- Check Box -->
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <select name="role" class="form-control" style="height: 54px">
+                                            <option value ="医生" >医生</option>
+                                            <option value ="护士" >护士</option>
+                                            <option value="财务部" >财务部</option>
+                                            <option value="人事部" >人事部</option>
+                                            <option value="后勤部">后勤部</option>
+                                         </select>
+                                     </div>
+                               </div>
+								<!-- /Check Box -->	
+								<!-- Login Button -->			
+								<div class="button-btn-block">
+									<button type="submit" class="btn btn-primary btn-lg btn-block">登录</button>
+								</div>
+								<!-- /Login Button -->	
+								<!-- Links -->
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Content  -->
+	</div>
+	<!-- Jquery Library-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- Popper Library-->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap Library-->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Custom Script-->
+    <script src="js/custom.js"></script>
 </body>
+
 </html>
