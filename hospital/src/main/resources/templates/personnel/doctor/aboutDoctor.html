@@ -143,14 +143,16 @@
 								<a class="dropdown-item" href="/personnel/index">默认</a>
 							</div>
 						</li>
+						<!--病人管理-->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-wheelchair"></span> 病人管理</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="add-patient.html">添加病人信息</a>
-								<a class="dropdown-item" href="patients.html">查看病人信息</a>
-								<a class="dropdown-item" href="about-patient.html">病人详情</a>
-								<a class="dropdown-item" href="edit-patient.html">编辑病人信息</a>
+								<a class="dropdown-item" th:href="@{/patient/addPatient}">前台挂号</a>
+								<a class="dropdown-item" th:href="@{/patient/patientsInfo}">查看病人信息</a>
+								<a class="dropdown-item" th:href="@{/patient/registerAll}">网上预约管理</a>
+								<a class="dropdown-item" th:href="@{/illness/illnessAll}">病人实时病情管理</a>
+								<a class="dropdown-item" th:href="@{/bill/billAll}">病人开药与账单</a>
 							</div>
 						</li>
 						<!--医生管理-->
@@ -214,19 +216,6 @@
 								<a class="dropdown-item" href="edit-room.html">编辑病房信息</a>
 							</div>
 						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							   aria-expanded="false"><span class="ti-file"></span> 其它页面</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="login.html">登录</a>
-								<a class="dropdown-item" href="sign-up.html">注册</a>
-								<a class="dropdown-item" href="404.html">404</a>
-								<a class="dropdown-item" href="blank-page.html">空白页</a>
-								<a class="dropdown-item" href="pricing.html">价格表</a>
-								<a class="dropdown-item" href="faq.html">FAQ</a>
-								<a class="dropdown-item" href="invoice.html">发票</a>
-							</div>
-						</li>
 					</ul>
 				</div>
 			</nav>
@@ -242,7 +231,7 @@
 				<div class="col-md-6">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a href="index.html">
+							<a href="/personnel/index">
 								<span class="ti-home"></span>
 							</a>
 						</li>

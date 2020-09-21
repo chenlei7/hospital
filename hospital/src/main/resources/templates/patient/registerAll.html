@@ -154,10 +154,11 @@
                                aria-haspopup="true"
                                aria-expanded="false"><span class="ti-wheelchair"></span> 病人管理</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/patient/addPatient">添加病人信息</a>
-                                <a class="dropdown-item" href="/patient/patientsInfo">查看病人信息</a>
-                                <a class="dropdown-item" href="about-patient.html">病人详情</a>
-                                <a class="dropdown-item" href="edit-patient.html">编辑病人信息</a>
+                                <a class="dropdown-item" th:href="@{/patient/addPatient}">前台挂号</a>
+                                <a class="dropdown-item" th:href="@{/patient/patientsInfo}">查看病人信息</a>
+                                <a class="dropdown-item" th:href="@{/patient/registerAll}">网上预约管理</a>
+                                <a class="dropdown-item" th:href="@{/illness/illnessAll}">病人实时病情管理</a>
+                                <a class="dropdown-item" th:href="@{/bill/billAll}">病人开药与账单</a>
                             </div>
                         </li>
                         <!--医生管理-->
@@ -376,6 +377,7 @@
 
     /*打开修改模态框*/
     function openEditModal() {
+        alert("不要忘记选择一条数据哦")
         var patientId = "";
         $("input[name='patientId']:checked").each(function () {
             patientId = $(this).attr('value');
