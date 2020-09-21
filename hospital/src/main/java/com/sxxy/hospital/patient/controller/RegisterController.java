@@ -188,4 +188,12 @@ public class RegisterController {
         return doctorMappers.findADoctorByRoom(patient.get(0).getPatientRoomNum());
     }
 
+    //根据用户名字和密码查询状态
+    @RequestMapping("/myRegister")
+    public String myRegister(String patientName,String patientPhone,Model model){
+        List<Patient> list = patientMapper.findRegister(patientName,patientPhone);
+        model.addAttribute("myState",list);
+        return "patient/showRegisterState";
+    }
+
 }

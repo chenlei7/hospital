@@ -32,4 +32,10 @@ public class JumpController {
         return "patient/bill/billUpdate";
     }
 
+    //跳到查看挂号状态界面
+    @RequestMapping("/registerState")
+    public String registerState(){
+        return "patient/registerState";
+    }
+
 }

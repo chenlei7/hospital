@@ -49,4 +49,10 @@ public interface PatientMapper extends JpaRepository<Patient,Integer> {
     @Modifying
     @Query(nativeQuery = true,value = "select * from patient_info where id=:id")
     List<Patient> findOnePatient(@Param("id")Integer id);
+
+    //根据查用户明和电话号码找病人
+    @Transactional()
+    @Modifying
+    @Query(nativeQuery = true,value = "select * from patient_info where patient_name=:patientName and patient_phone=:patientPhone")
+    List<Patient> findRegister(@Param("patientName")String patientName,@Param("patientPhone")String patientPhone);
 }

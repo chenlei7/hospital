@@ -65,23 +65,6 @@
 						<li class="nav-item">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							 aria-expanded="false">
-								<span class="ti-announcement"></span>
-							</a>
-							<div class="dropdown-menu lochana-box-shadow2 notifications animated flipInY">
-								<h5>Notifications</h5>
-								<a class="dropdown-item" href="#">
-									<span class="ti-wheelchair"></span> New Patient Added</a>
-								<a class="dropdown-item" href="#">
-									<span class="ti-money"></span> Patient payment done</a>
-								<a class="dropdown-item" href="#">
-									<span class="ti-time"></span>Patient Appointment booked</a>
-								<a class="dropdown-item" href="#">
-									<span class="ti-wheelchair"></span> New Patient Added</a>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							 aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
@@ -112,16 +95,6 @@
 								 aria-expanded="false"><span class="ti-home"></span> 医院首页</a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="/personnel/index">首页</a>
-								</div>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-wheelchair"></span> 病人管理</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="add-patient.html">添加病人信息</a>
-									<a class="dropdown-item" href="patients.html">查看病人信息</a>
-									<a class="dropdown-item" href="about-patient.html">病人详情</a>
-									<a class="dropdown-item" href="edit-patient.html">编辑病人信息</a>
 								</div>
 							</li>
 							<!--医生管理-->
@@ -155,48 +128,6 @@
 									<a class="dropdown-item" href="/other/others">查询员工信息</a>
 									<a class="dropdown-item" href="/other/otherInfo">员工信息详情</a>
 									<a class="dropdown-item" href="/personnel/editOther">编辑员工信息</a>
-								</div>
-							</li>
-
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-pencil-alt"></span> 出诊管理</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="add-appointment.html">添加出诊信息</a>
-									<a class="dropdown-item" href="appointments.html">查询出诊信息</a>
-									<a class="dropdown-item" href="about-appointment.html">出诊信息详情</a>
-									<a class="dropdown-item" href="edit-appointment.html">编辑出诊信息</a>
-								</div>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-money"></span> 支付管理</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="add-payment.html">添加支付</a>
-									<a class="dropdown-item" href="payments.html">所有支付</a>
-									<a class="dropdown-item" href="about-payment.html">发票</a>
-								</div>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-key"></span> 病房分配</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="add-room.html">添加病房</a>
-									<a class="dropdown-item" href="rooms.html">查询病房</a>
-									<a class="dropdown-item" href="edit-room.html">编辑病房信息</a>
-								</div>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-file"></span> 其它页面</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="login.html">登录</a>
-									<a class="dropdown-item" href="sign-up.html">注册</a>
-									<a class="dropdown-item" href="error.html">404</a>
-									<a class="dropdown-item" href="blank-page.html">空白页</a>
-									<a class="dropdown-item" href="pricing.html">价格表</a>
-									<a class="dropdown-item" href="faq.html">FAQ</a>
-									<a class="dropdown-item" href="invoice.html">发票</a>
 								</div>
 							</li>
 						</ul>
@@ -291,11 +222,6 @@
 	<script th:src="@{/js/popper.min.js}"></script>
 	<!-- Bootstrap Library-->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<!-- morris charts -->
-	<script th:src="@{/charts/js/raphael-min.js}"></script>
-	<script th:src="@{/charts/js/morris.min.js}"></script>
-	<script th:src="@{/js/custom-morris.js}"></script>
-
 	<!-- Custom Script-->
 	<script th:src="@{/js/custom.js}"></script>
 </body>
