@@ -39,7 +39,7 @@ public class LoginController {
         }else if ("医生".equals(role)||"护士".equals(role)){
             return "redirect:/patient/index";
         }else if ("后勤部".equals(role)){
-            return "";
+            return "redirect:/room/rooms";
         }else {
             return "financial/login";
         }
