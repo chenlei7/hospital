@@ -31,4 +31,7 @@ public interface DoctorMapper extends JpaRepository<Doctor,Object> {
     @Modifying
     @Query(nativeQuery = true,value = "update doctor_info set doctor_state=:doctorState  where  doctor_num in (:editNum) ")
     int editDoctorNowState(@Param("doctorState")String doctorState, @Param("editNum") List<String> editNum);
+
+    //通过num查询
+    Doctor findByDoctorNum(String num);
 }

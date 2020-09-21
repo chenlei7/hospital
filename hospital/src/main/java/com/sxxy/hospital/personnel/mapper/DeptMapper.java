@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DeptMapper extends JpaRepository<Dept,String> {
     //部门登录
-    Dept findByDeptNumAndDeptPassword(String deptNum, String deptPassword);
+    Dept findByDeptNum(String deptNum);
 }

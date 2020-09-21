@@ -17,6 +17,9 @@ public interface OtherService {
     //删除员工
     int deleteOtherByOtherNum(List<String> delNum);
 
-    //修改护士现状
+    //修改员工现状
     int editOtherNowState(String otherState, List<String> editNum);
+
+
+    Other findByOtherNum(String num);
 }

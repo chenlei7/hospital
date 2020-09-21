@@ -16,4 +16,6 @@ public interface DoctorService {
 
     //修改医生现状
     int editDoctorNowState(String doctorState,List<String> editNum);
+
+    Doctor findByDoctorNum(String num);
 }

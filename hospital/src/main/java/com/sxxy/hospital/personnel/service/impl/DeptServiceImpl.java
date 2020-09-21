@@ -13,7 +13,7 @@ public class DeptServiceImpl implements DeptService {
     DeptMapper deptMapper;
     //部门登录
     @Override
-    public Dept deptLodin(String deptNum, String deptPassword) {
-        return deptMapper.findByDeptNumAndDeptPassword(deptNum,deptPassword);
+    public Dept deptLodin(String deptNum) {
+        return deptMapper.findByDeptNum(deptNum);
     }
 }
