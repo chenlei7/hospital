@@ -261,14 +261,15 @@
                     var datas = [];
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost:8080/chinese/list",
+                        url: "/chinese/list",
                         dataType: "json",
                         async: false,
                         success: function (data) {
+                            console.log(data);
                             for (var i = 0; i < data.length; i++) {
                                 datas.push({
                                     "name": data[i].provinceShortName,
-                                    "value": data[i].confirmCount
+                                    "value": data[i].currentConfirmedCount
                                 })
                             }
                         }
