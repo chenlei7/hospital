@@ -12,4 +12,6 @@ public interface FinancialService {
 
     //id查询信息
     Map findById(int id);
+
+    int add(String statementNum,String statementName,String statementDeptName,String statementType,String statementEvent,String statementTime,int statementState,double statementMoney);
 }

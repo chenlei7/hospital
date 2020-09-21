@@ -5,7 +5,7 @@
 <mapper namespace="com.sxxy.hospital.financial.mapper.StatementsMapper">
 <!--    查询所有-->
     <select id="findAll" resultType="java.util.LinkedHashMap">
-        select * from statements
+        select * from statements ORDER BY statements_time DESC
     </select>
 
 <!--    查询类型-->

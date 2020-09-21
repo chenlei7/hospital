@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>添加</title>
+    <!-- Fav  Icon Link -->
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/fav.png}">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <!-- themify icons CSS -->
+    <link rel="stylesheet" th:href="@{/css/themify-icons.css}">
+    <!-- Animations CSS -->
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <!-- Main CSS -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/green.css}" id="style_theme">
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+    <!-- morris charts -->
+    <link rel="stylesheet" th:href="@{/charts/css/morris.css}">
+    <!-- jvectormap -->
+    <link rel="stylesheet" th:href="@{/css/jquery-jvectormap.css}">
+</head>
+
+<body>
+<!-- Pre Loader -->
+<div class="loading">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<!--/Pre Loader -->
+
+<!-- /Color Changer -->
+<div class="wrapper">
+    <!-- Page Content -->
+    <div id="content">
+        <!-- Top Navigation -->
+        <div class="container top-brand">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <div class="sidebar-header"> <a href="/personnel/index"><img th:src="@{/images/logo-dark.png}"  class="logo" alt="logo"></a>
+                    </div>
+                </div>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <span title="Fullscreen" class="ti-fullscreen fullscreen"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target=".lochana-modal-lg">
+                            <span class="ti-search"></span>
+                        </a>
+                        <div class="modal fade lochana-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lorvens">
+                                <div class="modal-content lochana-box-shadow2">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">器材:</h5>
+                                        <span class="ti-close" data-dismiss="modal" aria-label="Close">
+												</span>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="search-term" placeholder="Type text here">
+                                                <button type="button" class="btn btn-lorvens lochana-bg">
+                                                    <span class="ti-location-arrow"></span> Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span class="ti-announcement"></span>
+                        </a>
+                        <div class="dropdown-menu lochana-box-shadow2 notifications animated flipInY">
+                            <h5>Notifications</h5>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-wheelchair"></span> New Patient Added</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-money"></span> Patient payment done</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-time"></span>Patient Appointment booked</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-wheelchair"></span> New Patient Added</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span class="ti-user"></span>
+                        </a>
+                        <div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
+                            <h5>John Willing</h5>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-settings"></span> Settings</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-help-alt"></span> Help</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-power-off"></span> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <!-- /Top Navigation -->
+        <!-- Menu -->
+        <div class="container menu-nav">
+        </div>
+        <!-- /Menu -->
+        <!-- Breadcrumb -->
+        <!-- Page Title -->
+        <div class="container mt-0">
+            <div class="row breadcrumb-bar">
+                <div class="col-md-6">
+                    <h3 class="block-title">财务信息增加</h3>
+                </div>
+                <div class="col-md-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/financial/financial">
+                                <span class="ti-search">财务管理</span>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Title -->
+
+        <!-- /Breadcrumb -->
+        <!-- Main Content -->
+        <div class="container">
+
+            <div class="row">
+                <!-- Widget Item -->
+                <div class="col-md-12">
+                    <div class="widget-area-2 lochana-box-shadow">
+                        <h3 class="widget-title">财务信息增加</h3>
+                        <form action="/financial/add" method="post">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="statementNum">编号</label>
+                                    <input type="text" class="form-control" placeholder="Number" id="statementNum" name="statementNum">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="statementName">姓名</label>
+                                    <input type="text" class="form-control" placeholder="name" id="statementName" name="statementName">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="statementState">收入/支出</label>
+                                    <select class="form-control" id="statementState" name="statementState">
+                                        <option value="1">收入</option>
+                                        <option value="0">支出</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="statementMoney">金额</label>
+                                    <input type="text" class="form-control" placeholder="Money" id="statementMoney" name="statementMoney">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="statementTime">时间</label>
+                                    <input type="Date" class="form-control" placeholder="equipmentTime" id="statementTime" name="statementTime">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="statementDeptName">部门</label>
+                                    <select class="form-control" id="statementDeptName" name="statementDeptName">
+                                        <option value="人事部">人事部</option>
+                                        <option value="财务部">财务部</option>
+                                        <option value="后勤部">后勤部</option>
+                                        <option value="医生">医生</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="statementType">类型</label>
+                                    <select class="form-control" id="statementType" name="statementType">
+                                        <option value="工资">工资</option>
+                                        <option value="医药费">医药费</option>
+                                        <option value="医疗用品购入">医疗用品购入</option>
+                                        <option value="器材购入">器材购入</option>
+                                        <option value="医院收款">医院收款</option>
+                                        <option value="药品">药品</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="statementEvent">说明</label>
+                                    <input type="text" class="form-control" placeholder="Event" id="statementEvent" name="statementEvent">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 mb-3">
+                                <button type="submit" class="btn btn-primary btn-lg" id="submit">提交</button>
+                                <button type="reset" class="btn btn-primary btn-lg">重置</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /Widget Item -->
+            </div>
+        </div>
+        <!-- /Main Content -->
+        <!--Copy Rights-->
+        <div class="container">
+            <div class="d-sm-flex justify-content-center">
+                <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2020 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span>
+            </div>
+        </div>
+        <!-- /Copy Rights-->
+    </div>
+    <!-- /Page Content -->
+</div>
+<!-- Back to Top -->
+<a id="back-to-top" href="#" class="back-to-top">
+    <span class="ti-angle-up"></span>
+</a>
+<!-- /Back to Top -->
+<!-- Jquery Library-->
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<!-- Popper Library-->
+<script th:src="@{/js/popper.min.js}"></script>
+<!-- Bootstrap Library-->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<!-- Custom Script-->
+<script th:src="@{/js/custom.js}"></script>
+
+<script th:inline="javascript"></script>
+</body>
+
+</html>
