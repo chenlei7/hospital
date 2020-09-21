@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>开药与账单</title>
+    <title>ProClinic-医院管理系统Bootstrap4前端框架</title>
     <!-- Fav  Icon Link -->
     <link rel="shortcut icon" type="image/png" th:href="@{/images/fav.png}">
     <!-- Bootstrap core CSS -->
@@ -66,7 +67,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-home"></span> 控制面板</a>
                             <div class="dropdown-menu">
@@ -107,7 +108,24 @@
         <!-- /Menu -->
         <!-- Breadcrumb -->
         <!-- Page Title -->
-
+        <div class="container mt-0">
+            <div class="row breadcrumb-bar">
+                <div class="col-md-6">
+                    <h3 class="block-title">护士 All</h3>
+                </div>
+                <div class="col-md-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">
+                                <span class="ti-home"></span>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">护士 </li>
+                        <li class="breadcrumb-item active">护士 All</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
         <!-- /Page Title -->
 
         <!-- /Breadcrumb -->
@@ -118,7 +136,7 @@
                 <!-- Widget Item -->
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
-                        <h3 class="widget-title">病人账单</h3>
+                        <h3 class="widget-title">护士 All</h3>
                         <div class="table-responsive mb-3">
                             <table id="tableId" class="table table-bordered table-striped">
                                 <thead>
@@ -129,46 +147,58 @@
                                             <label class="custom-control-label" for="select-all"></label>
                                         </div>
                                     </th>
-                                    <th>账单号</th>
-                                    <th>挂号花费</th>
-                                    <th>药品</th>
-                                    <th>药花费</th>
-                                    <th>住院</th>
-                                    <th>住院花费</th>
-                                    <th>检查或者手术</th>
-                                    <th>检查花费</th>
-                                    <th>总花费</th>
-                                    <th>医疗保险支出</th>
-                                    <th>个人已支付</th>
-                                    <th>支付方式</th>
-                                    <th>日期</th>
+                                    <th>Number</th>
+                                    <th>Name</th>
+                                    <th>WorkSpace</th>
+                                    <th>WorkDate</th>
+                                    <th>电话</th>
+                                    <th>科室</th>
+                                    <th>工资</th>
+                                    <th>现状</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="bills:${bills}">
+                                <tr th:each="nurse:${nurses}">
                                     <td>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" th:id="${bills.id}" name="billId" th:value="${bills.id}">
-                                            <label class="custom-control-label" th:for="${bills.id}"></label>
+                                            <input class="custom-control-input" type="checkbox" th:id="${nurse.id}" name="nurseNum" th:value="${nurse.nurseNum}">
+                                            <label class="custom-control-label" th:for="${nurse.id}"></label>
                                         </div>
                                     </td>
-                                    <td th:text="${bills.billNum}"></td>
-                                    <td th:text="${bills.billRegisterCost}"></td>
-                                    <td th:text="${bills.billDrug}"></td>
-                                    <td th:text="${bills.billDrugCost}"></td>
-                                    <td th:text="${bills.bill_hospitalization}"></td>
-                                    <td th:text="${bills.billHospitalizationCost}"></td>
-                                    <td th:text="${bills.biiInspect}"></td>
-                                    <td th:text="${bills.biiInspectCost}"></td>
-                                    <td th:text="${bills.billCountCost}"></td>
-                                    <td th:text="${bills.bill_medicalInsurance}"></td>
-                                    <td th:text="${bills.billPaid}"></td>
-                                    <td th:text="${bills.billPaymentMethod}"></td>
-                                    <td th:text="${bills.bill_date}"></td>
+                                    <td th:text="${nurse.nurseNum}"></td>
+                                    <td th:text="${nurse.nurseName}"></td>
+                                    <td th:text="${nurse.nurseWorkspace}"></td>
+                                    <td th:text="${nurse.nurseWorkDate}"></td>
+                                    <td th:text="${nurse.nursePhone}"></td>
+                                    <td th:text="${nurse.nursePosition}"></td>
+                                    <td th:text="${nurse.nurseMoney}"></td>
+                                    <td>
+                                        <span class="badge badge-success"  th:text="${nurse.nurseState}"></span>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> 编辑</button>
+
+
+                            <!--Export links-->
+                            <!--							<nav aria-label="Page navigation example">-->
+                            <!--								<ul class="pagination justify-content-center export-pagination">-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-download"></span> csv</a>-->
+                            <!--									</li>-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>-->
+                            <!--									</li>-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>-->
+                            <!--									</li>-->
+                            <!--									<li class="page-item">-->
+                            <!--										<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>-->
+                            <!--									</li>-->
+                            <!--								</ul>-->
+                            <!--							</nav>-->
+                            <!-- /Export links-->
+                            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="openEditModal()"><span class="ti-pencil-alt"></span> EDIT</button>
                         </div>
                     </div>
                 </div>
@@ -177,12 +207,19 @@
         </div>
         <!-- /Main Content -->
         <!--Copy Rights-->
+        <div class="container">
+            <div class="d-sm-flex justify-content-center">
+                <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span>
+            </div>
+        </div>
         <!-- /Copy Rights-->
     </div>
     <!-- /Page Content -->
 </div>
 <!-- Back to Top -->
-
+<a id="back-to-top" href="#" class="back-to-top">
+    <span class="ti-angle-up"></span>
+</a>
 <!-- /Back to Top -->
 <!-- Jquery Library-->
 <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
@@ -193,37 +230,92 @@
 <!-- Datatable  -->
 <script th:src="@{/datatable/jquery.dataTables.min.js}"></script>
 <script th:src="@{/datatable/dataTables.bootstrap4.min.js}"></script>
+
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
 <script th:src="@{/js/custom-datatables.js}"></script>
 
+
 <script th:inline="javascript">
-    /*打开修改模态框*/
-    function openEditModal() {
-        var billId ="";
-        alert("不要忘记选择一条数据哦")
-        $("input[name='billId']:checked").each(function(){
-            billId = $(this).attr('value');
 
-            $.ajax({
-                cache: true,
-                type: "post",
-                url: "/bill/billUpdate",
-                data: {"billId": billId},
-                success: function (data) {
-                    if (data == 1){
-                        window.location.href = "/jump/billUpdate";
-                    }
-                },
-                error: function () {
-                    notifyError("获取数据失败，请重新刷新！")
-                }
-            })
+    /*全选*/
+    $("#select-all").click(function(){
+        $("input[name='nurseNum']").each(function(){
+            if (this.checked) {
+                this.checked = false;
+            }
+            else {
+                this.checked = true;
+            }
         });
+    })
 
+
+
+    /*修改护士的现状*/
+    function editNurse() {
+        var result="";
+        var d = "";
+        var nurseState=$("#nurseNowState").val();
+        d = $("input[name='nurseNum']:checked").each(function(){;
+            result = $(this).attr('value');
+        });
+        if(nurseState==""){
+            alert("请输入要修改的现状")
+        }else{
+            window.location.href= "/nurse/editNurseNowState?nurseState="+nurseState+"&tag="+result;
+            alert("修改成功");
+            window.location.href = "http://localhost:8080/patient/nurses";
+        }
+    }
+
+    /*打开修改模态框*/
+    function openEditModal(editModal) {
+        var result="";
+        var nurseState="";
+        nurseState = $("input[name='nurseNum']:checked").each(function(){
+            result = $(this).attr('value');
+        });
+        if(result==""){
+            alert("选择出错")
+        }else{
+            $("#editModal").modal('show');
+        }
     }
 
 </script>
-
+<!--修改模态框-->
+<div class="modal fade" id="editModal" data-th-background="static" data-th-keytype="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--顶部标题-->
+            <div class="modal-header">
+                <!--标题-->
+                <h5>修改护士现状</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--内容-->
+            <div class="modal-body">
+                <form id="formEditNurse">
+                    <input type="text" hidden id="academeIDU">
+                    <div class="form-group row">
+                        <label for="nurseNowState"  class="col-3">护士现状 NowState</label>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" id="nurseNowState" name="nurseNowState">
+                                <option>可派遣</option>
+                                <option>已派遣</option>
+                                <option>请假</option>
+                                <option>休假</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button type="button" class="btn btn-primary mt-3 mb-0" onclick="editNurse()"><span class="ti-pencil-alt"></span> EDIT</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>

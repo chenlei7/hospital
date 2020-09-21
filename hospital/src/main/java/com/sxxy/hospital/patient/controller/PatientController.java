@@ -8,6 +8,9 @@ import com.sxxy.hospital.patient.entity.Patient;
 import com.sxxy.hospital.patient.mapper.*;
 import com.sxxy.hospital.patient.service.PatientService;
 import com.sxxy.hospital.personnel.entity.Doctor;
+import com.sxxy.hospital.personnel.entity.Nurse;
+import com.sxxy.hospital.personnel.mapper.NurseMapper;
+import com.sxxy.hospital.personnel.service.NurseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,6 +46,11 @@ public class PatientController {
 
     @Autowired
     DoctorMappers doctorMappers;
+
+    @Autowired
+    NurseService nurseService;
+    @Autowired
+    NurseMapper nurseMapper;
 
     //主页面
     @RequestMapping("/index")
@@ -140,4 +148,28 @@ public class PatientController {
     }
 
 
+    //修改护士信息
+    @RequestMapping("/updateNurse")
+    public String updateNurse(String nursePhone, String nurseAddress, String nurseEmail, String nursePosition, String nurseWorkspace, String nurseWorkDate, String nurseAbout, String nursePassword, double nurseMoney, String nurseNum) {
+        System.out.println(nurseNum);
+        int updateNurse = nurseService.updateNurse(nursePhone,nurseAddress,nurseEmail,nursePosition,nurseWorkspace,nurseWorkDate,nurseAbout,nursePassword,nurseMoney,nurseNum);
+        if (updateNurse > 0) {
+            return "personnel/success";
+        } else {
+            return "personnel/error";
+        }
+    }
+
+    //查看所有护士
+    @RequestMapping("/nurses")
+    public String allNurse(Model model) {
+        List<Nurse> nurses = new ArrayList<>();
+        try {
+            nurses = nurseMapper.findAll();
+        }catch (Exception e){
+            return "personnel/error";
+        }
+        model.addAttribute("nurses",nurses);
+        return "patient/nurse/nurses";
+    }
 }
