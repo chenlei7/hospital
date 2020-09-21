@@ -68,17 +68,17 @@ public class DeptController {
 
             return "personnel/index";
         }else {
-            return "personnel/login";
+            return "financial/login";
         }
     }
 
-    //查询部门  (代写)
+    //查询部门  (待完善)
     @RequestMapping("/allDept")
     public String allDept(String deptNum, String deptPassword){
         if(deptService.deptLodin(deptNum)!=null) {
             return "personnel/index";
         }else {
-            return "personnel/login";
+            return "financial/login";
         }
     }
 

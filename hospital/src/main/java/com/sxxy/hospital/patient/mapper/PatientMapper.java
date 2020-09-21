@@ -32,11 +32,6 @@ public interface PatientMapper extends JpaRepository<Patient,Integer> {
     @Query(nativeQuery = true,value = "select * from patient_info where patient_num is null or patient_num = ''")
     List<Patient> findAllRegister();
 
-    //查找全部的病人
-    /*@Transactional
-    @Modifying
-    @Query(nativeQuery = true,value = "select count(*) from patient_info ")
-    int queryAllNum();*/
 
     //确认挂号信息,根据ID去修改病人信息
     @Transactional()

@@ -168,12 +168,6 @@
                             <table id="tableId" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th class="no-sort">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="select-all">
-                                            <label class="custom-control-label" for="select-all"></label>
-                                        </div>
-                                    </th>
                                     <th>Number</th>
                                     <th>Name</th>
                                     <th>attendanceDate</th>
@@ -181,12 +175,6 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="attendance:${attendances}">
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" th:id="${attendance.id}" name="doctorNum" th:value="${attendance.attendanceNum}">
-                                            <label class="custom-control-label" th:for="${attendance.id}"></label>
-                                        </div>
-                                    </td>
                                     <td th:text="${attendance.attendanceNum}"></td>
                                     <td th:text="${attendance.attendanceName}"></td>
                                     <td th:text="${attendance.attendanceDate}"></td>

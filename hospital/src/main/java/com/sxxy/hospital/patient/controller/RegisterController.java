@@ -71,7 +71,7 @@ public class RegisterController {
     public String goRegistered(Model model) {
         List<Doctor> doctors = new ArrayList<>();
         List<Room> rooms = new ArrayList<>();
-        rooms = roomMapper.findAll();
+        rooms = roomMappers.findAllRoom();
         doctors = doctorMapper.findAll();
         model.addAttribute("doctors", doctors);
         model.addAttribute("rooms", rooms);
