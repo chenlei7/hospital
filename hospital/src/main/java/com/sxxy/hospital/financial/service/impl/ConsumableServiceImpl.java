@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,13 +27,16 @@ public class ConsumableServiceImpl implements ConsumableService {
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
-     * 每天23点统计当天药品的进货账单
+     * 每天1点统计昨天药品的进货账单
      */
 //    @Scheduled(fixedDelay = 1000*60*60)
-    @Scheduled(cron = "0 0 23 * * ?")
+    @Scheduled(cron = "0 0 1 * * ?")
     public void consumable(){
-        //获取当天时间
-        String time = format.format(new Date());
+        //获取昨天的时间
+        Calendar calendar=Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,-24);
+        //格式化时间
+        String time = format.format(calendar.getTime());
         //获取当天的药品的进货账单
         List<Map> list =  treatmentMapper.consumable(time);
         //时间格式化mysql中的timestamp类型

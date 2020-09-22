@@ -5,7 +5,7 @@
 <mapper namespace="com.sxxy.hospital.financial.mapper.DAMapper">
 <!-- 添加一条的支出收入信息   -->
     <insert id="add">
-        insert into DAMoney values (null,#{pay},#{revenue},#{total},#{date})
+        insert into DAmoney values (null,#{pay},#{revenue},#{total},#{date})
     </insert>
 
 <!--    查询最新7条数据-->
