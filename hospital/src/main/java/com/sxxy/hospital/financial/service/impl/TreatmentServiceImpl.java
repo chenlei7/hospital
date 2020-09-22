@@ -42,7 +42,7 @@ public class TreatmentServiceImpl implements TreatmentService {
         List<Map> list = tm.treatment(time);
         //将资费信息添加到财务表
         for (Map m :list) {
-            sm.add((String) m.get("bill_num"),"病人","病人","医药费","药品："+m.get("bill_drug")+",住院："+m.get("bill_hospitalization")+",检查："+m.get("bii_inspect"),time,1,(double) m.get("bill_countcost"));
+            sm.add((String) m.get("bill_num"),"病人","病人","医药费","药品："+m.get("bill_drug")+";住院："+m.get("bill_hospitalization")+";检查："+m.get("bii_inspect"),time,1,(double) m.get("bill_countcost"));
         }
 
         //查询当天进货信息
