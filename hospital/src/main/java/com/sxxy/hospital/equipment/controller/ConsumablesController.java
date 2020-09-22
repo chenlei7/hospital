@@ -8,6 +8,8 @@ import com.sxxy.hospital.equipment.mapper.StockMapper;
 import com.sxxy.hospital.equipment.service.ConsumablesService;
 import com.sxxy.hospital.equipment.service.EquipmentService;
 import com.sxxy.hospital.equipment.service.StockService;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +35,7 @@ public class ConsumablesController {
 
     //查看所有药品
     @RequestMapping("/allconsumables")
+    @RequiresRoles(value={"admin","other","doctor"},logical = Logical.OR)
     public String allConsumables(Model model) {
         List<Consumables> consumables = new ArrayList<>();
         consumables = consumablesMapper.findAll();
@@ -42,6 +45,7 @@ public class ConsumablesController {
 
     //增加药材
     @RequestMapping("/addConsumables")
+    @RequiresRoles(value={"admin","other"},logical = Logical.OR)
     public String addConsumables(String consumablesNum,String consumablesName,int consumablesNumber,Double consumablesPrice,String consumablesMsg,String consumablesIllness) {
         Consumables addConsumables = new Consumables(consumablesNum,consumablesName,consumablesNumber,consumablesPrice,consumablesMsg,consumablesIllness);
         if (addConsumables != null) {
@@ -53,6 +57,7 @@ public class ConsumablesController {
     }
     //采购药材
     @RequestMapping("/addConsumablesNumber")
+    @RequiresRoles(value={"admin","other"},logical = Logical.OR)
     public String editDoctorNowState(int consumablesNumber,String tag) {
         String[] strs = tag.split(",");
         System.out.println(consumablesNumber);
@@ -71,6 +76,7 @@ public class ConsumablesController {
 
     //查看采购药材记录
     @RequestMapping("/consumableshistory")
+    @RequiresRoles(value={"admin","other"},logical = Logical.OR)
     public String ConsumablesHistory(Model model) {
         List<Stock> stocks = new ArrayList<>();
         stocks = stockMapper.findAll();

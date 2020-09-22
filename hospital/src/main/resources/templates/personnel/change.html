@@ -142,36 +142,63 @@
         <div class="container mt-0">
             <div class="row breadcrumb-bar">
                 <div class="col-md-6">
-                    <h3 class="block-title">200 Page</h3>
+                    <h3 class="block-title">推管 Update</h3>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="/personnel/index">
                                 <span class="ti-home"></span>
                             </a>
                         </li>
-                        <li class="breadcrumb-item active">200 Page</li>
+                        <li class="breadcrumb-item">推管 </li>
+                        <li class="breadcrumb-item active">推管 Update</li>
                     </ol>
                 </div>
             </div>
         </div>
         <!-- /Page Title -->
+
         <!-- /Breadcrumb -->
         <!-- Main Content -->
         <div class="container">
+
             <div class="row">
+                <!-- Widget Item -->
                 <div class="col-md-12">
-                    <div class="widget-area-2 lochana-box-shadow min-h200">
-                        <h3 class="widget-title">Operation Is Successful</h3>
-                        <div class="text-center">
-                            <span class="ti-unlink unlink" style="color: green"></span>
-                        </div>
+                    <div class="widget-area-2 lochana-box-shadow">
+                        <h3 class="widget-title">推管 Update</h3>
+                        <form action="/user/doChange" method="post">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Title">标题 Title</label>
+                                    <select class="form-control" id="Title" name="title">
+                                        <option>第一条</option>
+                                        <option>第二条</option>
+                                        <option>第三条</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Date">时间 Date</label>
+                                    <input type="date" class="form-control" placeholder="Date" id="Date" name="date">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="content">内容 Content</label>
+                                    <input type="text" class="form-control" placeholder="content" id="content1" name="content">
+                                </div>
+                                <div class="form-group col-md-6">
+                                <label></label>
+                                </div>
+                                <div class="form-group col-md-6 mb-3">
+                                    <button type="submit" class="btn btn-primary btn-lg" id="submit">Submit</button>
+                                    <button type="reset" class="btn btn-primary btn-lg">Reset</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
+                <!-- /Widget Item -->
             </div>
-
-
         </div>
         <!-- /Main Content -->
         <!--Copy Rights-->
@@ -182,6 +209,7 @@
         </div>
         <!-- /Copy Rights-->
     </div>
+    <!-- /Page Content -->
 </div>
 <!-- Back to Top -->
 <a id="back-to-top" href="#" class="back-to-top">
@@ -194,13 +222,10 @@
 <script th:src="@{/js/popper.min.js}"></script>
 <!-- Bootstrap Library-->
 <script th:src="@{/js/bootstrap.min.js}"></script>
-<!-- morris charts -->
-<!--	<script th:src="@{/charts/js/raphael-min.js}"></script>-->
-<!--	<script th:src="@{/charts/js/morris.min.js}"></script>-->
-<!--	<script th:src="@{/js/custom-morris.js}"></script>-->
 
 <!-- Custom Script-->
 <script th:src="@{/js/custom.js}"></script>
+
 </body>
 
 </html>

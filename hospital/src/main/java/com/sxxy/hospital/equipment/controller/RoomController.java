@@ -3,6 +3,8 @@ package com.sxxy.hospital.equipment.controller;
 import com.sxxy.hospital.equipment.entity.Room;
 import com.sxxy.hospital.equipment.mapper.RoomMapper;
 import com.sxxy.hospital.equipment.service.RoomService;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ public class RoomController {
 
     //查看所有房间
     @RequestMapping("/rooms")
+    @RequiresRoles(value={"admin","other","doctor"},logical = Logical.OR)
     public String allRoom(Model model) {
         List<Room> rooms = new ArrayList<>();
         rooms = roomMapper.findAll();
