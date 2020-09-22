@@ -10,6 +10,7 @@ import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.support.SimpleTriggerContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,8 @@ public class FinancialController {
     FinancialService service;
     @Autowired
     DAService daService;
-
+    @Autowired
+    FinancialService financialService;
     //跳转到登录主界面
     @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
     @RequestMapping("/index")
@@ -73,7 +75,7 @@ public class FinancialController {
         model.addAttribute("totals",total);
         model.addAttribute("dates",dates);
 
-        return "financial/index";
+        return "/financial/index";
     }
     //跳转到财务表
     @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
@@ -81,7 +83,20 @@ public class FinancialController {
     public String financial(Model model){
         List<Map> lists = service.findAll();
         model.addAttribute("lists", lists);
-        return "financial/financial";
+        return "/financial/financial";
     }
 
+    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
+    @GetMapping("/add")
+    public String add(){
+        return "/financial/add";
+    }
+
+    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
+    @PostMapping("/add")
+    @ResponseBody
+    public String addFinancial(String statementNum,String statementName,String statementDeptName,String statementType,String statementEvent,String statementTime,int statementState,double statementMoney){
+        int m = financialService.add(statementNum, statementName, statementDeptName, statementType, statementEvent, statementTime, statementState, statementMoney);
+        return "添加成功,<a href='/financial/add'>点击返回</a>";
+    }
 }

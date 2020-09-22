@@ -9,6 +9,8 @@ import com.sxxy.hospital.patient.mapper.PatientMapper;
 import com.sxxy.hospital.patient.mapper.RoomMappers;
 import com.sxxy.hospital.personnel.entity.Doctor;
 import com.sxxy.hospital.personnel.mapper.DoctorMapper;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +56,7 @@ public class RegisterController {
     }
 
     //查看所有医生
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @RequestMapping("/doctors")
     public String allDoctor(Model model) {
         List<Doctor> doctors = new ArrayList<>();
@@ -71,7 +74,7 @@ public class RegisterController {
     public String goRegistered(Model model) {
         List<Doctor> doctors = new ArrayList<>();
         List<Room> rooms = new ArrayList<>();
-        rooms = roomMapper.findAll();
+        rooms = roomMappers.findAllRoom();
         doctors = doctorMapper.findAll();
         model.addAttribute("doctors", doctors);
         model.addAttribute("rooms", rooms);

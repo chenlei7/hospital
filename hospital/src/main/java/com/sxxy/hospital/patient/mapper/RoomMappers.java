@@ -21,4 +21,10 @@ public interface RoomMappers extends JpaRepository<Room,Object>{
     List<Room> findRoomByName(@Param("roomName")String roomName);
 
 
+    //根据房间名字查找房间编号去除重复的
+    @Transactional()
+    @Modifying
+    @Query(nativeQuery = true,value = "select * from room group by room_position")
+    List<Room> findAllRoom();
+
 }

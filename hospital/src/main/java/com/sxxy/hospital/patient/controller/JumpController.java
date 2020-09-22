@@ -1,5 +1,7 @@
 package com.sxxy.hospital.patient.controller;
 
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,12 +23,14 @@ public class JumpController {
     }
 
     //医生操作成功页面
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @RequestMapping("/doctorSuccess")
     public String doctorSuccess(){
         return "patient/doctor/doctorSuccess";
     }
 
     //跳到账单修改页面
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @RequestMapping("/billUpdate")
     public String billUpdate(){
         return "patient/bill/billUpdate";

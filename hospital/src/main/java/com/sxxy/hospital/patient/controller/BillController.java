@@ -3,6 +3,8 @@ package com.sxxy.hospital.patient.controller;
 import com.sxxy.hospital.patient.entity.Bill;
 import com.sxxy.hospital.patient.entity.Illness;
 import com.sxxy.hospital.patient.mapper.BillMapper;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ public class BillController {
     BillMapper billMapper;
 
     //查询出全部的账单信息
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @RequestMapping("/billAll")
     public String illnessAll(Model model){
         List<Bill> bills = new ArrayList<>();
@@ -32,6 +35,7 @@ public class BillController {
 
 
     //修改账单信息
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @ResponseBody
     @RequestMapping("/billUpdate")
     public String billUpdate(Integer billId, HttpSession session){
@@ -45,6 +49,7 @@ public class BillController {
     }
 
     //真正的去执行修改账单的方法
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @RequestMapping("/billUpdates")
     public String billUpdates(Bill bill){
         try {
