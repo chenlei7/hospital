@@ -8,6 +8,15 @@
 <center>
     <h2 style="color: #3a4ed5">您的信息提交成功，医院审核中.........</h2>
     <h2 style="color: #3a4ed5">请您注意查收我院后期的信息通知！！</h2>
+
 </center>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            /*返回上一个页面并刷新*/
+            self.location = document.referrer;
+        }, 2000);
+    })
+</script>
 </body>
 </html>

@@ -37,8 +37,8 @@ public class IllnessController {
     //修改病情信息
     @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     @PostMapping("/illnessUpdate")
-    public  String illnessUpdate(int illnessId,String illnessTime,String illness_condition,String illnessSeverity,String illnessAlive) {
-        int a = illnessMapper.illnessUpdate(illnessTime,illness_condition,illnessSeverity,illnessAlive,illnessId);
+    public  String illnessUpdate(int illnessId1,String illnessTime1,String illness_condition1,String illnessSeverity1,String illnessAlive1) {
+        int a = illnessMapper.illnessUpdate(illnessTime1,illness_condition1,illnessSeverity1,illnessAlive1,illnessId1);
         if (a > 0) {
             return "redirect:/illness/illnessAll";
         } else {
