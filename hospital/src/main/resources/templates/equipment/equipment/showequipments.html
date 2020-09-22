@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -148,11 +148,13 @@
                                aria-expanded="false"><span class="ti-key"></span> 后勤管理</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="/room/rooms">查询病房</a>
-                                <a class="dropdown-item" href="/equip/addequipment">增加器材</a>
+                                <shiro:hasAnyRoles name="admin,other">
+                                    <a class="dropdown-item" href="/equip/addequipment">增加器材</a>
+                                    <a class="dropdown-item" href="/equip/addconsumables">增加药材</a>
+                                    <a class="dropdown-item" href="/consumables/consumableshistory">药材采购记录</a>
+                                </shiro:hasAnyRoles>
                                 <a class="dropdown-item" href="/equipment/equipments">器材信息</a>
-                                <a class="dropdown-item" href="/equip/addconsumables">增加药材</a>
                                 <a class="dropdown-item" href="/consumables/allconsumables">药材信息</a>
-                                <a class="dropdown-item" href="/consumables/consumableshistory">药材采购记录</a>
                             </div>
                         </li>
                     </ul>
