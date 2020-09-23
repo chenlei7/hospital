@@ -17,6 +17,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public Doctor addDoctor(Doctor doctor) {
         return doctorMapper.save(doctor);
+
     }
 
     //编辑医生信息
