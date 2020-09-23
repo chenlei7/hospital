@@ -5,6 +5,8 @@ package com.sxxy.hospital.personnel.controller;
 import com.sxxy.hospital.patient.entity.Patient;
 import com.sxxy.hospital.patient.mapper.PatientMapper;
 import com.sxxy.hospital.personnel.service.DeptService;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,7 @@ public class DeptController {
     PatientMapper patientMapper;
 
     //部门登录
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     @RequestMapping("/login")
     public String deptLogin(String deptNum, String deptPassword, Model model){
         if(deptService.deptLodin(deptNum)!=null) {
@@ -73,6 +76,7 @@ public class DeptController {
     }
 
     //查询部门  (待完善)
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     @RequestMapping("/allDept")
     public String allDept(String deptNum, String deptPassword){
         if(deptService.deptLodin(deptNum)!=null) {

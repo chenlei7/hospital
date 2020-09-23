@@ -2,6 +2,8 @@ package com.sxxy.hospital.personnel.controller;
 
 import com.sxxy.hospital.patient.entity.Patient;
 import com.sxxy.hospital.patient.mapper.PatientMapper;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +22,14 @@ public class PersonnelController {
     PatientMapper patientMapper;
     //跳到登录界面
     @RequestMapping("/login")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String goLogin(){
         return "personnel/login";
     }
 
     //跳到首页
     @RequestMapping("/index")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String goIndex(Model model){
         List<Patient> patients = new ArrayList<>();
         patients = patientMapper.findAll();
@@ -71,18 +75,21 @@ public class PersonnelController {
      * */
     //增加医生
     @RequestMapping("/addDoctor")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String goAddDoctor(){
         return "personnel/doctor/addDoctor";
     }
 
     //查看医生详细信息
     @RequestMapping("/aboutDoctor")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String goAboutDoctor(){
         return "personnel/doctor/aboutDoctor";
     }
 
     //修改医生信息
     @RequestMapping("/editDoctor")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String goEditDoctor(){
         return "personnel/doctor/editDoctor";
     }
@@ -94,18 +101,21 @@ public class PersonnelController {
 
     //增加护士
     @RequestMapping("/addNurse")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String goAddNurse(){
         return "personnel/nurse/addNurse";
     }
 
     //查看护士详细信息
     @RequestMapping("/aboutNurse")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String goAboutNurse(){
         return "personnel/nurse/aboutNurse";
     }
 
     //修护士信息
     @RequestMapping("/editNurse")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String goEditNurse(){
         return "personnel/nurse/editNurse";
     }
@@ -117,18 +127,21 @@ public class PersonnelController {
 
     //增加护士
     @RequestMapping("/addOther")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String goAddOther(){
         return "personnel/other/addOther";
     }
 
     //查看护士详细信息
     @RequestMapping("/aboutOther")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String goAboutOther(){
         return "personnel/other/aboutOther";
     }
 
     //修护士信息
     @RequestMapping("/editOther")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String goEditOther(){
         return "personnel/other/editOther";
     }

@@ -6,6 +6,8 @@ import com.sxxy.hospital.personnel.mapper.DoctorMapper;
 import com.sxxy.hospital.personnel.mapper.OtherMapper;
 import com.sxxy.hospital.personnel.service.DoctorService;
 import com.sxxy.hospital.personnel.service.OtherService;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,7 @@ public class OtherController {
 
     //增加员工
     @RequestMapping("/addOther")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String addOther(String otherNum, String otherName, int otherAge, String otherGender, String otherPosition, String otherWorkspace, String otherWorkDate ) {
         Other other = new Other(otherNum,otherName,otherAge,otherGender,otherPosition,otherWorkspace,otherWorkDate,"123",10000,"可出工");
         if (other != null) {
@@ -38,6 +41,7 @@ public class OtherController {
 
     //编辑员工信息
     @RequestMapping("/updateOther")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String updateOther(String otherPosition, String otherWorkspace, String otherWorkDate, String otherPassword,double otherMoney, String otherNum) {
         int updateOther = otherMapper.updateNurse(otherPosition,otherWorkspace,otherWorkDate,otherPassword,otherMoney,otherNum);
         if (updateOther > 0) {
@@ -49,6 +53,7 @@ public class OtherController {
 
     //查看所有员工
     @RequestMapping("/others")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String allOther(Model model) {
         List<Other> others = new ArrayList<>();
         try {
@@ -62,6 +67,7 @@ public class OtherController {
 
     //查看所有员工详细信息
     @RequestMapping("/otherInfo")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String otherInfo(Model model) {
         List<Other> others = new ArrayList<>();
         others = otherMapper.findAll();
@@ -71,6 +77,7 @@ public class OtherController {
 
     //删除员工信息
     @RequestMapping("/deleteOther")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String deleteOther(String tag) {
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
@@ -85,6 +92,7 @@ public class OtherController {
 
     //修改员工现状
     @RequestMapping("/editOtherNowState")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String editOtherNowState(String otherState,String tag) {
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {

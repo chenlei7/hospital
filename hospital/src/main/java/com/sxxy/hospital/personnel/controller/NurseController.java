@@ -5,6 +5,8 @@ import com.sxxy.hospital.personnel.entity.Doctor;
 import com.sxxy.hospital.personnel.entity.Nurse;
 import com.sxxy.hospital.personnel.mapper.NurseMapper;
 import com.sxxy.hospital.personnel.service.NurseService;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,7 @@ public class NurseController {
 
     //增加护士
     @RequestMapping("/addNurse")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String addNurse(String nurseNum, String nurseName, String nursePhone, String nurseBirthday, String nurseAddress, String nurseEmail, int nurseAge, String nurseGender, String nursePosition, String nurseWorkspace, String nurseWorkDate, String nurseAbout) {
         Nurse nurse = new Nurse(nurseNum,nurseName,nursePhone,nurseBirthday,nurseAddress,nurseEmail,nurseAge,nurseGender,nursePosition,nurseWorkspace,nurseWorkDate,nurseAbout,"123",4000,"可派遣");
         if (nurse != null) {
@@ -37,6 +40,7 @@ public class NurseController {
 
     //修改护士信息
     @RequestMapping("/updateNurse")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String updateNurse(String nursePhone, String nurseAddress, String nurseEmail, String nursePosition, String nurseWorkspace, String nurseWorkDate, String nurseAbout, String nursePassword, double nurseMoney, String nurseNum) {
         System.out.println(nurseNum);
         int updateNurse = nurseService.updateNurse(nursePhone,nurseAddress,nurseEmail,nursePosition,nurseWorkspace,nurseWorkDate,nurseAbout,nursePassword,nurseMoney,nurseNum);
@@ -49,6 +53,7 @@ public class NurseController {
 
     //查看所有护士
     @RequestMapping("/nurses")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String allNurse(Model model) {
         List<Nurse> nurses = new ArrayList<>();
         try {
@@ -63,6 +68,7 @@ public class NurseController {
 
     //查看所有护士详细信息
     @RequestMapping("/nurseInfo")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String nurseInfo(Model model) {
         List<Nurse> nurses = new ArrayList<>();
         nurses = nurseMapper.findAll();
@@ -72,6 +78,7 @@ public class NurseController {
 
     //删除护士信息
     @RequestMapping("/deleteNurse")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String deleteNurse(String tag) {
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
@@ -86,6 +93,7 @@ public class NurseController {
 
     //修改护士现状
     @RequestMapping("/editNurseNowState")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String editNurseNowState(String nurseState,String tag) {
         String[] strs = tag.split(",");
         for (int i = 0; i < strs.length; i++) {
