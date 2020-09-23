@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,60 +61,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="modal" data-target=".lochana-modal-lg">
-                            <span class="ti-search"></span>
-                        </a>
-                        <div class="modal fade lochana-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-lorvens">
-                                <div class="modal-content lochana-box-shadow2">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">器材:</h5>
-                                        <span class="ti-close" data-dismiss="modal" aria-label="Close">
-												</span>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="search-term" placeholder="Type text here">
-                                                <button type="button" class="btn btn-lorvens lochana-bg">
-                                                    <span class="ti-location-arrow"></span> Search</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                           aria-expanded="false">
-                            <span class="ti-announcement"></span>
-                        </a>
-                        <div class="dropdown-menu lochana-box-shadow2 notifications animated flipInY">
-                            <h5>Notifications</h5>
-                            <a class="dropdown-item" href="#">
-                                <span class="ti-wheelchair"></span> New Patient Added</a>
-                            <a class="dropdown-item" href="#">
-                                <span class="ti-money"></span> Patient payment done</a>
-                            <a class="dropdown-item" href="#">
-                                <span class="ti-time"></span>Patient Appointment booked</a>
-                            <a class="dropdown-item" href="#">
-                                <span class="ti-wheelchair"></span> New Patient Added</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                            aria-expanded="false">
                             <span class="ti-user"></span>
                         </a>
                         <div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
                             <h5>John Willing</h5>
-                            <a class="dropdown-item" href="#">
-                                <span class="ti-settings"></span> Settings</a>
-                            <a class="dropdown-item" href="#">
-                                <span class="ti-help-alt"></span> Help</a>
-                            <a class="dropdown-item" href="#">
-                                <span class="ti-power-off"></span> Logout</a>
+                            <a class="dropdown-item" href="/login">
+                                <span class="ti-power-off"></span> 退出</a>
                         </div>
                     </li>
                 </ul>
@@ -134,21 +88,16 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                               aria-expanded="false"><span class="ti-home"></span> 控制面板</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/personnel/index">默认</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-key"></span> 后勤管理</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="/room/rooms">查询病房</a>
-                                <a class="dropdown-item" href="/equip/addequipment">增加器材</a>
+                                <shiro:hasAnyRoles name="admin,other">
+                                    <a class="dropdown-item" href="/equip/addequipment">增加器材</a>
+                                    <a class="dropdown-item" href="/equip/addconsumables">增加药材</a>
+                                    <a class="dropdown-item" href="/consumables/consumableshistory">药材采购记录</a>
+                                </shiro:hasAnyRoles>
                                 <a class="dropdown-item" href="/equipment/equipments">器材信息</a>
-                                <a class="dropdown-item" href="/equip/addconsumables">增加药材</a>
                                 <a class="dropdown-item" href="/consumables/allconsumables">药材信息</a>
-                                <a class="dropdown-item" href="/consumables/consumableshistory">药材采购记录</a>
                             </div>
                         </li>
                     </ul>
@@ -205,7 +154,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="equipmentPrice">器材 价格</label>
+                                    <label for="equipmentPrice">器材 价格(元)</label>
                                     <input type="text" class="form-control" placeholder="equipmentPrice" id="equipmentPrice" name="equipmentPrice">
                                 </div>
                                 <div class="form-group col-md-6">
