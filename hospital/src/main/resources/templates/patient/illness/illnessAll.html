@@ -219,11 +219,11 @@
 
     /*打开修改模态框*/
     function openEditModal() {
-        var illnessId="";
+        var illnessId1="";
         alert("不要忘记选择一条数据哦")
         $("input[name='illnessId']:checked").each(function(){
-            illnessId = $(this).attr('value');
-            $("#illnessId1").val(illnessId);
+            illnessId1 = $(this).attr('value');
+            $("#illnessId1").val(illnessId1);
             $("#editModal").modal('show');
         });
 
