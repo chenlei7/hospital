@@ -56,7 +56,10 @@ public class PatientController {
 
     //主页面
     @RequestMapping("/index")
-    public String index(){
+    public String index(Model model){
+        List<Patient> patients = new ArrayList<>();
+        patients = patientMapper.findAllPatient();
+        model.addAttribute("patients",patients);
         return "patient/index";
     }
 
