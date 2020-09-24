@@ -94,9 +94,12 @@ public class FinancialController {
 
     @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
     @PostMapping("/add")
-    @ResponseBody
     public String addFinancial(String statementNum,String statementName,String statementDeptName,String statementType,String statementEvent,String statementTime,int statementState,double statementMoney){
         int m = financialService.add(statementNum, statementName, statementDeptName, statementType, statementEvent, statementTime, statementState, statementMoney);
-        return "添加成功,<a href='/financial/add'>点击返回</a>";
+        if(m>0){
+            return "/financial/success";
+        }else {
+            return "/financial/error";
+        }
     }
 }
