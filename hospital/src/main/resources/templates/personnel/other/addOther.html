@@ -171,11 +171,11 @@
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										<label for="otherName">员工 Name</label>
-										<input type="text" class="form-control" placeholder="name" id="otherName" name="otherName">
+										<input type="text" class="form-control" placeholder="name" id="otherName" name="otherName" >
 									</div>
 									<div class="form-group col-md-6">
 										<label for="otherNum">编号 Number</label>
-										<input type="text" class="form-control" placeholder="Number" id="otherNum" name="otherNum">
+										<input type="text" class="form-control" placeholder="Number" id="otherNum" name="otherNum" onchange="queryNum()">
 									</div>
 									<div class="form-group col-md-6">
 										<label for="otherWorkDate">工作时间 WorkDate</label>
@@ -267,18 +267,33 @@
 <!--新增判断,年龄和编号不能为空-->
 <script th:inline="javascript">
 	$("#submit").click(function () {
-		var nurseNum = $("#nurseNum").val();
-		var nurseAge = $("#nurseAge").val();
-		if(nurseNum.length==0){
+		var otherNum = $("#otherNum").val();
+		var otherAge = $("#otherAge").val();
+		if(otherNum.length==0){
 			alert("编号不能空，请输入编号！")
 			return false;
-		}else if(nurseAge.length==0){
+		}else if(otherAge.length==0){
 			alert("年龄不能空，请输入年龄！")
 			return false;
 		}else {
 			return true;
 		}
 	})
+	/*确定编号是否存在*/
+	function queryNum() {
+		var otherNumber = $("#otherNum").val();
+		$.ajax({
+			type: "GET",
+			url: "/other/queryNum",
+			async : false,
+			data:{"otherNumber":otherNumber},
+			success:function (result) {
+				if (result==="编号存在"){
+					alert("编号存在");
+				}
+			}
+		})
+	}
 </script>
 </body>
 </html>

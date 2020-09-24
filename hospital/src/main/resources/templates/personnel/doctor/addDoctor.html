@@ -175,7 +175,7 @@
 									</div>
 										<div class="form-group col-md-6">
 											<label for="doctorNum">编号 Number</label>
-											<input type="text" class="form-control" placeholder="Number" id="doctorNum" name="doctorNum">
+											<input type="text" class="form-control" placeholder="Number" id="doctorNum" name="doctorNum" onchange="queryNum()">
 										</div>
 										<div class="form-group col-md-6">
 											<label for="doctorWorkDate">工作时间 WorkDate</label>
@@ -295,6 +295,21 @@
 				return true;
 			}
 		})
+		/*确定编号是否存在*/
+		function queryNum() {
+			var doctorNumber = $("#doctorNum").val();
+			$.ajax({
+				type: "GET",
+				url: "/doctor/queryNum",
+				async : false,
+				data:{"doctorNumber":doctorNumber},
+				success:function (result) {
+					if (result==="编号存在"){
+						alert("编号存在");
+					}
+				}
+			})
+		}
 	</script>
 </body>
 

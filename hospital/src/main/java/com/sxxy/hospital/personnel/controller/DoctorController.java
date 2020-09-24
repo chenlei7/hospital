@@ -107,5 +107,16 @@ public class DoctorController {
         return "personnel/doctor/doctors";
     }
 
+    //查询编号是否存在
+    @RequestMapping("/queryNum")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
+    @ResponseBody
+    public String queryNum(String doctorNumber) {
+        Doctor doctorNum = doctorMapper.findByDoctorNum(doctorNumber);
+        if (doctorNum==null){
+            return "编号不存在";
+        }
+            return "编号存在";
+    }
 
 }

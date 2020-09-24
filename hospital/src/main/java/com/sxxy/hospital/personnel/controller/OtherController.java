@@ -1,6 +1,7 @@
 package com.sxxy.hospital.personnel.controller;
 
 import com.sxxy.hospital.personnel.entity.Doctor;
+import com.sxxy.hospital.personnel.entity.Nurse;
 import com.sxxy.hospital.personnel.entity.Other;
 import com.sxxy.hospital.personnel.mapper.DoctorMapper;
 import com.sxxy.hospital.personnel.mapper.OtherMapper;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.persistence.Column;
 import java.util.ArrayList;
@@ -105,4 +107,15 @@ public class OtherController {
         return "personnel/other/others";
     }
 
+    //查询编号是否存在
+    @RequestMapping("/queryNum")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
+    @ResponseBody
+    public String queryNum(String otherNumber) {
+        Other otherNum = otherMapper.findByOtherNum(otherNumber);
+        if (otherNum==null){
+            return "编号不存在";
+        }
+        return "编号存在";
+    }
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -104,5 +105,17 @@ public class NurseController {
             }
         }
         return "personnel/nurse/nurses";
+    }
+
+    //查询编号是否存在
+    @RequestMapping("/queryNum")
+    @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
+    @ResponseBody
+    public String queryNum(String nurseNumber) {
+        Nurse nurseNum = nurseMapper.findByNurseNum(nurseNumber);
+        if (nurseNum==null){
+            return "编号不存在";
+        }
+        return "编号存在";
     }
 }
