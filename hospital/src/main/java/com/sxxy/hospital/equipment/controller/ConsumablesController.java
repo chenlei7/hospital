@@ -50,9 +50,9 @@ public class ConsumablesController {
         Consumables addConsumables = new Consumables(consumablesNum,consumablesName,consumablesNumber,consumablesPrice,consumablesMsg,consumablesIllness);
         if (addConsumables != null) {
             consumablesService.addConsumables(addConsumables);
-            return "equipment/consumables/addconsumables";
+            return "equipment/success";
         } else {
-            return "equipment/consumables/addconsumables";
+            return "equipment/error";
         }
     }
     //采购药材
@@ -68,10 +68,10 @@ public class ConsumablesController {
                 consumablesService.addHistoryNumber(consumablesNumber,Collections.singletonList(strs[i]));
                 consumablesService.addHistoryPrice(consumablesNumber,Collections.singletonList(strs[i]));
             } catch (Exception e) {
-                return "personnel/error";
+                return "equipment/error";
             }
         }
-        return "equipment/consumables/showconsumables";
+        return "equipment/success";
     }
 
     //查看采购药材记录

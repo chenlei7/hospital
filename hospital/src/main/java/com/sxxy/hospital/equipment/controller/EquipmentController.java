@@ -45,10 +45,10 @@ public class EquipmentController {
             try {
                 equipmentService.editequipmentNowState(equipmentState, Collections.singletonList(strs[i]));
             } catch (Exception e) {
-                return "personnel/error";
+                return "equipment/error";
             }
         }
-        return "equipment/equipment/showequipments";
+        return "equipment/success";
     }
 
     //增加器材
@@ -58,9 +58,9 @@ public class EquipmentController {
         Equipment addEquipment = new Equipment(equipmentNum,equipmentName,equipmentState,equipmentPrice,equipmentSite,equipmentTime);
         if (addEquipment != null) {
             equipmentService.addEquipment(addEquipment);
-            return "equipment/equipment/addequipments";
+            return "equipment/success";
         } else {
-            return "equipment/equipment/addequipments";
+            return "equipment/error";
         }
     }
 }
