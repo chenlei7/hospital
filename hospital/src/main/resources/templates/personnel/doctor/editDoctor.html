@@ -172,7 +172,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="doctorNumber">编号 Number</label>
-                                    <input type="text" class="form-control" placeholder="Number" id="doctorNumber" name="doctorNum">
+                                    <input type="text" class="form-control" placeholder="Number" id="doctorNumber" name="doctorNum" onchange="queryNum()">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="doctorWorkDate">工作时间 WorkDate</label>
@@ -275,12 +275,29 @@
     $("#submit").click(function () {
         var doctorMoney = $("#doctorMoney").val();
         if(doctorMoney.length==0){
-            alert("工资不能空，请输入编号！")
+            alert("工资不rNum能空，请输入工资！")
             return false;
         }else {
             return true;
         }
     })
+
+
+    /*确定编号是否存在*/
+   function queryNum() {
+        var doctorNumber = $("#doctorNumber").val();
+        $.ajax({
+            type: "GET",
+            url: "/doctor/queryNum",
+            async : false,
+            data:{"doctorNumber":doctorNumber},
+            success:function (result) {
+                if (result==="编号不存在"){
+                 alert("编号不存在");
+                }
+            }
+        })
+    }
 </script>
 </body>
 
