@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>错误页面</title>
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+</head>
+<body>
+<center>
+<h2 style="color: red">操作失败!2s后自动返回.....</h2>
+</center>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            /*返回上一个页面并刷新*/
+            self.location=document.referrer;
+        }, 2000);
+    })
+</script>
+</body>
+</html>
