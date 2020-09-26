@@ -129,7 +129,7 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                aria-expanded="false"><span class="ti-user"></span> 疫情推管</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/user/goChange">修改推荐</a>
+                                <a class="dropdown-item" href="/attendance/goAttendance">修改推荐</a>
                             </div>
                         </li>
                     </ul>
@@ -168,9 +168,9 @@
                 <div class="col-md-12">
                     <div class="widget-area-2 lochana-box-shadow">
                         <h3 class="widget-title">推管 Update</h3>
-                        <form action="/user/doChange" method="post">
+                        <form action="/user/doChange" method="post" enctype="multipart/form-data">
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-12">
                                     <label for="Title">标题 Title</label>
                                     <select class="form-control" id="Title" name="title">
                                         <option>第一条</option>
@@ -178,16 +178,19 @@
                                         <option>第三条</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-6">
+
+                                <div class="form-group col-md-12">
+                                    <label for="ImageUrl">图片 Title</label>
+                                    <input type="file" class="form-control" placeholder="ImageUrl" accept="image/*" id="ImageUrl" name="file">
+                                </div>
+
+                                <div class="form-group col-md-12">
                                     <label for="Date">时间 Date</label>
                                     <input type="date" class="form-control" placeholder="Date" id="Date" name="date">
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-12">
                                     <label for="content">内容 Content</label>
                                     <input type="text" class="form-control" placeholder="content" id="content1" name="content">
-                                </div>
-                                <div class="form-group col-md-6">
-                                <label></label>
                                 </div>
                                 <div class="form-group col-md-6 mb-3">
                                     <button type="submit" class="btn btn-primary btn-lg" id="submit">Submit</button>

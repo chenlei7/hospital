@@ -13,6 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface EpidemicProtectionMapper extends JpaRepository<EpidemicProtection,Object> {
     @Transactional
     @Modifying
-    @Query(nativeQuery = true,value = "update epidemic_protection set date=:date,content=:content where title=:title")
-    int updateEpidemicProjection(@Param("title")String title,@Param("date")String date,@Param("content")String content);
+    @Query(nativeQuery = true,value = "update epidemic_protection set date=:date,content=:content,image_url=:imageUrl where title=:title")
+    int updateEpidemicProjection(@Param("title")String title,@Param("date")String date,@Param("content")String content,@Param("imageUrl")String imageUrl);
 }

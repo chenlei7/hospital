@@ -12,7 +12,7 @@ public class EpidemicProtectionServiceImpl implements EpidemicProtectionService 
     EpidemicProtectionMapper epidemicProtectionMapper;
     //修改疫情推荐
     @Override
-    public int updateEpidemicProjection(String title, String date, String content) {
-        return epidemicProtectionMapper.updateEpidemicProjection(title,date,content);
+    public int updateEpidemicProjection(String title, String date, String content,String imageUrl) {
+        return epidemicProtectionMapper.updateEpidemicProjection(title,date,content,imageUrl);
     }
 }

@@ -15,15 +15,18 @@ public class EpidemicProtection {
     String date;
     @Column
     String content;
+    @Column
+    String imageUrl;
 
     public EpidemicProtection() {
     }
 
-    public EpidemicProtection(int id, String title, String date, String content) {
+    public EpidemicProtection(int id, String title, String date, String content,String imageUrl) {
         this.id = id;
         this.title = title;
         this.date = date;
         this.content = content;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -58,13 +61,22 @@ public class EpidemicProtection {
         this.content = content;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
-        return "PopularArticle{" +
+        return "EpidemicProtection{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", date='" + date + '\'' +
                 ", content='" + content + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }
