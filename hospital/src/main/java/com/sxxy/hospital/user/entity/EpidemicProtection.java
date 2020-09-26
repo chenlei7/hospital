@@ -9,14 +9,15 @@ public class EpidemicProtection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    @Column
-    String title;
-    @Column
-    String date;
-    @Column
-    String content;
-    @Column
+    @Column(name = "image_url")
     String imageUrl;
+    @Column(name = "title")
+    String title;
+    @Column(name = "date")
+    String date;
+    @Column(name = "content")
+    String content;
+
 
     public EpidemicProtection() {
     }
