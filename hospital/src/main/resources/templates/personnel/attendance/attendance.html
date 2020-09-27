@@ -171,19 +171,36 @@
                         <form action="/attendance/doAttendance" method="post" onsubmit="return check()">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
+                                    <label for="identity">身份 Identity</label>
+                                    <select class="form-control" id="identity" name="identity">
+                                        <option>医生</option>
+                                        <option>护士</option>
+                                        <option>后勤</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="attendanceName"></label>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="attendanceName">姓名 Name</label>
+                                    <input type="text" class="form-control" placeholder="attendanceName" id="attendanceName" name="attendanceName" onchange="queryName()">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="attendanceName"></label>
+                                </div>
+                                <div class="form-group col-md-6">
                                     <label for="attendanceNum">编号 Number</label>
                                     <input type="text" class="form-control" placeholder="attendanceNum" id="attendanceNum" name="attendanceNum">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="attendanceName">姓名 Name</label>
-                                    <input type="text" class="form-control" placeholder="attendanceName" id="attendanceName" name="attendanceName">
+                                    <label for="attendanceName"></label>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="attendanceDate">日期 Date</label>
                                     <input type="date" placeholder="attendanceDate" class="form-control" id="attendanceDate" name="attendanceDate">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="attendanceDate"></label>
+                                    <label for="attendanceName"></label>
                                 </div>
 
 
@@ -260,6 +277,27 @@
             return true;
         }
     })
+
+    function queryName() {
+        var identity = $("#identity").val();
+        var attendanceName = $("#attendanceName").val();
+        $.ajax({
+            type: "GET",
+            url: "/attendance/queryName",
+            async : false,
+            data:{"identity":identity,"attendanceName":attendanceName},
+            success:function (result) {
+                console.log(result);
+                if (result.attendanceNum==="该人员不存在"){
+                    alert("该人员不存在");
+                    window.location.reload();
+                }else {
+                    $("#attendanceNum").val(result.attendanceNum);
+                    $("#attendanceDate").val(result.attendanceDate);
+                }
+            }
+        })
+    }
 </script>
 </body>
 

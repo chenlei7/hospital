@@ -34,4 +34,6 @@ public interface DoctorMapper extends JpaRepository<Doctor,Object> {
 
     Doctor findByDoctorNum(String num);
 
+
+    Doctor findByDoctorName(String attendanceName);
 }

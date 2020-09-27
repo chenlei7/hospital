@@ -1,5 +1,6 @@
 package com.sxxy.hospital.personnel.mapper;
 
+import com.sxxy.hospital.personnel.entity.Nurse;
 import com.sxxy.hospital.personnel.entity.Other;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -34,4 +35,6 @@ public interface OtherMapper extends JpaRepository<Other,Object> {
 
     //num查询员工
     Other findByOtherNum(String num);
+
+    Other findByOtherName(String attendanceName);
 }
