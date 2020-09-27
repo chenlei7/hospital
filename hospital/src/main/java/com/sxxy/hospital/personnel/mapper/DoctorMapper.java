@@ -33,7 +33,6 @@ public interface DoctorMapper extends JpaRepository<Doctor,Object> {
     int editDoctorNowState(@Param("doctorState")String doctorState, @Param("editNum") List<String> editNum);
 
     Doctor findByDoctorNum(String num);
-
-
+    
     Doctor findByDoctorName(String attendanceName);
 }
