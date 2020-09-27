@@ -304,7 +304,7 @@
 			async : false,
 			data:{"nurseNumber":nurseNumber},
 			success:function (result) {
-				if (result==="编号存在"){
+				if (result.nurseNum!=="编号不存在"){
 					alert("编号存在");
 				}
 			}
