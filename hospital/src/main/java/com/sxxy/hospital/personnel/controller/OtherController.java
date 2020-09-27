@@ -111,11 +111,13 @@ public class OtherController {
     @RequestMapping("/queryNum")
     @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     @ResponseBody
-    public String queryNum(String otherNumber) {
+    public Other queryNum(String otherNumber,Model model) {
         Other otherNum = otherMapper.findByOtherNum(otherNumber);
         if (otherNum==null){
-            return "编号不存在";
+            Other o = new Other();
+            o.setOtherNum("编号不存在");
+            return o;
         }
-        return "编号存在";
+        return otherNum;
     }
 }

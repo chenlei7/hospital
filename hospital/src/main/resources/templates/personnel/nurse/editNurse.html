@@ -294,8 +294,19 @@
             async : false,
             data:{"nurseNumber":nurseNumber},
             success:function (result) {
-                if (result==="编号不存在"){
+                if (result.nurseNum==="编号不存在"){
                     alert("编号不存在");
+                    window.location.reload();
+                }else {
+                    $("#nurseWorkDate").val(result.nurseWorkDate);
+                    $("#nurserWorkspace").val(result.nurseWorkspace);
+                    $("#nursePosition").val(result.nursePosition);
+                    $("#nursePhone").val(result.nursePhone);
+                    $("#nurseEmail").val(result.nurseEmail);
+                    $("#nursePassword").val(result.nursePassword);
+                    $("#nurseMoney").val(result.nurseMoney);
+                    $("#nurseAbout").val(result.nurseAbout);
+                    $("#nurseAddress").val(result.nurseAddress);
                 }
             }
         })

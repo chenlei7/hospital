@@ -292,8 +292,19 @@
             async : false,
             data:{"doctorNumber":doctorNumber},
             success:function (result) {
-                if (result==="编号不存在"){
-                 alert("编号不存在");
+                if (result.doctorNum==="编号不存在"){
+                    alert("编号不存在");
+                    window.location.reload();
+                }else {
+                    $("#doctorWorkDate").val(result.doctorWorkDate);
+                    $("#doctorWorkspace").val(result.doctorWorkspace);
+                    $("#doctorPosition").val(result.doctorPosition);
+                    $("#doctorPhone").val(result.doctorPhone);
+                    $("#doctorEmail").val(result.doctorEmail);
+                    $("#doctorPassword").val(result.doctorPassword);
+                    $("#doctorMoney").val(result.doctorMoney);
+                    $("#doctorAbout").val(result.doctorAbout);
+                    $("#doctorAddress").val(result.doctorAddress);
                 }
             }
         })

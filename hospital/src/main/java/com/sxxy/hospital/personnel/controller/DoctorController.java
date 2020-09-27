@@ -111,12 +111,14 @@ public class DoctorController {
     @RequestMapping("/queryNum")
     @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     @ResponseBody
-    public String queryNum(String doctorNumber) {
+    public Doctor queryNum(String doctorNumber,Model model) {
         Doctor doctorNum = doctorMapper.findByDoctorNum(doctorNumber);
         if (doctorNum==null){
-            return "编号不存在";
+         Doctor dc = new Doctor();
+         dc.setDoctorNum("编号不存在");
+            return dc;
+        }else {
+            return doctorNum;
         }
-            return "编号存在";
     }
-
 }
