@@ -32,7 +32,7 @@ public class OtherController {
     @RequestMapping("/addOther")
     @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String addOther(String otherNum, String otherName, int otherAge, String otherGender, String otherPosition, String otherWorkspace, String otherWorkDate ) {
-        Other other = new Other(otherNum,otherName,otherAge,otherGender,otherPosition,otherWorkspace,otherWorkDate,"123",10000,"可出工");
+        Other other = new Other(otherNum,otherName,otherAge,otherGender,otherPosition,otherWorkspace,otherWorkDate,"123",1500,"可出工");
         if (other != null) {
             otherService.addOther(other);
             return "personnel/success";
