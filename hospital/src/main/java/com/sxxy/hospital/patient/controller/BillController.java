@@ -2,6 +2,7 @@ package com.sxxy.hospital.patient.controller;
 
 import com.sxxy.hospital.patient.entity.Bill;
 import com.sxxy.hospital.patient.entity.Illness;
+import com.sxxy.hospital.patient.entity.Patient;
 import com.sxxy.hospital.patient.mapper.BillMapper;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -61,5 +62,19 @@ public class BillController {
             return "patient/error";
         }
         return "patient/doctor/doctorSuccess1";
+    }
+
+    //判断账单号是否存在
+    @RequestMapping("/queryNum1")
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
+    @ResponseBody
+    public String queryNum1(String patientBillNum) {
+        List<Bill> patientNum1 = billMapper.findBillByNum(patientBillNum);
+        System.out.println("!!!"+patientNum1);
+        if (patientNum1.size()>=1){
+            return "存在";
+        }else {
+            return "编号不存在";
+        }
     }
 }

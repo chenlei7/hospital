@@ -73,4 +73,17 @@ public class IllnessController {
         return set;
     }
 
+    //查询编号是否存在
+    @RequestMapping("/queryNum")
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
+    @ResponseBody
+    public String queryNum(String patientIllnessNum) {
+        List<Illness> patientNum1 = illnessMapper.findIllnessByNum(patientIllnessNum);
+        System.out.println("!!!"+patientNum1);
+        if (patientNum1.size()>=1){
+            return "存在";
+        }else {
+            return "编号不存在";
+        }
+    }
 }

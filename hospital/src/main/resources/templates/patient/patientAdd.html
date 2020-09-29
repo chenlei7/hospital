@@ -156,7 +156,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="patientNum">病人编号</label>
                                     <input type="text" class="form-control" placeholder="patientNum" id="patientNum"
-                                           name="patientNum">
+                                           name="patientNum" onchange="queryNum()">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientName">病人姓名</label>
@@ -200,7 +200,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="patientBillNum">账单号</label>
                                         <input type="text" placeholder="patientBillNum" class="form-control"
-                                               id="patientBillNum" name="patientBillNum">
+                                               id="patientBillNum" name="patientBillNum" onchange="queryNum1()">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="patientGender">性别</label>
@@ -291,6 +291,40 @@
             }
         })
     })
+
+    /*确定病人编号是否存在*/
+    function queryNum() {
+        var patientNum = $("#patientNum").val();
+        $.ajax({
+            type: "GET",
+            url: "/patient/queryNum",
+            async : false,
+            data:{"patientNum":patientNum},
+            success:function (data) {
+                console.log(data)
+                if (data == "存在"){
+                    alert("编号已经存在,请修改");
+                }
+            }
+        })
+    }
+
+    /*判断账单号是否存在*/
+    function queryNum1() {
+        var patientBillNum = $("#patientBillNum").val();
+        $.ajax({
+            type: "GET",
+            url: "/bill/queryNum1",
+            async : false,
+            data:{"patientBillNum":patientBillNum},
+            success:function (data) {
+                console.log(data)
+                if (data == "存在"){
+                    alert("编号已经存在,请修改");
+                }
+            }
+        })
+    }
 </script>
 
 </body>

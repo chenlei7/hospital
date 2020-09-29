@@ -143,8 +143,10 @@ public class RegisterController {
             //更据医生编号去查找工作的地方
             List<Doctor> doctor = doctorMappers.findADoctorByDoctorNum(patientDoctorNum);
             String doctorNum1 = doctor.get(0).getDoctorWorkspace();
+            System.out.println("doctorNum1"+doctorNum1);
             //根据工作地点查找工作房间编号
             List<Room> rooms = roomMappers.findRoomByName(doctorNum1);
+            System.out.println("rooms"+rooms);
             String roomNum = rooms.get(0).getRoomNum();
             int b = patientMapper.registerUpdate(patientId, patientNums, patientBillNum, roomNum, patientDoctorNum);
             System.out.println("到了" + patientId + "," + patientNums + "," + patientBillNum + "," + roomNum + "," + patientDoctorNum);
