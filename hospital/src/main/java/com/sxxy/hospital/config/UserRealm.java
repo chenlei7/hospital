@@ -49,13 +49,11 @@ public class UserRealm extends AuthorizingRealm {
 
 
         if (role.equals("财务部")){
-            info.addRole("financialer");
+            info.addRole("financial");
         }else if (role.equals("人事部")){
             info.addRole("dept");
         }else if (role.equals("医生")){
             info.addRole("doctor");
-        }else if (role.equals("护士")){
-            info.addRole("nurse");
         }else if (role.equals("后勤部")){
             info.addRole("other");
         }

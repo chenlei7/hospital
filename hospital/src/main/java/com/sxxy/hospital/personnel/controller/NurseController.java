@@ -30,7 +30,7 @@ public class NurseController {
     @RequestMapping("/addNurse")
     @RequiresRoles(value={"admin","dept"},logical = Logical.OR)
     public String addNurse(String nurseNum, String nurseName, String nursePhone, String nurseBirthday, String nurseAddress, String nurseEmail, int nurseAge, String nurseGender, String nursePosition, String nurseWorkspace, String nurseWorkDate, String nurseAbout) {
-        Nurse nurse = new Nurse(nurseNum,nurseName,nursePhone,nurseBirthday,nurseAddress,nurseEmail,nurseAge,nurseGender,nursePosition,nurseWorkspace,nurseWorkDate,nurseAbout,"123",4000,"可派遣");
+        Nurse nurse = new Nurse(nurseNum,nurseName,nursePhone,nurseBirthday,nurseAddress,nurseEmail,nurseAge,nurseGender,nursePosition,nurseWorkspace,nurseWorkDate,nurseAbout,"123",2500,"可派遣");
         if (nurse != null) {
             nurseService.addNurse(nurse);
             return "personnel/success";
