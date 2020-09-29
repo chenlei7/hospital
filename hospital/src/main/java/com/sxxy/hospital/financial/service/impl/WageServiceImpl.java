@@ -42,7 +42,7 @@ public class WageServiceImpl implements WageService {
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
 //    @Scheduled(fixedDelay = 60*60*1000)
-    @Scheduled(cron = "0 0 0 L * ?")//每月最后一天分发工资
+    @Scheduled(cron = "0 0 0 28 * ?")//每月最后一天分发工资
     public void DoctorWage(){
         String time = format.format(new Date());
         String date = sdf.format(new Date());
@@ -61,7 +61,7 @@ public class WageServiceImpl implements WageService {
         }
     }
 //    @Scheduled(fixedDelay = 60*60*1000)
-    @Scheduled(cron = "0 0 0 L * ?")//每月最后一天分发工资
+    @Scheduled(cron = "0 0 0 28 * ?")//每月最后一天分发工资
     public void NurseWage(){
         String time = format.format(new Date());
         String date = sdf.format(new Date());
@@ -79,7 +79,7 @@ public class WageServiceImpl implements WageService {
         }
     }
 
-    @Scheduled(cron = "0 0 0 L * ?")//每月最后一天分发工资
+    @Scheduled(cron = "0 0 0 28 * ?")//每月最后一天分发工资
 //@Scheduled(fixedDelay = 60*60*1000)
     public void OtherWage(){
         String time = format.format(new Date());
