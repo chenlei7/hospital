@@ -36,7 +36,7 @@ public class FinancialController {
     @Autowired
     FinancialService financialService;
     //跳转到登录主界面
-    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
+    @RequiresRoles(value={"admin","financial"},logical = Logical.OR)
     @RequestMapping("/index")
     public String index(Model model){
         List<Map> lists = daService.findMoneyByDate();
@@ -78,7 +78,7 @@ public class FinancialController {
         return "/financial/index";
     }
     //跳转到财务表
-    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
+    @RequiresRoles(value={"admin","financial"},logical = Logical.OR)
     @RequestMapping("/financial")
     public String financial(Model model){
         List<Map> lists = service.findAll();
@@ -86,13 +86,13 @@ public class FinancialController {
         return "/financial/financial";
     }
 
-    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
+    @RequiresRoles(value={"admin","financial"},logical = Logical.OR)
     @GetMapping("/add")
     public String add(){
         return "/financial/add";
     }
 
-    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
+    @RequiresRoles(value={"admin","financial"},logical = Logical.OR)
     @PostMapping("/add")
     public String addFinancial(String statementNum,String statementName,String statementDeptName,String statementType,String statementEvent,String statementTime,int statementState,double statementMoney){
         int m = financialService.add(statementNum, statementName, statementDeptName, statementType, statementEvent, statementTime, statementState, statementMoney);
