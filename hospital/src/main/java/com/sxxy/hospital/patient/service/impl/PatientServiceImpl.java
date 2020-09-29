@@ -16,6 +16,6 @@ public class PatientServiceImpl implements PatientService {
    //修改病人
     @Override
     public int PatientUpdate(Patient patient) {
-        return patientMapper.PatientUpdate(patient.getPatientLeaveDate(),patient.getPatientIllnessNum(),patient.getPatientNurseNum(),patient.getPatientNum());
+        return patientMapper.PatientUpdate(patient.getPatientLeaveDate(),patient.getPatientIllnessNum(),patient.getPatientNurseNum(),patient.getId());
     }
 }

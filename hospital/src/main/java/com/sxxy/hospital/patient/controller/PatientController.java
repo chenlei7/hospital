@@ -16,9 +16,12 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -54,12 +57,18 @@ public class PatientController {
     @Autowired
     NurseMapper nurseMapper;
 
+    @Autowired
+    NurseMappers nurseMappers;
+
     //主页面
     @RequestMapping("/index")
     public String index(Model model){
         List<Patient> patients = new ArrayList<>();
         patients = patientMapper.findAllPatient();
         model.addAttribute("patients",patients);
+        //查询出可派遣的护士
+        List<Nurse> nurses = nurseMappers.findOneNurse();
+        model.addAttribute("nurses",nurses);
         return "patient/index";
     }
 
@@ -82,6 +91,9 @@ public class PatientController {
         List<Patient> patients = new ArrayList<>();
         patients = patientMapper.findAllPatient();
         model.addAttribute("patients",patients);
+        //查询出可派遣的护士
+        List<Nurse> nurses = nurseMappers.findOneNurse();
+        model.addAttribute("nurses",nurses);
         return "patient/patientsInfo";
     }
 
@@ -133,18 +145,42 @@ public class PatientController {
     @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
     public  String patientUpadte(Patient patient){
         System.out.println(patient);
-        //修改病人信息表
-        int a = patientService.PatientUpdate(patient);
-        //添加病情表
-        Illness illness = new Illness();
-        illness.setIllnessNum(patient.getPatientIllnessNum());
-        illnessMapper.save(illness);
-        if (a > 0){
-            return  "redirect:/patient/patientsInfo";
+        //得到病情编号判断是否存在
+        String illnes = patient.getPatientIllnessNum();
+        List<Illness> il = illnessMapper.findIllnessByNum(illnes);
+        if(il != null && !il.equals("")){
+            //修改病人信息表
+            int a = patientService.PatientUpdate(patient);
+            String nurseState = "已派遣";
+            String nurseNum = patient.getPatientNurseNum();
+            //改变护士状态
+            if (nurseNum != null && !nurseNum.equals("")){
+                nurseMappers.editNurseNowState(nurseState,nurseNum);
+            }
+            if (a > 0){
+                return  "redirect:/patient/patientsInfo";
+            }else {
+                return "patient/error";
+            }
         }else {
-            return "patient/error";
+            //修改病人信息表
+            int a = patientService.PatientUpdate(patient);
+            String nurseState = "已派遣";
+            String nurseNum = patient.getPatientNurseNum();
+            //改变护士状态
+            if (nurseNum != null && !nurseNum.equals("")){
+                nurseMappers.editNurseNowState(nurseState,nurseNum);
+            }
+            //添加病情表
+            Illness illness = new Illness();
+            illness.setIllnessNum(patient.getPatientIllnessNum());
+            illnessMapper.save(illness);
+            if (a > 0){
+                return  "redirect:/patient/patientsInfo";
+            }else {
+                return "patient/error";
+            }
         }
-
     }
 
     //网上挂号的全部病人信息
@@ -183,5 +219,18 @@ public class PatientController {
         }
         model.addAttribute("nurses",nurses);
         return "patient/nurse/nurses";
+    }
+
+    //根据id查询一个病人的信息
+    @ResponseBody
+    @GetMapping("/findOnePatient")
+    public List<Patient> findOnePatient(int patientId, HttpServletRequest request) {
+        System.out.println("....." + patientId);
+        List<Patient> patient = new ArrayList<>();
+        patient = patientMapper.findOnePatient(patientId);
+        if (patient == null && patient.equals("")) {
+            return null;
+        }
+        return patient;
     }
 }

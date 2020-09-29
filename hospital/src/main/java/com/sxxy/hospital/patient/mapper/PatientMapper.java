@@ -23,8 +23,8 @@ public interface PatientMapper extends JpaRepository<Patient,Integer> {
     //修改病人信息
     @Transactional()
     @Modifying
-    @Query(nativeQuery = true,value = "update patient_info  set patient_leaveDate=:patientLeaveDate,patient_illness_num=:patientIllnessNum,patient_nurse_num=:patientNurseNum where patient_num =:patientNum")
-    int PatientUpdate(@Param("patientLeaveDate")String patientLeaveDate,@Param("patientIllnessNum")String patientIllnessNum,@Param("patientNurseNum")String patientNurseNum,@Param("patientNum")String patientNum);
+    @Query(nativeQuery = true,value = "update patient_info  set patient_leaveDate=:patientLeaveDate,patient_illness_num=:patientIllnessNum,patient_nurse_num=:patientNurseNum where id=:id")
+    int PatientUpdate(@Param("patientLeaveDate")String patientLeaveDate,@Param("patientIllnessNum")String patientIllnessNum,@Param("patientNurseNum")String patientNurseNum,@Param("id")Integer id);
 
     //查询网上挂号的用户
     @Transactional
