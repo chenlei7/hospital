@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="nursePhone">电话 Phone</label>
-                                    <input type="text" placeholder="Phone" class="form-control" id="nursePhone" name="nursePhone">
+                                    <input type="text" placeholder="Phone" class="form-control" id="nursePhone" name="nursePhone" onchange="checkPhone()">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="nurseEmail">邮箱 Email</label>
@@ -310,6 +310,15 @@
                 }
             }
         })
+    }
+
+    /*手机号码验证*/
+    function checkPhone(){
+        var nursePhone = document.getElementById('nursePhone').value;
+        if(!(/^1[3456789]\d{9}$/.test(nursePhone))){
+            alert("手机号码有误，请重填");
+            return false;
+        }
     }
 </script>
 </body>

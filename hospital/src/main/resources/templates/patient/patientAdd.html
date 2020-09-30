@@ -181,7 +181,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="patientPhone">电话</label>
                                     <input type="text" placeholder="patientPhone" class="form-control" id="patientPhone"
-                                           name="patientPhone">
+                                           name="patientPhone" onchange="checkPhone()">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="patientRoomNum">选择科室</label>
@@ -291,6 +291,15 @@
             }
         })
     })
+
+    /*手机号码验证*/
+    function checkPhone(){
+        var patientPhone = document.getElementById('patientPhone').value;
+        if(!(/^1[3456789]\d{9}$/.test(patientPhone))){
+            alert("手机号码有误，请重填");
+            return false;
+        }
+    }
 </script>
 
 </body>

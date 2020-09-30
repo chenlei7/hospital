@@ -20,7 +20,7 @@ public class ExcelController {
 
     @Autowired
     FinancialService financialService;
-    @RequiresRoles(value={"admin","financialer"},logical = Logical.OR)
+    @RequiresRoles(value={"admin","financial"},logical = Logical.OR)
     @RequestMapping("/out")
     public void outExcel(String excelName, String tag,HttpServletResponse response){
         int rowIndex = 0;

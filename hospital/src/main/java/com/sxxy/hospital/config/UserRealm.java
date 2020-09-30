@@ -40,13 +40,9 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-
         String role = (String) request.getSession().getAttribute("role");
-
         List<String> permissionList=new ArrayList<>();
         info.addStringPermissions(permissionList);
-
-
 
         if (role.equals("财务部")){
             info.addRole("financial");

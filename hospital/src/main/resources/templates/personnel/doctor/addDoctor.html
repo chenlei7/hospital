@@ -195,11 +195,11 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label for="doctorAge">年龄 Age</label>
-										<input type="text" placeholder="Age" class="form-control" id="doctorAge" name="doctorAge">
+										<input type="number" placeholder="Age" class="form-control" id="doctorAge" name="doctorAge">
 									</div>
 									<div class="form-group col-md-6">
 										<label for="doctorPhone">电话 Phone</label>
-										<input type="text" placeholder="Phone" class="form-control" id="doctorPhone" name="doctorPhone">
+										<input type="text" placeholder="Phone" class="form-control" id="doctorPhone" name="doctorPhone" onchange="checkPhone()">
 									</div>
 									<div class="form-group col-md-6">
 										<label for="doctorEmail">邮箱 Email</label>
@@ -309,6 +309,14 @@
 					}
 				}
 			})
+		}
+		/*手机号码验证*/
+		function checkPhone(){
+			var doctorPhone = document.getElementById('doctorPhone').value;
+			if(!(/^1[3456789]\d{9}$/.test(doctorPhone))){
+				alert("手机号码有误，请重填");
+				return false;
+			}
 		}
 	</script>
 </body>

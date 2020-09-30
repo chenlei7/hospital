@@ -57,8 +57,6 @@ public class userController {
         // 定义上传文件保存路径
         //String path = filePath;
         String path = ClassUtils.getDefaultClassLoader().getResource("static/images").getPath();
-        System.out.println(path);
-
         // 新建文件
         File filepath = new File(path, filename);
         // 判断路径是否存在，如果不存在就创建一个
