@@ -253,6 +253,40 @@
         })
     }
 
+    /*确定病人编号是否存在*/
+    function queryNum() {
+        var patientNum = $("#patientNums").val();
+        $.ajax({
+            type: "GET",
+            url: "/patient/queryNum",
+            async : false,
+            data:{"patientNum":patientNum},
+            success:function (data) {
+                console.log(data)
+                if (data == "存在"){
+                    alert("编号已经存在,请修改");
+                }
+            }
+        })
+    }
+
+    /*判断账单号是否存在*/
+    function queryNum1() {
+        var patientBillNum = $("#patientBillNum").val();
+        $.ajax({
+            type: "GET",
+            url: "/bill/queryNum1",
+            async : false,
+            data:{"patientBillNum":patientBillNum},
+            success:function (data) {
+                console.log(data)
+                if (data == "存在"){
+                    alert("编号已经存在,请修改");
+                }
+            }
+        })
+    }
+
 </script>
 <!--修改模态框-->
 <div class="modal fade" id="editModal" data-th-background="static" data-th-keytype="false">
@@ -273,12 +307,12 @@
                     <div class="form-group col-md-6">
                         <label for="patientNums">病人编号</label>
                         <input type="text" class="form-control" placeholder="patientNums" id="patientNums"
-                               name="patientNums">
+                               name="patientNums" onchange="queryNum()">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="patientBillNum">病人账单号</label>
                         <input type="text" class="form-control" placeholder="patientBillNum" id="patientBillNum"
-                               name="patientBillNum">
+                               name="patientBillNum" onchange="queryNum1()">
                     </div>
                     <div class="form-group col-md-6" id="doctor">
                         <label for="patientDoctorNum">安排医生/专家号默认的可不选</label>

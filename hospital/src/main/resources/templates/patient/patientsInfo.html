@@ -261,6 +261,23 @@
 
     }
 
+    /*确定病情编号是否存在*/
+    function queryNum() {
+        var patientIllnessNum = $("#patientIllnessNum").val();
+        $.ajax({
+            type: "GET",
+            url: "/illness/queryNum",
+            async : false,
+            data:{"patientIllnessNum":patientIllnessNum},
+            success:function (data) {
+                console.log(data)
+                if (data == "存在"){
+                    alert("编号已经存在,请修改");
+                }
+            }
+        })
+    }
+
 </script>
 <!--修改模态框-->
 <div class="modal fade" id="editModal" data-th-background="static" data-th-keytype="false">
@@ -288,7 +305,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="patientIllnessNum">病情编号</label>
-                        <input type="text"  class="form-control" placeholder="patientIllnessNum" id="patientIllnessNum" name="patientIllnessNum">
+                        <input type="text"  class="form-control" placeholder="patientIllnessNum" id="patientIllnessNum" name="patientIllnessNum" onchange="queryNum()">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="patientLeaveDate">离开日期</label>

@@ -233,4 +233,18 @@ public class PatientController {
         }
         return patient;
     }
+
+    //查询编号是否存在
+    @RequestMapping("/queryNum")
+    @RequiresRoles(value={"admin","doctor"},logical = Logical.OR)
+    @ResponseBody
+    public String queryNum(String patientNum) {
+        List<Patient> patientNum1 = patientMapper.findByNum(patientNum);
+        System.out.println("!!!"+patientNum1);
+        if (patientNum1.size()>=1){
+            return "存在";
+        }else {
+            return "编号不存在";
+        }
+    }
 }
