@@ -292,48 +292,48 @@
         })
     })
 
-<<<<<<< HEAD
+
     /*手机号码验证*/
-    function checkPhone(){
+    function checkPhone() {
         var patientPhone = document.getElementById('patientPhone').value;
-        if(!(/^1[3456789]\d{9}$/.test(patientPhone))){
+        if (!(/^1[3456789]\d{9}$/.test(patientPhone))) {
             alert("手机号码有误，请重填");
             return false;
         }
-=======
-    /*确定病人编号是否存在*/
-    function queryNum() {
-        var patientNum = $("#patientNum").val();
-        $.ajax({
-            type: "GET",
-            url: "/patient/queryNum",
-            async : false,
-            data:{"patientNum":patientNum},
-            success:function (data) {
-                console.log(data)
-                if (data == "存在"){
-                    alert("编号已经存在,请修改");
-                }
-            }
-        })
-    }
 
-    /*判断账单号是否存在*/
-    function queryNum1() {
-        var patientBillNum = $("#patientBillNum").val();
-        $.ajax({
-            type: "GET",
-            url: "/bill/queryNum1",
-            async : false,
-            data:{"patientBillNum":patientBillNum},
-            success:function (data) {
-                console.log(data)
-                if (data == "存在"){
-                    alert("编号已经存在,请修改");
+        /*确定病人编号是否存在*/
+        function queryNum() {
+            var patientNum = $("#patientNum").val();
+            $.ajax({
+                type: "GET",
+                url: "/patient/queryNum",
+                async: false,
+                data: {"patientNum": patientNum},
+                success: function (data) {
+                    console.log(data)
+                    if (data == "存在") {
+                        alert("编号已经存在,请修改");
+                    }
                 }
-            }
-        })
->>>>>>> 2c42e05b8cddfd2aa0defe4a99a69631cc0e653b
+            })
+        }
+
+        /*判断账单号是否存在*/
+        function queryNum1() {
+            var patientBillNum = $("#patientBillNum").val();
+            $.ajax({
+                type: "GET",
+                url: "/bill/queryNum1",
+                async: false,
+                data: {"patientBillNum": patientBillNum},
+                success: function (data) {
+                    console.log(data)
+                    if (data == "存在") {
+                        alert("编号已经存在,请修改");
+                    }
+                }
+            })
+        }
     }
 </script>
 
